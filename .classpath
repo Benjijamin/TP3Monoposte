@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="src" path="io"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysql-connector"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
