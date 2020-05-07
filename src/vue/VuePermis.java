@@ -3,9 +3,11 @@ package vue;
 import java.io.IOException;
 
 import controleur.ICtrl;
+import javafx.application.Platform;
 import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import modele.Permis;
 
@@ -166,24 +168,37 @@ public class VuePermis implements IVue {
 		return permis;
 	}
 
+	@FXML
 	public void quitter() {
+		Alert quit = new Alert(AlertType.CONFIRMATION);
+		quit.setTitle("Quitter ?");
+		quit.setContentText("Etes-vous sûr de vouloir quitter ?\nLes changements non sauvegardé seront perdus.");
+		if (quit.showAndWait().get() == ButtonType.OK) {
+			Platform.exit();
+		}
+
 	}
 
+	@FXML
 	public void nouveau() {
 	}
 
+	@FXML
 	public void ajouter() {
 		// TODO remove
 		Permis p = getFormulaire();
 		System.out.println(p);
 	}
 
+	@FXML
 	public void modifier() {
 	}
 
+	@FXML
 	public void supprimer() {
 	}
 
+	@FXML
 	public void aide() {
 	}
 }

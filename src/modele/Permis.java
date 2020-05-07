@@ -6,11 +6,11 @@ import java.util.Date;
 
 public class Permis {
 	private int numero;
-	private String territoire;
+	private Territoire territoire;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
 	private String nom;
-	private String type;
+	private Type type;
 	private String sexe;
 	private float poids;
 	private LocalDate dateNaissance;
@@ -24,7 +24,7 @@ public class Permis {
 		
 	}
 
-	public Permis(int numero, String territoire, LocalDate dateDebut, LocalDate dateFin, String nom, String type, String sexe,
+	public Permis(int numero, Territoire territoire, LocalDate dateDebut, LocalDate dateFin, String nom, Type type, String sexe,
 			float poids, LocalDate dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
 		this.numero = numero;
