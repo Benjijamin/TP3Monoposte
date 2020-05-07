@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "modele.Permis" table = "PERMIS">
+      
+      <id name = "numero" type = "int" column = "numero">
+         <generator class="increment"/>
+      </id>
+      
+      <many-to-one name = "territoire" column = "territoire"/>
+      <property name = "dateDebut" column = "dateDebut" type = "date"/>
+      <property name = "dateFin" column = "dateFin" type = "date"/>
+      <property name = "nom" column = "nom" type = "string"/>
+      <many-to-one name = "type" column = "type"/>
+      <property name = "sexe" column = "sexe" type = "string"/>
+      <property name = "poids" column = "poids" type = "float"/>
+      <property name = "dateNaissance" column = "dateNaissance" type = "date"/>
+      <property name = "couleur" column = "couleur" type = "string"/>
+      <property name = "vaccine" column = "vaccine" type = "boolean"/>
+      <property name = "sterelise" column = "sterelise" type = "boolean"/>
+      <property name = "micropuce" column = "micropuce" type = "boolean"/>
+      <property name = "dangereux" column = "dangereux" type = "boolean"/>
+      
+   </class>
+</hibernate-mapping>
