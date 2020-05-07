@@ -28,9 +28,8 @@
       <menus>
         <Menu mnemonicParsing="false" text="Fichier">
                <items>
-                  <MenuItem fx:id="menuExporterXML" mnemonicParsing="false" text="Exporter XML" />
-                  <MenuItem fx:id="menuExporterXML" mnemonicParsing="false" text="Importer XML" />
-                  <MenuItem fx:id="menuImporterCSV" mnemonicParsing="false" text="Importer CSV" />
+                  <MenuItem fx:id="menuExporterXML" onAction="#export" mnemonicParsing="false" text="Exporter XML" />
+                  <MenuItem fx:id="menuImporterCSV" onAction="#importcsv" mnemonicParsing="false" text="Importer CSV" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuQuitter" onAction="#quitter" mnemonicParsing="false" text="Quitter" />
                </items>
@@ -45,13 +44,13 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Listes des données">
           <items>
-            <MenuItem fx:id="menuGererTerritoires" mnemonicParsing="false" text="Gérer la liste des territoires" />
-                  <MenuItem fx:id="menuGererTypes" mnemonicParsing="false" text="Gérer la liste des types" />
+            <MenuItem fx:id="menuGererTerritoires" onAction="#gestionTerritoire" mnemonicParsing="false" text="Gérer la liste des territoires" />
+                  <MenuItem fx:id="menuGererTypes" onAction="#gestionType" mnemonicParsing="false" text="Gérer la liste des types" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Aide">
               <items>
-                <MenuItem fx:id="menuAide" mnemonicParsing="false" text="Aide" />
+                <MenuItem fx:id="menuAide" onAction="#aide" mnemonicParsing="false" text="Aide" />
               </items>
             </Menu>
       </menus>
@@ -68,7 +67,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="fieldRecherche" />
-                        <Button fx:id="buttonRecherche" mnemonicParsing="false" text="Button" />
+                        <Button fx:id="buttonRecherche" onAction="#recherche" mnemonicParsing="false" text="Button" />
                      </children>
                   </HBox>
                   <ListView fx:id="listViewPermis" prefWidth="200.0" />
@@ -91,13 +90,13 @@
                         <TextField fx:id="fieldNumero" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
                         <Label layoutX="20.0" layoutY="25.0" text="Numéro" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="35.0" />
                         <ChoiceBox fx:id="choiceBoxTerritoire" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonTerritoire" mnemonicParsing="false" text="img" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
-                        <Label text="Térritoire" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
+                        <Button fx:id="buttonTerritoire" onAction="#gestionTerritoire" mnemonicParsing="false" text="img" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
+                        <Label text="Territoire" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Date de début" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="35.0" />
                         <DatePicker fx:id="datePickerDateDebut" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
                         <Label layoutX="303.0" layoutY="62.0" text="Date de fin" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="70.0" />
                         <DatePicker fx:id="datePickerDateFin" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonSupprimer" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="buttonSupprimer" onAction="#supprimer" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="30.0" />
@@ -133,7 +132,7 @@
                         <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="130.0" />
                         <ChoiceBox fx:id="choiceBoxType" layoutX="409.0" layoutY="56.0" prefWidth="150.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
                         <TextField fx:id="fieldPoids" layoutX="410.0" layoutY="100.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
-                        <Button fx:id="buttonType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                        <Button fx:id="buttonType" onAction="#gestionType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                         <ComboBox fx:id="comboBoxCouleur" editable="true" layoutX="410.0" layoutY="126.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0" />
                         <Button fx:id="buttonNouveau" onAction="#nouveau" mnemonicParsing="false" text="Nouveau" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
                         <Button fx:id="buttonAjouter" onAction="#ajouter" mnemonicParsing="false" text="Ajouter" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />

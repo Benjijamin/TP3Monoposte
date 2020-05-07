@@ -9,12 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modele.Permis;
 
 public class VuePermis implements IVue {
 	private ICtrl ctrl;
 	private Scene scene;
 	private VBox root;
+
+	private Stage gestionType = new Stage();
+	private Stage gestionTerritoire = new Stage();
 
 	// CONTROLS
 
@@ -106,6 +112,14 @@ public class VuePermis implements IVue {
 	@FXML
 	private Button buttonAide;
 
+	// Gestion Type
+	@FXML
+	BorderPane modalType;
+
+	// Gestion Territoire
+	@FXML
+	BorderPane modalTerritoire;
+
 	/**
 	 * @param ctrl : controleur de l'application.
 	 * 
@@ -123,6 +137,28 @@ public class VuePermis implements IVue {
 			this.root = loader.load();
 			this.scene = new Scene(root);
 
+			// Load Modals
+			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
+			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
+
+			this.modalTerritoire = loaderTerritoire.load();
+			this.modalType = loaderType.load();
+			loaderTerritoire.setController(this);
+			loaderType.setController(this);
+			
+			gestionTerritoire.initStyle(StageStyle.UTILITY);
+			gestionType.initStyle(StageStyle.UTILITY);
+			gestionTerritoire.setResizable(false);
+			gestionType.setResizable(false);
+			gestionTerritoire.setScene(new Scene(modalTerritoire));
+			gestionType.setScene(new Scene(modalType));
+			gestionTerritoire.initModality(Modality.WINDOW_MODAL);
+			gestionType.initModality(Modality.WINDOW_MODAL);
+			gestionTerritoire.setTitle("Gestion Territoire");
+			gestionType.setTitle("Gestion Type");
+			gestionTerritoire.initOwner(this.getScene().getWindow());
+			gestionType.initOwner(this.getScene().getWindow());
+
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -133,6 +169,8 @@ public class VuePermis implements IVue {
 		return scene;
 	}
 
+	// TODO Déplacer vers le contrôleur (Seulement envoyer la valeur des champs dans
+	// un dictionnaire ou une array)
 	public Permis getFormulaire() {
 		Permis permis = new Permis();
 		int numero;
@@ -176,7 +214,6 @@ public class VuePermis implements IVue {
 		if (quit.showAndWait().get() == ButtonType.OK) {
 			Platform.exit();
 		}
-
 	}
 
 	@FXML
@@ -200,5 +237,41 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void aide() {
+		Alert help = new Alert(AlertType.CONFIRMATION);
+		help.setTitle("Aide");
+		help.setContentText("Cette Application permet la gestion de permis animaux.");
 	}
+
+	@FXML
+	public void export() {
+
+	}
+
+	@FXML
+	public void importcsv() {
+
+	}
+
+	@FXML
+	public void gestionTerritoire() {
+		gestionTerritoire.show();
+	}
+
+	@FXML
+	public void gestionType() {
+		gestionType.show();
+	}
+
+	@FXML
+	public void recherche() {
+
+	}
+	
+	/**
+	 * Disable et Enable les boutons nécessaires selon l'état actuel de l'application
+	 */
+	public void updateButtonState() {
+		
+	}
+
 }

@@ -4,6 +4,11 @@ import controleur.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * Cette Aplication Requière une base de données MySQL nommée "GestionPermis" 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class AppPermis extends Application{
 
 	private ICtrl ctrl;
