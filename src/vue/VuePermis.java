@@ -13,6 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modele.Permis;
+import modele.Territoire;
+import modele.Type;
 
 public class VuePermis implements IVue {
 	private ICtrl ctrl;
@@ -58,7 +60,7 @@ public class VuePermis implements IVue {
 	@FXML
 	private TextField fieldNumero;
 	@FXML
-	private ChoiceBox<String> choiceBoxTerritoire;
+	private ChoiceBox<Territoire> choiceBoxTerritoire;
 	@FXML
 	private Button buttonTerritoire;
 	@FXML
@@ -82,7 +84,7 @@ public class VuePermis implements IVue {
 	@FXML
 	private CheckBox checkBoxDangereux;
 	@FXML
-	private ChoiceBox<String> choiceBoxType;
+	private ChoiceBox<Type> choiceBoxType;
 	@FXML
 	private TextField fieldPoids;
 	@FXML

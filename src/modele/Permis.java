@@ -42,6 +42,43 @@ public class Permis {
 		this.micropuce = micropuce;
 		this.dangereux = dangereux;
 	}
+	
+	/**
+	 * Constructeur pour la lecture de CSV, donc quand le territoire et le type sont recus en string
+	 * @param numero
+	 * @param territoire
+	 * @param dateDebut
+	 * @param dateFin
+	 * @param nom
+	 * @param type
+	 * @param sexe
+	 * @param poids
+	 * @param dateNaissance
+	 * @param couleur
+	 * @param vaccine
+	 * @param sterelise
+	 * @param micropuce
+	 * @param dangereux
+	 */
+	public Permis(int numero, String territoire, LocalDate dateDebut, LocalDate dateFin, String nom, String type, String sexe,
+			float poids, LocalDate dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
+			boolean dangereux) {
+		//TODO
+		this.numero = numero;
+		this.territoire = null;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.nom = nom;
+		this.type = null;
+		this.sexe = sexe;
+		this.poids = poids;
+		this.dateNaissance = dateNaissance;
+		this.couleur = couleur;
+		this.vaccine = vaccine;
+		this.sterelise = sterelise;
+		this.micropuce = micropuce;
+		this.dangereux = dangereux;
+	}
 
 	public int getNumero() {
 		return numero;
