@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Permis {
 	private int numero;

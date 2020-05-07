@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Date;
 
 import modele.Permis;
 
@@ -30,16 +32,16 @@ public class CSVioUtil {
 				}
 
 				int numero = Integer.parseInt(data[0]);
-				LocalDate dateDebut = LocalDate.parse(data[1]);
-				LocalDate dateFin = LocalDate.parse(data[2]);
+				Date dateDebut = Date.valueOf(LocalDate.parse(data[1]));
+				Date dateFin = Date.valueOf(LocalDate.parse(data[2]));
 				String territoire = data[3];
 				String type = data[4];
 				String nom = data[5];
 				String sexe = data[9];
 				String couleur = data[10];
-				LocalDate dateNaissance;
+				Date dateNaissance;
 				try {
-					dateNaissance = LocalDate.parse(data[11]);
+					dateNaissance = Date.valueOf(LocalDate.parse(data[11]));
 				} catch (DateTimeException e) {
 					dateNaissance = null;
 				}
