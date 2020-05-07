@@ -241,7 +241,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void aide() {
-		Alert help = new Alert(AlertType.CONFIRMATION);
+		Alert help = new Alert(AlertType.INFORMATION);
 		help.setTitle("Aide");
 		help.setContentText("Cette Application permet la gestion de permis animaux.");
 		help.showAndWait();
