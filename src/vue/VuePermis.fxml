@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -122,11 +122,11 @@
                         <RadioButton fx:id="choiceInconnu" mnemonicParsing="false" selected="true" text="Inconnu" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="95.0" />
                         <Label text="Date de naissance" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="130.0" />
                         <DatePicker fx:id="datePickerDateNaissance" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="130.0" />
-                        <Label text="Caractéristiques suplémentaires" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxVaccine" mnemonicParsing="false" text="Vacciné" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxMicropuce" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Micropuce" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxDangereux" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Dangereux" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="165.0" />
+                        <Label text="Caractéristiques suplémentaires :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="165.0" />
+                        <CheckBox fx:id="checkBoxVaccine" mnemonicParsing="false" text="Vacciné" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="165.0" />
+                        <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="165.0" />
+                        <CheckBox fx:id="checkBoxMicropuce" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Micropuce" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="165.0" />
+                        <CheckBox fx:id="checkBoxDangereux" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Dangereux" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="165.0" />
                         <Label text="Type" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="60.0" />
                         <Label layoutX="333.0" layoutY="83.0" text="Poids en Kg" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="95.0" />
                         <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="130.0" />

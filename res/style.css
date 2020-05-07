@@ -13,3 +13,7 @@
 -fx-max-height: 32;
 -fx-max-width: 32;
 }
+
+AnchorPane{
+	-fx-spacing:300px;
+}

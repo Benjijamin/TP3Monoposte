@@ -16,9 +16,12 @@ import javafx.stage.Stage;
 public class AppPermis extends Application {
 
 	private ICtrl ctrl;
-
 	@Override
 	public void start(Stage stage) throws Exception {
+		stage.setMinHeight(460);
+		stage.setMinWidth(895);
+		stage.setHeight(460);
+		stage.setWidth(895);
 		ctrl = new CtrlPermis();
 		stage.setScene(ctrl.getScene());
 		stage.setTitle("Gestion Permis");
