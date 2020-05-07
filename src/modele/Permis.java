@@ -51,11 +51,11 @@ public class Permis {
 		this.numero = numero;
 	}
 
-	public String getTerritoire() {
+	public Territoire getTerritoire() {
 		return territoire;
 	}
 
-	public void setTerritoire(String territoire) {
+	public void setTerritoire(Territoire territoire) {
 		this.territoire = territoire;
 	}
 
@@ -83,11 +83,11 @@ public class Permis {
 		this.nom = nom;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
