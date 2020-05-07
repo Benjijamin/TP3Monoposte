@@ -259,7 +259,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void gestionTerritoire() {
-		gestionTerritoire.showAndWait();
+		gestionTerritoire.show();
 	}
 
 	@FXML
@@ -276,7 +276,7 @@ public class VuePermis implements IVue {
 	 * Disable et Enable les boutons nécessaires selon l'état actuel de l'application
 	 */
 	public void updateButtonState() {
-		
+		fieldNumero.setDisable(true);
 	}
 
 }
