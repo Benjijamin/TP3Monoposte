@@ -1,6 +1,7 @@
 package vue;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
@@ -182,8 +183,8 @@ public class VuePermis implements IVue {
 			numero = -1;
 		}
 		permis.setNumero(numero);
-		permis.setDateFin(datePickerDateDebut.getValue());
-		permis.setDateDebut(datePickerDateDebut.getValue());
+		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
+		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
 		permis.setTerritoire(choiceBoxTerritoire.getValue());
 		permis.setNom(fieldNom.getText());
 		permis.setType(choiceBoxType.getValue());
@@ -199,7 +200,7 @@ public class VuePermis implements IVue {
 			poids = -1;
 		}
 		permis.setPoids(poids);
-		permis.setDateNaissance(datePickerDateNaissance.getValue());
+		permis.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
 		permis.setCouleur(comboBoxCouleur.getValue());
 		permis.setVaccine(checkBoxVaccine.isSelected());
 		permis.setSterelise(checkBoxSterelise.isSelected());

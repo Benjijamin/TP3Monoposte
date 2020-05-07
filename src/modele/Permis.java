@@ -1,19 +1,17 @@
 package modele;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Permis {
 	private int numero;
 	private Territoire territoire;
-	private LocalDate dateDebut;
-	private LocalDate dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	private String nom;
 	private Type type;
 	private String sexe;
 	private float poids;
-	private LocalDate dateNaissance;
+	private Date dateNaissance;
 	private String couleur;
 	private boolean vaccine;
 	private boolean sterelise;
@@ -24,8 +22,8 @@ public class Permis {
 		
 	}
 
-	public Permis(int numero, Territoire territoire, LocalDate dateDebut, LocalDate dateFin, String nom, Type type, String sexe,
-			float poids, LocalDate dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
+	public Permis(int numero, Territoire territoire, Date dateDebut, Date dateFin, String nom, Type type, String sexe,
+			float poids, Date dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
 		this.numero = numero;
 		this.territoire = territoire;
@@ -60,8 +58,8 @@ public class Permis {
 	 * @param micropuce
 	 * @param dangereux
 	 */
-	public Permis(int numero, String territoire, LocalDate dateDebut, LocalDate dateFin, String nom, String type, String sexe,
-			float poids, LocalDate dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
+	public Permis(int numero, String territoire, Date dateDebut, Date dateFin, String nom, String type, String sexe,
+			float poids, Date dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
 		//TODO
 		this.numero = numero;
@@ -96,19 +94,19 @@ public class Permis {
 		this.territoire = territoire;
 	}
 
-	public LocalDate getDateDebut() {
+	public Date getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(LocalDate dateDebut) {
+	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public LocalDate getDateFin() {
+	public Date getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(LocalDate localDate) {
+	public void setDateFin(Date localDate) {
 		this.dateFin = localDate;
 	}
 
@@ -144,11 +142,11 @@ public class Permis {
 		this.poids = poids;
 	}
 
-	public LocalDate getDateNaissance() {
+	public Date getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(LocalDate dateNaissance) {
+	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 
