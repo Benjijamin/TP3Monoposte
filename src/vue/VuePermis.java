@@ -167,6 +167,7 @@ public class VuePermis implements IVue {
 	}
 
 	public void quitter() {
+		
 	}
 
 	public void nouveau() {
