@@ -12,7 +12,7 @@ public class AppPermis extends Application{
 	public void start(Stage stage) throws Exception {
 		ctrl = new CtrlPermis();
 		stage.setScene(ctrl.getScene());
-		stage.setTitle("app");
+		stage.setTitle("Gestion Permis");
 		stage.show();
 	}
 
