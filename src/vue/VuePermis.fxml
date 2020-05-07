@@ -90,13 +90,13 @@
                         <TextField fx:id="fieldNumero" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
                         <Label layoutX="20.0" layoutY="25.0" text="Numéro" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="35.0" />
                         <ChoiceBox fx:id="choiceBoxTerritoire" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonTerritoire" onAction="#gestionTerritoire" mnemonicParsing="false" text="img" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
+                        <Button fx:id="buttonTerritoire" onAction="#gestionTerritoire" mnemonicParsing="false" styleClass="paramButton" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Territoire" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Date de début" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="35.0" />
                         <DatePicker fx:id="datePickerDateDebut" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
                         <Label layoutX="303.0" layoutY="62.0" text="Date de fin" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="70.0" />
                         <DatePicker fx:id="datePickerDateFin" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonSupprimer" onAction="#supprimer" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="buttonSupprimer" onAction="#supprimer" mnemonicParsing="false" styleClass="delButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="30.0" />
@@ -132,7 +132,7 @@
                         <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="130.0" />
                         <ChoiceBox fx:id="choiceBoxType" layoutX="409.0" layoutY="56.0" prefWidth="150.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
                         <TextField fx:id="fieldPoids" layoutX="410.0" layoutY="100.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
-                        <Button fx:id="buttonType" onAction="#gestionType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" text="img" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                        <Button fx:id="buttonType" onAction="#gestionType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" styleClass="paramButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                         <ComboBox fx:id="comboBoxCouleur" editable="true" layoutX="410.0" layoutY="126.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0" />
                         <Button fx:id="buttonNouveau" onAction="#nouveau" mnemonicParsing="false" text="Nouveau" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
                         <Button fx:id="buttonAjouter" onAction="#ajouter" mnemonicParsing="false" text="Ajouter" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />

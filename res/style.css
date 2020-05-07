@@ -1,0 +1,15 @@
+.paramButton{
+-fx-background-image: url('param.png');
+-fx-min-height: 32;
+-fx-min-width: 32;
+-fx-max-height: 32;
+-fx-max-width: 32;
+}
+
+.delButton{
+-fx-background-image: url('del.png');
+-fx-min-height: 32;
+-fx-min-width: 32;
+-fx-max-height: 32;
+-fx-max-width: 32;
+}

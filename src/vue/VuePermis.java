@@ -139,7 +139,8 @@ public class VuePermis implements IVue {
 
 			this.root = loader.load();
 			this.scene = new Scene(root);
-
+			scene.getStylesheets().setAll(this.getClass().getResource("/style.css").toString());
+			
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -155,12 +156,12 @@ public class VuePermis implements IVue {
 			gestionType.setResizable(false);
 			gestionTerritoire.setScene(new Scene(modalTerritoire));
 			gestionType.setScene(new Scene(modalType));
-			gestionTerritoire.initModality(Modality.WINDOW_MODAL);
-			gestionType.initModality(Modality.WINDOW_MODAL);
 			gestionTerritoire.setTitle("Gestion Territoire");
 			gestionType.setTitle("Gestion Type");
 			gestionTerritoire.initOwner(this.getScene().getWindow());
 			gestionType.initOwner(this.getScene().getWindow());
+			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
+			gestionType.initModality(Modality.APPLICATION_MODAL);
 
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
@@ -243,6 +244,7 @@ public class VuePermis implements IVue {
 		Alert help = new Alert(AlertType.CONFIRMATION);
 		help.setTitle("Aide");
 		help.setContentText("Cette Application permet la gestion de permis animaux.");
+		help.showAndWait();
 	}
 
 	@FXML
@@ -257,7 +259,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void gestionTerritoire() {
-		gestionTerritoire.show();
+		gestionTerritoire.showAndWait();
 	}
 
 	@FXML
