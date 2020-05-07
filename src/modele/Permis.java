@@ -1,17 +1,19 @@
 package modele;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Permis {
 	private int numero;
 	private String territoire;
-	private Date dateDebut;
-	private Date dateFin;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
 	private String nom;
 	private String type;
 	private String sexe;
 	private float poids;
-	private Date dateNaissance;
+	private LocalDate dateNaissance;
 	private String couleur;
 	private boolean vaccine;
 	private boolean sterelise;
@@ -22,8 +24,8 @@ public class Permis {
 		
 	}
 
-	public Permis(int numero, String territoire, Date dateDebut, Date dateFin, String nom, String type, String sexe,
-			float poids, Date dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
+	public Permis(int numero, String territoire, LocalDate dateDebut, LocalDate dateFin, String nom, String type, String sexe,
+			float poids, LocalDate dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
 		this.numero = numero;
 		this.territoire = territoire;
@@ -57,20 +59,20 @@ public class Permis {
 		this.territoire = territoire;
 	}
 
-	public Date getDateDebut() {
+	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(Date dateDebut) {
+	public void setDateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDateFin() {
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
+	public void setDateFin(LocalDate localDate) {
+		this.dateFin = localDate;
 	}
 
 	public String getNom() {
@@ -105,11 +107,11 @@ public class Permis {
 		this.poids = poids;
 	}
 
-	public Date getDateNaissance() {
+	public LocalDate getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(LocalDate dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 
@@ -151,6 +153,14 @@ public class Permis {
 
 	public void setDangereux(boolean dangereux) {
 		this.dangereux = dangereux;
+	}
+
+	@Override
+	public String toString() {
+		return "Permis [numero=" + numero + ", territoire=" + territoire + ", dateDebut=" + dateDebut + ", dateFin="
+				+ dateFin + ", nom=" + nom + ", type=" + type + ", sexe=" + sexe + ", poids=" + poids
+				+ ", dateNaissance=" + dateNaissance + ", couleur=" + couleur + ", vaccine=" + vaccine + ", sterelise="
+				+ sterelise + ", micropuce=" + micropuce + ", dangereux=" + dangereux + "]";
 	}
 	
 	

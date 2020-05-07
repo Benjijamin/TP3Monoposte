@@ -7,6 +7,7 @@ import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import modele.Permis;
 
 public class VuePermis implements IVue {
 	private ICtrl ctrl;
@@ -14,8 +15,8 @@ public class VuePermis implements IVue {
 	private VBox root;
 
 	// CONTROLS
-	
-	//menu
+
+	// menu
 	@FXML
 	private MenuItem menuExporterXML;
 	@FXML
@@ -36,20 +37,20 @@ public class VuePermis implements IVue {
 	private MenuItem menuGererTypes;
 	@FXML
 	private MenuItem menuAide;
-	
-	//Liste des permis
+
+	// Liste des permis
 	@FXML
 	private TextField fieldRecherche;
 	@FXML
 	private Button buttonRecherche;
 	@FXML
-	private ListView listViewPermis;
-	
-	//AnchorPane du dessus
+	private ListView<Permis> listViewPermis;
+
+	// AnchorPane du dessus
 	@FXML
 	private TextField fieldNumero;
 	@FXML
-	private ChoiceBox choiceBoxTerritoire;
+	private ChoiceBox<String> choiceBoxTerritoire;
 	@FXML
 	private Button buttonTerritoire;
 	@FXML
@@ -58,12 +59,12 @@ public class VuePermis implements IVue {
 	private DatePicker datePickerDateFin;
 	@FXML
 	private Button buttonSupprimer;
-	
-	//AnchorPane du bas
+
+	// AnchorPane du bas
 	@FXML
 	private TextField fieldNom;
 	@FXML
-	private DatePicker datePickerNaissance;
+	private DatePicker datePickerDateNaissance;
 	@FXML
 	private CheckBox checkBoxVaccine;
 	@FXML
@@ -73,15 +74,15 @@ public class VuePermis implements IVue {
 	@FXML
 	private CheckBox checkBoxDangereux;
 	@FXML
-	private ChoiceBox choiceBoxType;
+	private ChoiceBox<String> choiceBoxType;
 	@FXML
 	private TextField fieldPoids;
 	@FXML
 	private Button buttonType;
 	@FXML
-	private ComboBox comboBoxCouleur;
-	
-	//Radiobuttons
+	private ComboBox<String> comboBoxCouleur;
+
+	// Radiobuttons
 	@FXML
 	private ToggleGroup toggleGroup;
 	@FXML
@@ -90,8 +91,8 @@ public class VuePermis implements IVue {
 	private RadioButton choiceFemelle;
 	@FXML
 	private RadioButton choiceInconnu;
-	
-	//Boutons
+
+	// Boutons
 	@FXML
 	private Button buttonNouveau;
 	@FXML
@@ -130,4 +131,59 @@ public class VuePermis implements IVue {
 		return scene;
 	}
 
+	public Permis getFormulaire() {
+		Permis permis = new Permis();
+		int numero;
+		try {
+			numero = Integer.parseInt(fieldNumero.getText());
+		} catch (NumberFormatException e) {
+			numero = -1;
+		}
+		permis.setNumero(numero);
+		permis.setDateFin(datePickerDateDebut.getValue());
+		permis.setDateDebut(datePickerDateDebut.getValue());
+		permis.setTerritoire(choiceBoxTerritoire.getValue());
+		permis.setNom(fieldNom.getText());
+		permis.setType(choiceBoxType.getValue());
+
+		// TODO refaire ca c'est batard
+		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
+		permis.setSexe(sexe.getText());
+
+		float poids;
+		try {
+			poids = Float.parseFloat(fieldPoids.getText());
+		} catch (NumberFormatException e) {
+			poids = -1;
+		}
+		permis.setPoids(poids);
+		permis.setDateNaissance(datePickerDateNaissance.getValue());
+		permis.setCouleur(comboBoxCouleur.getValue());
+		permis.setVaccine(checkBoxVaccine.isSelected());
+		permis.setSterelise(checkBoxSterelise.isSelected());
+		permis.setMicropuce(checkBoxMicropuce.isSelected());
+		permis.setDangereux(checkBoxDangereux.isSelected());
+		return permis;
+	}
+
+	public void quitter() {
+	}
+
+	public void nouveau() {
+	}
+
+	public void ajouter() {
+		// TODO remove
+		Permis p = getFormulaire();
+		System.out.println(p);
+	}
+
+	public void modifier() {
+	}
+
+	public void supprimer() {
+	}
+
+	public void aide() {
+	}
 }
