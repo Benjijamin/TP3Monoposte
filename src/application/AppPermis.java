@@ -19,9 +19,9 @@ public class AppPermis extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setMinHeight(460);
-		stage.setMinWidth(895);
+		stage.setMinWidth(900);
 		stage.setHeight(460);
-		stage.setWidth(895);
+		stage.setWidth(900);
 		ctrl = new CtrlPermis();
 		stage.setScene(ctrl.getScene());
 		stage.setTitle("Gestion Permis");

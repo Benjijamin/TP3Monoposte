@@ -92,9 +92,9 @@
                         <ChoiceBox fx:id="choiceBoxTerritoire" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
                         <Button fx:id="buttonTerritoire" onAction="#gestionTerritoire" mnemonicParsing="false" styleClass="paramButton" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Territoire" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
-                        <Label text="Date de début" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="35.0" />
+                        <Label text="Date de début" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="35.0" />
                         <DatePicker fx:id="datePickerDateDebut" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
-                        <Label layoutX="303.0" layoutY="62.0" text="Date de fin" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="70.0" />
+                        <Label layoutX="303.0" layoutY="62.0" text="Date de fin" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="70.0" />
                         <DatePicker fx:id="datePickerDateFin" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
                         <Button fx:id="buttonSupprimer" onAction="#supprimer" mnemonicParsing="false" styleClass="delButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
@@ -118,10 +118,10 @@
                               <ToggleGroup fx:id="toggleGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="choiceFemelle" mnemonicParsing="false" text="Femelle" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="95.0" />
-                        <RadioButton fx:id="choiceInconnu" mnemonicParsing="false" selected="true" text="Inconnu" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="95.0" />
+                        <RadioButton fx:id="choiceFemelle" mnemonicParsing="false" text="Femelle" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="95.0" />
+                        <RadioButton fx:id="choiceInconnu" mnemonicParsing="false" selected="true" text="Inconnu" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="95.0" />
                         <Label text="Date de naissance" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="130.0" />
-                        <DatePicker fx:id="datePickerDateNaissance" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="130.0" />
+                        <DatePicker fx:id="datePickerDateNaissance" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="130.0" />
                         <Label text="Caractéristiques suplémentaires :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="165.0" />
                         <CheckBox fx:id="checkBoxVaccine" mnemonicParsing="false" text="Vacciné" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="165.0" />
                         <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="165.0" />
