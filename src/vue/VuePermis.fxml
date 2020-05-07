@@ -29,6 +29,7 @@
         <Menu mnemonicParsing="false" text="Fichier">
                <items>
                   <MenuItem fx:id="menuExporterXML" mnemonicParsing="false" text="Exporter XML" />
+                  <MenuItem fx:id="menuExporterXML" mnemonicParsing="false" text="Importer XML" />
                   <MenuItem fx:id="menuImporterCSV" mnemonicParsing="false" text="Importer CSV" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuQuitter" onAction="#quitter" mnemonicParsing="false" text="Quitter" />
