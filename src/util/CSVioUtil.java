@@ -8,14 +8,23 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Session;
+
 import java.sql.Date;
 
 import modele.Permis;
 
 public class CSVioUtil {
 
-	public List<Permis> read(File file) {
-		List<Permis> listePermis = new ArrayList<Permis>();
+	/**
+	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis.
+	 * Si des éléments ont été modifiés ou des entrées correspondent à des entrées qui sont déja dans la base de données, ils seront mises à jour.
+	 * @param file
+	 */
+	public void read(File file) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String ligne;
@@ -51,8 +60,10 @@ public class CSVioUtil {
 				boolean micropuce = data[15] == "1";
 				boolean dangereux = data[16] == "1";
 
-				listePermis.add(new Permis(numero, territoire, dateDebut, dateFin, nom, type, sexe, poids, dateNaissance,
-						couleur, vaccine, sterelise, micropuce, dangereux));
+				Permis p = new Permis(numero, territoire, dateDebut, dateFin, nom, type, sexe, poids, dateNaissance,
+						couleur, vaccine, sterelise, micropuce, dangereux);
+				
+				session.saveOrUpdate(p);
 
 			}
 
@@ -61,7 +72,12 @@ public class CSVioUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return listePermis;
+		session.getTransaction().commit();
+	}
+	
+	public static void main(String[] args) {
+		CSVioUtil c = new CSVioUtil();
+		File f = new File(c.getClass().getResource("/Fichiers_CSV/permis-animaux.csv").getFile());
+		c.read(f);
 	}
 }
