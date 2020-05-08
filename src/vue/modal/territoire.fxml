@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -16,6 +17,7 @@
          <children>
             <VBox prefHeight="51.0" prefWidth="202.0">
                <children>
+               	  <TextField fx:id="fieldterritoire" />
                   <Button fx:id="ajouterterritoire" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
                </children>
             </VBox>

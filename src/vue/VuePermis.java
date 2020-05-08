@@ -121,7 +121,7 @@ public class VuePermis implements IVue {
 	// Gestion Type
 	@FXML
 	private BorderPane modalType;
-	
+
 	@FXML
 	private ListView<String> listetype;
 	@FXML
@@ -130,7 +130,7 @@ public class VuePermis implements IVue {
 	// Gestion Territoire
 	@FXML
 	private BorderPane modalTerritoire;
-	
+
 	@FXML
 	private ListView<String> listeterritoire;
 
@@ -173,12 +173,8 @@ public class VuePermis implements IVue {
 			gestionType.initOwner(this.getScene().getWindow());
 			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
 			gestionType.initModality(Modality.APPLICATION_MODAL);
-			 
-			listeterritoire.setEditable(true);
-			listetype.setEditable(true);
-			listeterritoire.setCellFactory(TextFieldListCell.forListView());
-			listetype.setCellFactory(TextFieldListCell.forListView());
-			
+
+			updateViewToDatabase();
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -202,7 +198,7 @@ public class VuePermis implements IVue {
 		permis.setNumero(numero);
 		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
 		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-		//permis.setTerritoire(choiceBoxTerritoire.getValue());
+		// permis.setTerritoire(choiceBoxTerritoire.getValue());
 		permis.setNom(fieldNom.getText());
 		permis.setType(choiceBoxType.getValue());
 
@@ -242,16 +238,16 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void ajouter() {
-		if(listViewPermis==null) {
+		if (listViewPermis == null) {
 			System.out.println("Permis null");
 		}
-		if(listetype==null) {
+		if (listetype == null) {
 			System.out.println("type null");
 		}
-		if(listeterritoire==null) {
+		if (listeterritoire == null) {
 			System.out.println("territoire null");
 		}
-		if(ajoutertype==null) {
+		if (ajoutertype == null) {
 			System.out.println("ajouter null");
 		}
 	}
