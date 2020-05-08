@@ -278,5 +278,13 @@ public class VuePermis implements IVue {
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
 	}
+	
+	/**
+	 * Update tous les éléments de la vue pour correspondre au données
+	 */
+	public void updateViewToDatabase() {
+		ctrl.getTerritoireListe();
+		ctrl.getTypeListe();
+	}
 
 }
