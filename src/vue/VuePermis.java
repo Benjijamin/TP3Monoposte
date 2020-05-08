@@ -278,5 +278,9 @@ public class VuePermis implements IVue {
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
 	}
+	
+	public void updateViewToDatabase() {
+		
+	}
 
 }
