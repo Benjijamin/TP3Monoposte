@@ -192,10 +192,7 @@ public class Permis {
 
 	@Override
 	public String toString() {
-		return "Permis [numero=" + numero + ", territoire=" + territoire + ", dateDebut=" + dateDebut + ", dateFin="
-				+ dateFin + ", nom=" + nom + ", type=" + type + ", sexe=" + sexe + ", poids=" + poids
-				+ ", dateNaissance=" + dateNaissance + ", couleur=" + couleur + ", vaccine=" + vaccine + ", sterelise="
-				+ sterelise + ", micropuce=" + micropuce + ", dangereux=" + dangereux + "]";
+		return numero +"";
 	}
 	
 	
