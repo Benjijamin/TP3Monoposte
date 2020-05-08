@@ -3,6 +3,7 @@ package controleur;
 import java.util.List;
 
 import javafx.scene.Scene;
+import modele.Permis;
 import modele.Territoire;
 import modele.Type;
 
@@ -12,4 +13,6 @@ public interface ICtrl {
 	public List<Territoire> getTerritoireListe();
 
 	public List<Type> getTypeListe();
+
+	public List<Permis> getPermisListe();
 }

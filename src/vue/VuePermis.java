@@ -5,14 +5,17 @@ import java.sql.Date;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
@@ -55,13 +58,13 @@ public class VuePermis implements IVue {
 	@FXML
 	private Button buttonRecherche;
 	@FXML
-	private ListView<Permis> listViewPermis;
+	private ListView<String> listViewPermis;
 
 	// AnchorPane du dessus
 	@FXML
 	private TextField fieldNumero;
 	@FXML
-	private ChoiceBox<Territoire> choiceBoxTerritoire;
+	private ChoiceBox<String> choiceBoxTerritoire;
 	@FXML
 	private Button buttonTerritoire;
 	@FXML
@@ -118,10 +121,14 @@ public class VuePermis implements IVue {
 	// Gestion Type
 	@FXML
 	BorderPane modalType;
+	@FXML
+	private ListView<String> listtype;
 
 	// Gestion Territoire
 	@FXML
 	BorderPane modalTerritoire;
+	@FXML
+	private ListView<String> listterritoire;
 
 	/**
 	 * @param ctrl : controleur de l'application.
@@ -140,7 +147,7 @@ public class VuePermis implements IVue {
 			this.root = loader.load();
 			this.scene = new Scene(root);
 			scene.getStylesheets().setAll(this.getClass().getResource("/style.css").toString());
-			
+
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -149,7 +156,7 @@ public class VuePermis implements IVue {
 			this.modalType = loaderType.load();
 			loaderTerritoire.setController(this);
 			loaderType.setController(this);
-			
+
 			gestionTerritoire.initStyle(StageStyle.UTILITY);
 			gestionType.initStyle(StageStyle.UTILITY);
 			gestionTerritoire.setResizable(false);
@@ -163,6 +170,11 @@ public class VuePermis implements IVue {
 			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
 			gestionType.initModality(Modality.APPLICATION_MODAL);
 
+			listterritoire.setEditable(true);
+			listtype.setEditable(true);
+			listterritoire.setCellFactory(TextFieldListCell.forListView());
+			listtype.setCellFactory(TextFieldListCell.forListView());
+			
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -271,20 +283,22 @@ public class VuePermis implements IVue {
 	public void recherche() {
 
 	}
-	
+
 	/**
-	 * Disable et Enable les boutons nécessaires selon l'état actuel de l'application
+	 * Disable et Enable les boutons nécessaires selon l'état actuel de
+	 * l'application
 	 */
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
 	}
-	
+
 	/**
 	 * Update tous les éléments de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
-		ctrl.getTerritoireListe();
-		ctrl.getTypeListe();
+		listterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
+		listtype.setItems(FXCollections.observableArrayList(ctrl.getTypeListe()));
+		listViewPermis.setItems(FXCollections.observableArrayList(ctrl.getPermisListe()));
 	}
 
 }
