@@ -1,5 +1,6 @@
 package controleur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Scene;
@@ -22,23 +23,28 @@ public class CtrlPermis implements ICtrl {
 		return vue.getScene();
 	}
 
-	
+	/**
+	 * Retourne la liste des territoires sous formes de strings pour l'affichage
+	 */
 	@Override
-	public List<Territoire> getTerritoireListe() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getTerritoireListe() {
+		return new ArrayList<String>();
 	}
 
+	/**
+	 * Retourne la liste des types sous formes de strings pour l'affichage
+	 */
 	@Override
-	public List<Type> getTypeListe() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getTypeListe() {
+		return new ArrayList<String>();
 	}
 
+	/**
+	 * Retourne la liste des permis sous formes de strings pour l'affichage
+	 */
 	@Override
-	public List<Permis> getPermisListe() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getPermisListe() {
+		return new ArrayList<String>();
 	}
 
 	

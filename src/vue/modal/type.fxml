@@ -9,14 +9,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="201.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <ListView id="listetype" prefHeight="242.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="listetype" prefHeight="242.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
       <HBox prefHeight="22.0" prefWidth="534.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="51.0" prefWidth="202.0">
                <children>
-                  <Button id="ajoutertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
+                  <Button fx:id="ajoutertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
                </children>
             </VBox>
          </children>

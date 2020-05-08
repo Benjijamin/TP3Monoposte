@@ -10,9 +10,9 @@ import modele.Type;
 public interface ICtrl {
 	public Scene getScene();
 
-	public List<Territoire> getTerritoireListe();
+	public List<String> getTerritoireListe();
 
-	public List<Type> getTypeListe();
+	public List<String> getTypeListe();
 
-	public List<Permis> getPermisListe();
+	public List<String> getPermisListe();
 }

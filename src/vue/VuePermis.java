@@ -120,15 +120,19 @@ public class VuePermis implements IVue {
 
 	// Gestion Type
 	@FXML
-	BorderPane modalType;
+	private BorderPane modalType;
+	
 	@FXML
-	private ListView<String> listtype;
+	private ListView<String> listetype;
+	@FXML
+	private Button ajoutertype;
 
 	// Gestion Territoire
 	@FXML
-	BorderPane modalTerritoire;
+	private BorderPane modalTerritoire;
+	
 	@FXML
-	private ListView<String> listterritoire;
+	private ListView<String> listeterritoire;
 
 	/**
 	 * @param ctrl : controleur de l'application.
@@ -152,10 +156,10 @@ public class VuePermis implements IVue {
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
 
-			this.modalTerritoire = loaderTerritoire.load();
-			this.modalType = loaderType.load();
 			loaderTerritoire.setController(this);
 			loaderType.setController(this);
+			this.modalTerritoire = loaderTerritoire.load();
+			this.modalType = loaderType.load();
 
 			gestionTerritoire.initStyle(StageStyle.UTILITY);
 			gestionType.initStyle(StageStyle.UTILITY);
@@ -169,11 +173,11 @@ public class VuePermis implements IVue {
 			gestionType.initOwner(this.getScene().getWindow());
 			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
 			gestionType.initModality(Modality.APPLICATION_MODAL);
-
-			listterritoire.setEditable(true);
-			listtype.setEditable(true);
-			listterritoire.setCellFactory(TextFieldListCell.forListView());
-			listtype.setCellFactory(TextFieldListCell.forListView());
+			 
+			listeterritoire.setEditable(true);
+			listetype.setEditable(true);
+			listeterritoire.setCellFactory(TextFieldListCell.forListView());
+			listetype.setCellFactory(TextFieldListCell.forListView());
 			
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
@@ -198,7 +202,7 @@ public class VuePermis implements IVue {
 		permis.setNumero(numero);
 		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
 		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-		permis.setTerritoire(choiceBoxTerritoire.getValue());
+		//permis.setTerritoire(choiceBoxTerritoire.getValue());
 		permis.setNom(fieldNom.getText());
 		permis.setType(choiceBoxType.getValue());
 
@@ -238,9 +242,18 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void ajouter() {
-		// TODO remove
-		Permis p = getFormulaire();
-		System.out.println(p);
+		if(listViewPermis==null) {
+			System.out.println("Permis null");
+		}
+		if(listetype==null) {
+			System.out.println("type null");
+		}
+		if(listeterritoire==null) {
+			System.out.println("territoire null");
+		}
+		if(ajoutertype==null) {
+			System.out.println("ajouter null");
+		}
 	}
 
 	@FXML
@@ -296,8 +309,8 @@ public class VuePermis implements IVue {
 	 * Update tous les éléments de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
-		listterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
-		listtype.setItems(FXCollections.observableArrayList(ctrl.getTypeListe()));
+		listeterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
+		listetype.setItems(FXCollections.observableArrayList(ctrl.getTypeListe()));
 		listViewPermis.setItems(FXCollections.observableArrayList(ctrl.getPermisListe()));
 	}
 
