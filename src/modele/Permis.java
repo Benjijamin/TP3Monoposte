@@ -17,32 +17,34 @@ public class Permis {
 	private boolean sterelise;
 	private boolean micropuce;
 	private boolean dangereux;
-	
+
 	public Permis() {
-		
+
 	}
 
 	public Permis(int numero, Territoire territoire, Date dateDebut, Date dateFin, String nom, Type type, String sexe,
 			float poids, Date dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
-		this.numero = numero;
-		this.territoire = territoire;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.nom = nom;
-		this.type = type;
-		this.sexe = sexe;
-		this.poids = poids;
-		this.dateNaissance = dateNaissance;
-		this.couleur = couleur;
-		this.vaccine = vaccine;
-		this.sterelise = sterelise;
-		this.micropuce = micropuce;
-		this.dangereux = dangereux;
+		setNumero(numero);
+		setTerritoire(territoire);
+		setDateDebut(dateDebut);
+		setDateFin(dateFin);
+		setNom(nom);
+		setType(type);
+		setSexe(sexe);
+		setPoids(poids);
+		setDateNaissance(dateNaissance);
+		setCouleur(couleur);
+		setVaccine(vaccine);
+		setSterelise(sterelise);
+		setMicropuce(micropuce);
+		setDangereux(dangereux);
 	}
-	
+
 	/**
-	 * Constructeur pour la lecture de CSV, donc quand le territoire et le type sont recus en string
+	 * Constructeur pour la lecture de CSV, donc quand le territoire et le type sont
+	 * recus en string
+	 * 
 	 * @param numero
 	 * @param territoire
 	 * @param dateDebut
@@ -61,21 +63,20 @@ public class Permis {
 	public Permis(int numero, String territoire, Date dateDebut, Date dateFin, String nom, String type, String sexe,
 			float poids, Date dateNaissance, String couleur, boolean vaccine, boolean sterelise, boolean micropuce,
 			boolean dangereux) {
-		//TODO
-		this.numero = numero;
-		this.territoire = null;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.nom = nom;
-		this.type = null;
-		this.sexe = sexe;
-		this.poids = poids;
-		this.dateNaissance = dateNaissance;
-		this.couleur = couleur;
-		this.vaccine = vaccine;
-		this.sterelise = sterelise;
-		this.micropuce = micropuce;
-		this.dangereux = dangereux;
+		setNumero(numero);
+		setTerritoire(validerTerritoire(territoire));
+		setDateDebut(dateDebut);
+		setDateFin(dateFin);
+		setNom(nom);
+		setType(validerType(type));
+		setSexe(sexe);
+		setPoids(poids);
+		setDateNaissance(dateNaissance);
+		setCouleur(couleur);
+		setVaccine(vaccine);
+		setSterelise(sterelise);
+		setMicropuce(micropuce);
+		setDangereux(dangereux);
 	}
 
 	public int getNumero() {
@@ -92,6 +93,17 @@ public class Permis {
 
 	public void setTerritoire(Territoire territoire) {
 		this.territoire = territoire;
+	}
+
+	/**
+	 * Valide la string recu et l'associe au bon objet Territoire
+	 * 
+	 * @param terr
+	 * @return
+	 */
+	public Territoire validerTerritoire(String terr) {
+		// TODO
+		return null;
 	}
 
 	public Date getDateDebut() {
@@ -117,6 +129,18 @@ public class Permis {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	/**
+	 * Valide si le nom n'est pas plus long que 40 caractères
+	 * @param nom
+	 * @return nom coupé après 40 caractères
+	 */
+	public String validerNom(String nom) {
+		if(nom.length() > 40) {
+			return nom.substring(0, 39);
+		}
+		return nom;
+	}
 
 	public Type getType() {
 		return type;
@@ -126,12 +150,38 @@ public class Permis {
 		this.type = type;
 	}
 
+	/**
+	 * Valide la string recu et l'associe au bon objet Type
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public Type validerType(String type) {
+		// TODO
+		return null;
+	}
+
 	public String getSexe() {
 		return sexe;
 	}
 
 	public void setSexe(String sexe) {
-		this.sexe = sexe;
+		this.sexe = validerSexe(sexe);
+	}
+
+	/**
+	 * Valide le sexe
+	 * @param sexe
+	 * @return Male si les accents sont brisés, Inconnu si vide
+	 */
+	public String validerSexe(String sexe) {
+		if (sexe == "MÃ¢le") {
+			return "Male";
+		}
+		if (sexe == null || sexe == "") {
+			return "Inconnu";
+		}
+		return sexe;
 	}
 
 	public float getPoids() {
@@ -139,7 +189,19 @@ public class Permis {
 	}
 
 	public void setPoids(float poids) {
-		this.poids = poids;
+		this.poids = validerPoids(poids);
+	}
+
+	/**
+	 * Valide que le poids est entre 0 et 500
+	 * @param poids
+	 * @return 0 si poids invalide
+	 */
+	public float validerPoids(float poids) {
+		if (poids < 0 || poids > 500) {
+			return 0;
+		}
+		return poids;
 	}
 
 	public Date getDateNaissance() {
@@ -155,7 +217,21 @@ public class Permis {
 	}
 
 	public void setCouleur(String couleur) {
-		this.couleur = couleur;
+		this.couleur = validerCouleur(couleur);
+	}
+	
+	/**
+	 * Valide que la couleur n'est pas vide
+	 * @param couleur
+	 * @return
+	 */
+	public String validerCouleur(String couleur) {
+		if(couleur == null || couleur.isEmpty()) {
+			return "Inconnu";
+		}
+		else {
+			return couleur;
+		}
 	}
 
 	public boolean isVaccine() {
@@ -197,6 +273,5 @@ public class Permis {
 				+ ", dateNaissance=" + dateNaissance + ", couleur=" + couleur + ", vaccine=" + vaccine + ", sterelise="
 				+ sterelise + ", micropuce=" + micropuce + ", dangereux=" + dangereux + "]";
 	}
-	
-	
-	}
+
+}
