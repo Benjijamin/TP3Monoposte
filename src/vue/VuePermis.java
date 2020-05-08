@@ -280,7 +280,8 @@ public class VuePermis implements IVue {
 	}
 	
 	public void updateViewToDatabase() {
-		
+		ctrl.getTerritoireListe();
+		ctrl.getTypeListe();
 	}
 
 }

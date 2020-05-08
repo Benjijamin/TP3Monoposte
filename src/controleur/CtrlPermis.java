@@ -1,6 +1,10 @@
 package controleur;
 
+import java.util.List;
+
 import javafx.scene.Scene;
+import modele.Territoire;
+import modele.Type;
 import vue.IVue;
 import vue.VuePermis;
 
@@ -15,6 +19,19 @@ public class CtrlPermis implements ICtrl {
 	@Override
 	public Scene getScene() {
 		return vue.getScene();
+	}
+
+	
+	@Override
+	public List<Territoire> getTerritoireListe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Type> getTypeListe() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
