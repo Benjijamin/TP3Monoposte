@@ -25,7 +25,8 @@
 
 <property name="hbm2ddl.auto">create</property> 
 
-<mapping resource="modele/Permis.hbm.xml" /> 
+<mapping resource="modele/Permis.hbm.xml" />
+<mapping resource="modele/Animal.hbm.xml" /> 
 <mapping resource="modele/Territoire.hbm.xml" /> 
 <mapping resource="modele/Type.hbm.xml" /> 
 

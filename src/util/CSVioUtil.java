@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,8 +13,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import manager.PermisAnimalManager;
+
 import java.sql.Date;
 
+import modele.Animal;
 import modele.Permis;
 
 public class CSVioUtil {
@@ -20,11 +25,12 @@ public class CSVioUtil {
 	/**
 	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis. Si
 	 * des éléments ont été modifiés ou des entrées correspondent à des entrées qui
-	 * sont déja dans la base de données, ils seront mises à jour.
+	 * sont déja dans la base de données, ils seront mis à jour.
 	 * 
 	 * @param file
 	 */
 	public void read(File file) {
+		PermisAnimalManager managerPermis = new PermisAnimalManager();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String ligne;
@@ -51,30 +57,44 @@ public class CSVioUtil {
 				Date dateFin;
 				try {
 					dateFin = Date.valueOf(LocalDate.parse(data[2]));
+					if(dateFin.getTime() < dateDebut.getTime()) {
+						dateFin = new Date(dateDebut.getTime()+31536000000l);
+					}
 				} catch (DateTimeException e) {
 					dateFin = new Date(dateDebut.getTime()+31536000000l);
 				}
 				
 				String territoire = data[3];
 				String type = data[4];
-				String nom = data[5];
-				String sexe = data[9];
-				String couleur = data[10];
+
+				//fix les accents mal encodés
+				byte[] bytes = data[5].getBytes(Charset.forName("windows-1252"));
+				String nom = new String(bytes,StandardCharsets.UTF_8);
+				
+				bytes = data[9].getBytes(Charset.forName("windows-1252"));
+				String sexe = new String(bytes,StandardCharsets.UTF_8);
+				
+				bytes = data[10].getBytes(Charset.forName("windows-1252"));
+				String couleur = new String(bytes,StandardCharsets.UTF_8);
+				
 				Date dateNaissance;
 				try {
 					dateNaissance = Date.valueOf(LocalDate.parse(data[11]));
 				} catch (DateTimeException e) {
 					dateNaissance = dateDebut;
 				}
-				boolean vaccine = data[12] == "1";
-				boolean sterelise = data[13] == "1";
+				boolean vaccine = Integer.parseInt(data[12]) == 1;
+				boolean sterelise = Integer.parseInt(data[13]) == 1;
 				float poids = Float.parseFloat(data[14].replace(',', '.'));
-				boolean micropuce = data[15] == "1";
-				boolean dangereux = data[16] == "1";
+				boolean micropuce = Integer.parseInt(data[15]) == 1;
+				boolean dangereux = Integer.parseInt(data[16]) == 1;
 
-				Permis p = new Permis(numero, territoire, dateDebut, dateFin, nom, type, sexe, poids, dateNaissance,
+				Animal a = new Animal(nom, type, sexe, poids, dateNaissance,
 						couleur, vaccine, sterelise, micropuce, dangereux);
-				System.out.println(p);
+				Permis p = new Permis(numero, territoire, dateDebut, dateFin, a);
+				
+				managerPermis.ajouterPermis(p);
+				System.out.println("Permis "+ p + " ajouté dans bd");
 			}
 
 		} catch (IOException e) {
