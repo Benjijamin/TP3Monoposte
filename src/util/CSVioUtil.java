@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import manager.PermisAnimalManager;
+import manager.PermisManager;
 
 import java.sql.Date;
 
@@ -30,7 +30,7 @@ public class CSVioUtil {
 	 * @param file
 	 */
 	public void read(File file) {
-		PermisAnimalManager managerPermis = new PermisAnimalManager();
+		PermisManager managerPermis = new PermisManager();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String ligne;
@@ -64,6 +64,7 @@ public class CSVioUtil {
 					dateFin = new Date(dateDebut.getTime()+31536000000l);
 				}
 				
+				//L'association avec les objets se fait au niveau du modele
 				String territoire = data[3];
 				String type = data[4];
 
@@ -83,6 +84,7 @@ public class CSVioUtil {
 				} catch (DateTimeException e) {
 					dateNaissance = dateDebut;
 				}
+				
 				boolean vaccine = Integer.parseInt(data[12]) == 1;
 				boolean sterelise = Integer.parseInt(data[13]) == 1;
 				float poids = Float.parseFloat(data[14].replace(',', '.'));
