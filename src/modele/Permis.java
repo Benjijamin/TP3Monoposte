@@ -10,7 +10,6 @@ public class Permis {
 	private Animal animal;
 
 	public Permis() {
-
 	}
 
 	public Permis(int numero, Territoire territoire, Date dateDebut, Date dateFin, Animal animal) {

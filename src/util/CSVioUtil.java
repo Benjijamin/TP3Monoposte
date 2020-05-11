@@ -68,15 +68,9 @@ public class CSVioUtil {
 				String territoire = data[3];
 				String type = data[4];
 
-				//fix les accents mal encodés
-				byte[] bytes = data[5].getBytes(Charset.forName("windows-1252"));
-				String nom = new String(bytes,StandardCharsets.UTF_8);
-				
-				bytes = data[9].getBytes(Charset.forName("windows-1252"));
-				String sexe = new String(bytes,StandardCharsets.UTF_8);
-				
-				bytes = data[10].getBytes(Charset.forName("windows-1252"));
-				String couleur = new String(bytes,StandardCharsets.UTF_8);
+				String nom = data[5];
+				String sexe = data[9];
+				String couleur = data[10];
 				
 				Date dateNaissance;
 				try {

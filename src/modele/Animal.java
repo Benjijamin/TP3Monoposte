@@ -1,5 +1,7 @@
 package modele;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 
 public class Animal {
@@ -15,6 +17,8 @@ public class Animal {
 	private boolean micropuce;
 	private boolean dangereux;
 
+	public Animal() {}
+	
 	public Animal(String nom, Type type, String sexe, float poids, Date dateNaissance, String couleur, boolean vaccine,
 			boolean sterelise, boolean micropuce, boolean dangereux) {
 		setNom(nom);
@@ -55,8 +59,13 @@ public class Animal {
 		return nom;
 	}
 
+	/**
+	 * Set le nom, fixe les erreurs d'encodage
+	 * @param nom
+	 */
 	public void setNom(String nom) {
-		this.nom = nom;
+		byte[] bytes = nom.getBytes(Charset.forName("windows-1252"));
+		this.nom = validerNom(new String(bytes,StandardCharsets.UTF_8));
 	}
 
 	/**
@@ -95,20 +104,22 @@ public class Animal {
 		return sexe;
 	}
 
+	/**
+	 * Set le sexe, fixe les erreurs d'encodage
+	 * @param sexe
+	 */
 	public void setSexe(String sexe) {
-		this.sexe = validerSexe(sexe);
+		byte[] bytes = sexe.getBytes(Charset.forName("windows-1252"));
+		this.sexe = validerSexe(new String(bytes,StandardCharsets.UTF_8));
 	}
 
 	/**
 	 * Valide le sexe
 	 * 
 	 * @param sexe
-	 * @return Male si les accents sont brisés, Inconnu si vide
+	 * @return Inconnu si vide
 	 */
 	public String validerSexe(String sexe) {
-		if (sexe == "MÃ¢le") {
-			return "Male";
-		}
 		if (sexe == null || sexe == "") {
 			return "Inconnu";
 		}
@@ -148,8 +159,13 @@ public class Animal {
 		return couleur;
 	}
 
+	/**
+	 * Set la couleur, fixe les erreurs d'encodage
+	 * @param couleur
+	 */
 	public void setCouleur(String couleur) {
-		this.couleur = validerCouleur(couleur);
+		byte[] bytes = couleur.getBytes(Charset.forName("windows-1252"));
+		this.couleur = validerCouleur(new String(bytes,StandardCharsets.UTF_8));
 	}
 
 	/**

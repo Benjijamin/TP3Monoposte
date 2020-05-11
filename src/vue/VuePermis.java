@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
+import modele.Animal;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
@@ -189,6 +190,7 @@ public class VuePermis implements IVue {
 	// un dictionnaire ou une array)
 	public Permis getFormulaire() {
 		Permis permis = new Permis();
+		Animal animal = new Animal();
 		int numero;
 		try {
 			numero = Integer.parseInt(fieldNumero.getText());
@@ -198,13 +200,13 @@ public class VuePermis implements IVue {
 		permis.setNumero(numero);
 		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
 		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-		// permis.setTerritoire(choiceBoxTerritoire.getValue());
-		permis.setNom(fieldNom.getText());
-		permis.setType(choiceBoxType.getValue());
 
-		// TODO refaire ca c'est batard
+		// permis.setTerritoire(choiceBoxTerritoire.getValue());
+		animal.setNom(fieldNom.getText());
+		animal.setType(choiceBoxType.getValue());
+
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
-		permis.setSexe(sexe.getText());
+		animal.setSexe(sexe.getText());
 
 		float poids;
 		try {
@@ -212,13 +214,14 @@ public class VuePermis implements IVue {
 		} catch (NumberFormatException e) {
 			poids = -1;
 		}
-		permis.setPoids(poids);
-		permis.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
-		permis.setCouleur(comboBoxCouleur.getValue());
-		permis.setVaccine(checkBoxVaccine.isSelected());
-		permis.setSterelise(checkBoxSterelise.isSelected());
-		permis.setMicropuce(checkBoxMicropuce.isSelected());
-		permis.setDangereux(checkBoxDangereux.isSelected());
+		animal.setPoids(poids);
+		animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
+		animal.setCouleur(comboBoxCouleur.getValue());
+		animal.setVaccine(checkBoxVaccine.isSelected());
+		animal.setSterelise(checkBoxSterelise.isSelected());
+		animal.setMicropuce(checkBoxMicropuce.isSelected());
+		animal.setDangereux(checkBoxDangereux.isSelected());
+		permis.setAnimal(animal);
 		return permis;
 	}
 
