@@ -160,6 +160,12 @@ public class VuePermis implements IVue {
 			this.scene = new Scene(root);
 			scene.getStylesheets().setAll(this.getClass().getResource("/style.css").toString());
 
+			// Listener pour la ListView permis
+			listViewPermis.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				updateButtonState();
+				updateFields();
+			});
+
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -189,6 +195,7 @@ public class VuePermis implements IVue {
 
 			updateViewToDatabase();
 			updateButtonState();
+
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -367,7 +374,7 @@ public class VuePermis implements IVue {
 
 	/**
 	 * Disable et Enable les boutons nécessaires selon l'état actuel de
-	 * l'application
+	 * l'application.
 	 */
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
@@ -395,6 +402,13 @@ public class VuePermis implements IVue {
 		checkBoxSterelise.setDisable(!permisselected);
 		checkBoxVaccine.setDisable(!permisselected);
 		comboBoxCouleur.setDisable(!permisselected);
+	}
+
+	/**
+	 * Update tous les champs pour correspondre à l'élément selectionné
+	 */
+	public void updateFields() {
+
 	}
 
 	/**
