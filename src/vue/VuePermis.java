@@ -270,7 +270,7 @@ public class VuePermis implements IVue {
 			try {
 				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
 			} catch (Exception e) {
-				error(e.getMessage());
+				error("Impossible de supprimmer ce permis, assurer vous que le numéro spécifié est contenu dans la base de données.");
 			}
 
 		}
@@ -291,7 +291,7 @@ public class VuePermis implements IVue {
 		error.setHeaderText("Une erreur est survenue lors du traitement de votre demande.");
 		error.showAndWait();
 	}
-	
+
 	@FXML
 	public void export() {
 
