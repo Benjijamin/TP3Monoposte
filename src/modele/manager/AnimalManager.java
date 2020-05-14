@@ -15,9 +15,13 @@ public class AnimalManager {
 	 * @param animal
 	 */
 	public void ajouterAnimal(Animal animal) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		session.save(animal);
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
 
 	/**
@@ -27,9 +31,11 @@ public class AnimalManager {
 	public Animal getAnimal(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		session.beginTransaction();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		Animal animal = session.load(Animal.class, id);
-		session.getTransaction().commit();
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 		return animal;
 	}
 
@@ -41,14 +47,17 @@ public class AnimalManager {
 	public void supprimerAnimal(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		session.beginTransaction();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		Animal animal = session.load(Animal.class, id);
 		session.delete(animal);
-		session.getTransaction().commit();
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
 
 	/**
 	 * Modifie l'animal dans la BD avec l'id correspondant
+	 * 
 	 * @param id
 	 * @param nom
 	 * @param type
@@ -64,8 +73,9 @@ public class AnimalManager {
 	public void modifierAnimal(int id, String nom, Type type, String sexe, float poids, Date dateNaissance,
 			String couleur, boolean vaccine, boolean sterelise, boolean micropuce, boolean dangereux) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
-		session.beginTransaction();
+
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		Animal animal = session.load(Animal.class, id);
 		animal.setCouleur(couleur);
 		animal.setDateNaissance(dateNaissance);
@@ -78,17 +88,20 @@ public class AnimalManager {
 		animal.setVaccine(vaccine);
 		animal.setMicropuce(micropuce);
 		session.saveOrUpdate(animal);
-		session.getTransaction().commit();
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
-	
+
 	/**
 	 * Modifie l'animal dans la BD avec un id identique à l'animal en paramètre
+	 * 
 	 * @param animal
 	 */
 	public void modifierAnimal(Animal a) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
-		session.beginTransaction();
+
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		Animal animal = session.load(Animal.class, a.getId());
 		animal.setCouleur(a.getCouleur());
 		animal.setDateNaissance(a.getDateNaissance());
@@ -101,6 +114,7 @@ public class AnimalManager {
 		animal.setVaccine(a.isVaccine());
 		animal.setMicropuce(a.isMicropuce());
 		session.saveOrUpdate(animal);
-		session.getTransaction().commit();
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
 }

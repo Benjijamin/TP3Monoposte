@@ -6,40 +6,34 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
-import org.hibernate.Session;
 
-import java.sql.Date;
-
-import modele.Animal;
 import modele.Permis;
+import modele.Territoire;
+import modele.Type;
 import modele.manager.PermisManager;
+import modele.manager.TerritoireManager;
+import modele.manager.TypeManager;
 
 public class CSVioUtil {
 
 	/**
-	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis. Si
+	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis,des animaux, des territoires et des types. Si
 	 * des éléments ont été modifiés ou des entrées correspondent à des entrées qui
 	 * sont déja dans la base de données, ils seront mis à jour.
 	 * 
 	 * @param file
 	 */
 	public void read(File file) {
-		PermisManager managerPermis = new PermisManager();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String ligne;
-
+			Set<String> territoires = new HashSet<String>();
+			Set<String> types = new HashSet<String>();
+			Set<List<String>> permis = new HashSet<List<String>>();
 			br.readLine();
 			while ((ligne = br.readLine()) != null) {
-
-				System.out.println();
 				String[] data = ligne.split("\",");
 
 				for (int i = 0; i < data.length; i++) {
@@ -52,6 +46,8 @@ public class CSVioUtil {
 					continue;
 				}
 
+				
+				
 				List<String> stringData = new ArrayList<String>();
 				stringData.add(data[0]);
 				stringData.add(data[3]);
@@ -68,10 +64,22 @@ public class CSVioUtil {
 				stringData.add(data[15]);
 				stringData.add(data[16]);
 
-
-				Permis.creerPermisDB(stringData);
+				permis.add(stringData);
+				territoires.add(data[3]);
+				types.add(data[4]);
+				
 			}
-
+			new Territoire().importerTerritoires(territoires);
+			new Type().importerTypes(types);
+			
+			Permis p = new Permis();
+			for (List<String> list : permis) {
+				p.creerPermisDB(list);
+			}
+			
+			
+			System.out.println("importation fini");
+			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -79,9 +87,4 @@ public class CSVioUtil {
 		}
 	}
 
-	public static void main(String[] args) {
-		CSVioUtil c = new CSVioUtil();
-		File f = new File(c.getClass().getResource("/Fichiers_CSV/permis-animaux.csv").getFile());
-		c.read(f);
-	}
 }

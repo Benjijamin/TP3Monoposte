@@ -1,12 +1,19 @@
 package modele;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Queue;
 
+import javax.persistence.NoResultException;
+
+import org.hibernate.ObjectNotFoundException;
+
 import modele.manager.PermisManager;
+import modele.manager.TerritoireManager;
 
 public class Permis {
 	private int numero;
@@ -14,6 +21,8 @@ public class Permis {
 	private Date dateDebut;
 	private Date dateFin;
 	private Animal animal;
+	private PermisManager permisManager = new PermisManager();
+	private TerritoireManager territoireManager = new TerritoireManager();
 
 	public Permis() {
 	}
@@ -46,14 +55,18 @@ public class Permis {
 	/**
 	 * Ajoute un permis dans la DB à partir d'une liste de string
 	 */
-	public static void creerPermisDB(List<String> data) {
-		PermisManager manager = new PermisManager();
+	public void creerPermisDB(List<String> data) {
+		Animal a = new Animal();
+		Permis p = new Permis();
 
 		int numero = Integer.parseInt(data.get(0));
 
-		// TODO
-		data.get(1);
-		Territoire territoire = null;
+		Territoire territoire;
+		try {
+			territoire = validerTerritoire(data.get(1));
+		} catch (NoResultException e) {
+			territoire = null;
+		}
 
 		Date dateDebut;
 		try {
@@ -74,10 +87,13 @@ public class Permis {
 
 		String nom = data.get(4);
 
-		// TODO
-		data.get(5);
-		Type type = null;
-
+		Type type;
+		try {
+			type = a.validerType(data.get(5));
+		} catch (NoResultException e) {
+			type = null;
+		}
+		
 		String sexe = data.get(6);
 
 		float poids = Float.parseFloat(data.get(7).replace(',', '.'));
@@ -116,9 +132,9 @@ public class Permis {
 			dangereux = false;
 		}
 
-		Animal a = new Animal(nom,type,sexe,poids,dateNaissance,couleur,vaccine,sterelise,micropuce,dangereux);
-		Permis p = new Permis(numero,territoire,dateDebut,dateFin,a);
-		manager.ajouterPermis(p);
+		a = new Animal(nom, type, sexe, poids, dateNaissance, couleur, vaccine, sterelise, micropuce, dangereux);
+		p = new Permis(numero, territoire, dateDebut, dateFin, a);
+		permisManager.ajouterPermis(p);
 	}
 
 	public int getNumero() {
@@ -144,8 +160,14 @@ public class Permis {
 	 * @return
 	 */
 	public Territoire validerTerritoire(String terr) {
-		// TODO
-		return null;
+		try {
+			byte[] bytes = terr.getBytes(Charset.forName("windows-1252"));
+			Territoire t = territoireManager.getTerritoire(new String(bytes,StandardCharsets.UTF_8));
+			return t;
+		} catch (ObjectNotFoundException e) {
+			System.err.println("territoire non existant");
+			return null;
+		}
 	}
 
 	public Date getDateDebut() {

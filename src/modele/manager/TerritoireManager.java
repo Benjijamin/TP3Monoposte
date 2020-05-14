@@ -12,26 +12,44 @@ public class TerritoireManager {
 
 	public void ajouterTerritoire(String territoire) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		session.save(new Territoire(0,territoire));
-		session.getTransaction().commit();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		session.save(new Territoire(0, territoire));
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
-	
+
 	public void modifierTerritoire(String territoirebefore, String territoireafter) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Territoire temp = (Territoire) session.createCriteria(Territoire.class).add(Restrictions.eq("nom", territoirebefore)).uniqueResult();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		Territoire temp = (Territoire) session.createCriteria(Territoire.class)
+				.add(Restrictions.eq("nom", territoirebefore)).uniqueResult();
 		temp.setNom(territoireafter);
 		session.update(temp);
-		session.getTransaction().commit();
+		if (session.getTransaction().isActive())
+			session.getTransaction().commit();
 	}
-	
-	public List<Territoire> getTerritoire(){
+
+	public List<Territoire> getTerritoires() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
 		List<Territoire> territoires = session.createCriteria(Territoire.class).list();
-		session.close();
+		if (session.getTransaction().isActive())
+			session.close();
 		return territoires;
 	}
-	
+
+	public Territoire getTerritoire(String territoire) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		if (!session.getTransaction().isActive())
+			session.beginTransaction();
+		Territoire t = (Territoire) session.createQuery("FROM Territoire t where t.nom='" + territoire + "'")
+				.getSingleResult();
+		if (session.getTransaction().isActive())
+			session.close();
+		return t;
+	}
+
 }

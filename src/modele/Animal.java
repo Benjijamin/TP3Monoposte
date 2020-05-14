@@ -7,6 +7,10 @@ import java.time.DateTimeException;
 import java.util.List;
 import java.util.Queue;
 
+import org.hibernate.ObjectNotFoundException;
+
+import modele.manager.TypeManager;
+
 public class Animal {
 	private int id;
 	private String nom;
@@ -19,6 +23,7 @@ public class Animal {
 	private boolean sterelise;
 	private boolean micropuce;
 	private boolean dangereux;
+	private TypeManager typeManager = new TypeManager();
 
 	public Animal() {}
 	
@@ -99,8 +104,13 @@ public class Animal {
 	 * @return
 	 */
 	public Type validerType(String type) {
-		// TODO
-		return null;
+		try {
+			byte[] bytes = type.getBytes(Charset.forName("windows-1252"));
+			Type t = typeManager.getType(new String(bytes,StandardCharsets.UTF_8));
+			return t;
+		}catch(ObjectNotFoundException e) {
+			return null;
+		}
 	}
 
 	public String getSexe() {
