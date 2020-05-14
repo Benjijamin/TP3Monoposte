@@ -7,8 +7,11 @@ import java.util.List;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.*;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -179,6 +182,11 @@ public class VuePermis implements IVue {
 			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
 			gestionType.initModality(Modality.APPLICATION_MODAL);
 
+			listeterritoire.setEditable(true);
+			listetype.setEditable(true);
+			listeterritoire.setCellFactory(TextFieldListCell.forListView());
+			listetype.setCellFactory(TextFieldListCell.forListView());
+
 			updateViewToDatabase();
 			updateButtonState();
 		} catch (IOException e) {
@@ -303,11 +311,28 @@ public class VuePermis implements IVue {
 	@FXML
 	public void importcsv() {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV","*.csv"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV", "*.csv"));
 		File selected = fileChooser.showOpenDialog(new Stage());
-		
-		if(selected != null) {
+
+		if (selected != null) {
 			ctrl.importerCSV(selected);
+			updateViewToDatabase();
+		}
+
+		// Event listener sur la scrollbar de ListView Permis pour loader plus de permis
+		// lorsqu'on
+		// atteint le bas de la scrollbar
+		ScrollBar scrollbar = getListViewScrollBar();
+		if (scrollbar != null) {
+			ChangeListener<Number> listener = (observable, oldValue, newValue) -> {
+				double position = newValue.doubleValue();
+				ScrollBar scrollBar = getListViewScrollBar();
+				if (position == scrollBar.getMax()) {
+					if(updateViewPermis()) 	scrollBar.setValue(scrollBar.getValue() - 0.1);				
+				}
+			};
+			scrollbar.valueProperty().removeListener(listener);
+			scrollbar.valueProperty().addListener(listener);
 		}
 	}
 
@@ -370,8 +395,31 @@ public class VuePermis implements IVue {
 		temp = ctrl.getTypeListe();
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
-		temp = ctrl.getPermisListe();
+		temp = ctrl.getPermisListe(0);
 		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
 
+	/**
+	 * 
+	 * @return true si au moin une valeur à été insérée
+	 */
+	private boolean updateViewPermis() {
+		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
+		System.out.println("Updating viewPermis");
+		listViewPermis.getItems().addAll(temp);
+		return temp.size() != 0;
+	}
+
+	private ScrollBar getListViewScrollBar() {
+		ScrollBar scrollbar = null;
+		for (Node node : listViewPermis.lookupAll(".scroll-bar")) {
+			if (node instanceof ScrollBar) {
+				ScrollBar bar = (ScrollBar) node;
+				if (bar.getOrientation().equals(Orientation.VERTICAL)) {
+					scrollbar = bar;
+				}
+			}
+		}
+		return scrollbar;
+	}
 }

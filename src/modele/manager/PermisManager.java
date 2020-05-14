@@ -21,12 +21,10 @@ public class PermisManager {
 	public void ajouterPermis(Permis permis) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
-		session.save(permis);
+		session.beginTransaction();
 		animalManager.ajouterAnimal(permis.getAnimal());
-		if (session.getTransaction().isActive())
-			session.getTransaction().commit();
+		session.save(permis);
+		session.getTransaction().commit();
 	}
 
 	/**
@@ -36,11 +34,9 @@ public class PermisManager {
 	public Permis getPermis(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
+		session.beginTransaction();
 		Permis permis = session.load(Permis.class, id);
-		if (session.getTransaction().isActive())
-			session.getTransaction().commit();
+		session.getTransaction().commit();
 		return permis;
 	}
 
@@ -52,11 +48,9 @@ public class PermisManager {
 	public void supprimerPermis(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		if (!session.getTransaction().isActive())
-			session.beginTransaction();
+		session.beginTransaction();
 		Permis permis = session.load(Permis.class, id);
-		if (session.getTransaction().isActive())
-			session.delete(permis);
+		session.delete(permis);
 		animalManager.supprimerAnimal(permis.getAnimal().getId());
 	}
 
@@ -73,7 +67,7 @@ public class PermisManager {
 	public void modifierPermis(int numero, Territoire territoire, Date dateDebut, Date dateFin, Animal animal) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		if(!session.getTransaction().isActive())session.beginTransaction();
+		session.beginTransaction();
 		Permis permis = session.load(Permis.class, numero);
 		permis.setDateDebut(dateDebut);
 		permis.setDateFin(dateFin);
@@ -81,7 +75,7 @@ public class PermisManager {
 		permis.setAnimal(animal);
 		animalManager.modifierAnimal(animal);
 		session.saveOrUpdate(permis);
-		if(session.getTransaction().isActive())session.getTransaction().commit();
+		session.getTransaction().commit();
 	}
 
 	/**
@@ -93,7 +87,7 @@ public class PermisManager {
 	public void modifierPermis(Permis p) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		if(!session.getTransaction().isActive())session.beginTransaction();
+		session.beginTransaction();
 		Permis permis = session.load(Permis.class, p.getNumero());
 		permis.setDateDebut(p.getDateDebut());
 		permis.setDateFin(p.getDateFin());
@@ -101,14 +95,14 @@ public class PermisManager {
 		permis.setAnimal(p.getAnimal());
 		animalManager.modifierAnimal(p.getAnimal());
 		session.saveOrUpdate(permis);
-		if(session.getTransaction().isActive())session.getTransaction().commit();
+		session.getTransaction().commit();
 	}
-
-	public List<Permis> getPermis() {
+	
+	public List<Permis> getListPermis(int start){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		if(!session.getTransaction().isActive())session.beginTransaction();
-		List<Permis> permis = session.createCriteria(Permis.class).list();
-		if(session.getTransaction().isActive())session.close();
+		session.beginTransaction();
+		List<Permis> permis = session.createQuery("FROM Permis ORDER BY numero").setMaxResults(100).setFirstResult(start).list();
+		session.close();
 		return permis;
 	}
 }

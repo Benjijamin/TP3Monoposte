@@ -15,7 +15,7 @@ public interface ICtrl {
 
 	public List<String> getTypeListe();
 
-	public List<String> getPermisListe();
+	public List<String> getPermisListe(int start);
 
 	public void supprimer(int permis);
 	
