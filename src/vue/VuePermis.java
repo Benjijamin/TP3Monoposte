@@ -313,6 +313,7 @@ public class VuePermis implements IVue {
 		
 		if(selected != null) {
 			ctrl.importerCSV(selected);
+			updateViewToDatabase();
 		}
 	}
 
