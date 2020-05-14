@@ -3,6 +3,9 @@ package modele;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.time.DateTimeException;
+import java.util.List;
+import java.util.Queue;
 
 public class Animal {
 	private int id;

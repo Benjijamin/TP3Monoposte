@@ -10,6 +10,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import org.hibernate.Session;
 
@@ -43,10 +45,15 @@ public class CSVioUtil {
 
 				for (int i = 0; i < data.length; i++) {
 					data[i] = data[i].replace("\"", "");
-					// System.out.println(data[i]);
 				}
-
-				int numero = Integer.parseInt(data[0]);
+				
+				try {
+					Integer.parseInt(data[0]);
+				} catch (NumberFormatException e) {
+					continue;
+				}
+				
+				
 				
 				Date dateDebut;
 				try {
@@ -57,40 +64,55 @@ public class CSVioUtil {
 				Date dateFin;
 				try {
 					dateFin = Date.valueOf(LocalDate.parse(data[2]));
-					if(dateFin.getTime() < dateDebut.getTime()) {
-						dateFin = new Date(dateDebut.getTime()+31536000000l);
+					if (dateFin.getTime() < dateDebut.getTime()) {
+						dateFin = new Date(dateDebut.getTime() + 31536000000l);
 					}
 				} catch (DateTimeException e) {
-					dateFin = new Date(dateDebut.getTime()+31536000000l);
+					dateFin = new Date(dateDebut.getTime() + 31536000000l);
 				}
-				
-				//L'association avec les objets se fait au niveau du modele
+
+				// L'association avec les objets se fait au niveau du modele
 				String territoire = data[3];
 				String type = data[4];
 
 				String nom = data[5];
 				String sexe = data[9];
 				String couleur = data[10];
-				
+
 				Date dateNaissance;
 				try {
 					dateNaissance = Date.valueOf(LocalDate.parse(data[11]));
 				} catch (DateTimeException e) {
 					dateNaissance = dateDebut;
 				}
-				
+
 				boolean vaccine = Integer.parseInt(data[12]) == 1;
 				boolean sterelise = Integer.parseInt(data[13]) == 1;
 				float poids = Float.parseFloat(data[14].replace(',', '.'));
 				boolean micropuce = Integer.parseInt(data[15]) == 1;
 				boolean dangereux = Integer.parseInt(data[16]) == 1;
 
-				Animal a = new Animal(nom, type, sexe, poids, dateNaissance,
-						couleur, vaccine, sterelise, micropuce, dangereux);
-				Permis p = new Permis(numero, territoire, dateDebut, dateFin, a);
-				
-				managerPermis.ajouterPermis(p);
-				System.out.println("Permis "+ p + " ajouté dans bd");
+				List<String> stringData = new ArrayList<String>();
+				stringData.add(data[0]);
+				stringData.add(data[3]);
+				stringData.add(data[1]);
+				stringData.add(data[2]);
+				stringData.add(data[5]);
+				stringData.add(data[4]);
+				stringData.add(data[9]);
+				stringData.add(data[14]);
+				stringData.add(data[11]);
+				stringData.add(data[10]);
+				stringData.add(data[12]);
+				stringData.add(data[13]);
+				stringData.add(data[15]);
+				stringData.add(data[16]);
+
+
+				Permis.creerPermisDB(stringData);
+
+//				managerPermis.ajouterPermis(p);
+//				System.out.println("Permis " + p + " ajouté dans bd");
 			}
 
 		} catch (IOException e) {
