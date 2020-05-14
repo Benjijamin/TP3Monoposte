@@ -17,9 +17,7 @@ public class AnimalManager {
 	public void ajouterAnimal(Animal animal) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-		session.beginTransaction();
 		session.save(animal);
-		session.getTransaction().commit();
 	}
 
 	/**

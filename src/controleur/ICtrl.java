@@ -1,5 +1,6 @@
 package controleur;
 
+import java.io.File;
 import java.util.List;
 
 import javafx.scene.Scene;
@@ -17,4 +18,6 @@ public interface ICtrl {
 	public List<String> getPermisListe();
 
 	public void supprimer(int permis);
+	
+	public void importerCSV(File file);
 }

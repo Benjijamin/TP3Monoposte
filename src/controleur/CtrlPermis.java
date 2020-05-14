@@ -1,5 +1,6 @@
 package controleur;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import modele.Type;
 import modele.manager.PermisManager;
 import modele.manager.TerritoireManager;
 import modele.manager.TypeManager;
+import util.CSVioUtil;
 import vue.IVue;
 import vue.VuePermis;
 
@@ -69,4 +71,9 @@ public class CtrlPermis implements ICtrl {
 		
 	}
 
+	public void importerCSV(File file) {
+		CSVioUtil util = new CSVioUtil();
+		util.read(file);
+	}
+	
 }

@@ -1,5 +1,6 @@
 package vue;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -13,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -286,7 +289,13 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void importcsv() {
-
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV","*.csv"));
+		File selected = fileChooser.showOpenDialog(new Stage());
+		
+		if(selected != null) {
+			ctrl.importerCSV(selected);
+		}
 	}
 
 	@FXML

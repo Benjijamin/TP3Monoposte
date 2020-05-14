@@ -51,45 +51,6 @@ public class CSVioUtil {
 				} catch (NumberFormatException e) {
 					continue;
 				}
-				
-				
-				
-				Date dateDebut;
-				try {
-					dateDebut = Date.valueOf(LocalDate.parse(data[1]));
-				} catch (DateTimeException e) {
-					dateDebut = new Date(System.currentTimeMillis());
-				}
-				Date dateFin;
-				try {
-					dateFin = Date.valueOf(LocalDate.parse(data[2]));
-					if (dateFin.getTime() < dateDebut.getTime()) {
-						dateFin = new Date(dateDebut.getTime() + 31536000000l);
-					}
-				} catch (DateTimeException e) {
-					dateFin = new Date(dateDebut.getTime() + 31536000000l);
-				}
-
-				// L'association avec les objets se fait au niveau du modele
-				String territoire = data[3];
-				String type = data[4];
-
-				String nom = data[5];
-				String sexe = data[9];
-				String couleur = data[10];
-
-				Date dateNaissance;
-				try {
-					dateNaissance = Date.valueOf(LocalDate.parse(data[11]));
-				} catch (DateTimeException e) {
-					dateNaissance = dateDebut;
-				}
-
-				boolean vaccine = Integer.parseInt(data[12]) == 1;
-				boolean sterelise = Integer.parseInt(data[13]) == 1;
-				float poids = Float.parseFloat(data[14].replace(',', '.'));
-				boolean micropuce = Integer.parseInt(data[15]) == 1;
-				boolean dangereux = Integer.parseInt(data[16]) == 1;
 
 				List<String> stringData = new ArrayList<String>();
 				stringData.add(data[0]);
@@ -109,9 +70,6 @@ public class CSVioUtil {
 
 
 				Permis.creerPermisDB(stringData);
-
-//				managerPermis.ajouterPermis(p);
-//				System.out.println("Permis " + p + " ajouté dans bd");
 			}
 
 		} catch (IOException e) {

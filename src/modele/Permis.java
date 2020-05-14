@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Queue;
 
-import manager.PermisManager;
+import modele.manager.PermisManager;
 
 public class Permis {
 	private int numero;
@@ -49,7 +49,6 @@ public class Permis {
 	public static void creerPermisDB(List<String> data) {
 		PermisManager manager = new PermisManager();
 
-		System.out.println(data);
 		int numero = Integer.parseInt(data.get(0));
 
 		// TODO
@@ -119,8 +118,7 @@ public class Permis {
 
 		Animal a = new Animal(nom,type,sexe,poids,dateNaissance,couleur,vaccine,sterelise,micropuce,dangereux);
 		Permis p = new Permis(numero,territoire,dateDebut,dateFin,a);
-        System.out.println(p);
-		//manager.ajouterPermis(p);
+		manager.ajouterPermis(p);
 	}
 
 	public int getNumero() {
