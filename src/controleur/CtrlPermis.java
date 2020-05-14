@@ -61,8 +61,8 @@ public class CtrlPermis implements ICtrl {
 	 * Retourne la liste des permis sous formes de strings pour l'affichage
 	 */
 	@Override
-	public List<String> getPermisListe() {
-		List<Permis> temp = permism.getListPermis(0);
+	public List<String> getPermisListe(int start) {
+		List<Permis> temp = permism.getListPermis(start);
 		ArrayList<String> retour = new ArrayList<String>();
 		for (Permis t : temp) {
 			retour.add(t.toString());

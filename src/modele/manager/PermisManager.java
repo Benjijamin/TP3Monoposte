@@ -101,7 +101,7 @@ public class PermisManager {
 	public List<Permis> getListPermis(int start){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		List<Permis> permis = session.createQuery("FROM Permis ORDER BY numero").setMaxResults(1000).setFirstResult(start).list();
+		List<Permis> permis = session.createQuery("FROM Permis ORDER BY numero").setMaxResults(100).setFirstResult(start).list();
 		session.close();
 		return permis;
 	}
