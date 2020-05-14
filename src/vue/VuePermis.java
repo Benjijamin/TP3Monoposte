@@ -315,8 +315,21 @@ public class VuePermis implements IVue {
 		File selected = fileChooser.showOpenDialog(new Stage());
 
 		if (selected != null) {
+
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnée",
+					ButtonType.CLOSE);
+			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
+			wait.setHeaderText("Patientez...");
+			wait.initStyle(StageStyle.UNDECORATED);
+			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
+			wait.getDialogPane()
+					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
+			wait.show();
+
 			ctrl.importerCSV(selected);
 			updateViewToDatabase();
+
+			wait.hide();
 		}
 
 		// Event listener sur la scrollbar de ListView Permis pour loader plus de permis
@@ -328,7 +341,8 @@ public class VuePermis implements IVue {
 				double position = newValue.doubleValue();
 				ScrollBar scrollBar = getListViewScrollBar();
 				if (position == scrollBar.getMax()) {
-					if(updateViewPermis()) 	scrollBar.setValue(scrollBar.getValue() - 0.1);				
+					if (updateViewPermis())
+						scrollBar.setValue(scrollBar.getValue() - 0.1);
 				}
 			};
 			scrollbar.valueProperty().removeListener(listener);
