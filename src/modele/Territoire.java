@@ -30,7 +30,7 @@ public class Territoire {
 
 	@Override
 	public String toString() {
-		return "Territoire [id=" + id + ", nom=" + nom + "]";
+		return nom;
 	}
 
 }

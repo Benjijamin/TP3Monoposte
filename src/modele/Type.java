@@ -30,7 +30,7 @@ public class Type {
 
 	@Override
 	public String toString() {
-		return "Type [id=" + id + ", nom=" + nom + "]";
+		return nom;
 	}
 
 }

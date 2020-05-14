@@ -15,12 +15,11 @@ import java.util.Queue;
 
 import org.hibernate.Session;
 
-import manager.PermisManager;
-
 import java.sql.Date;
 
 import modele.Animal;
 import modele.Permis;
+import modele.manager.PermisManager;
 
 public class CSVioUtil {
 

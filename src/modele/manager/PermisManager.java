@@ -1,6 +1,7 @@
-package manager;
+package modele.manager;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -95,5 +96,13 @@ public class PermisManager {
 		animalManager.modifierAnimal(p.getAnimal());
 		session.saveOrUpdate(permis);
 		session.getTransaction().commit();
+	}
+	
+	public List<Permis> getPermis(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Permis> permis = session.createCriteria(Permis.class).list();
+		session.close();
+		return permis;
 	}
 }

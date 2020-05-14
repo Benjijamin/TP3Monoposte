@@ -2,6 +2,7 @@ package vue;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
@@ -89,7 +90,7 @@ public class VuePermis implements IVue {
 	@FXML
 	private CheckBox checkBoxDangereux;
 	@FXML
-	private ChoiceBox<Type> choiceBoxType;
+	private ChoiceBox<String> choiceBoxType;
 	@FXML
 	private TextField fieldPoids;
 	@FXML
@@ -176,6 +177,7 @@ public class VuePermis implements IVue {
 			gestionType.initModality(Modality.APPLICATION_MODAL);
 
 			updateViewToDatabase();
+			updateButtonState();
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -203,7 +205,7 @@ public class VuePermis implements IVue {
 
 		// permis.setTerritoire(choiceBoxTerritoire.getValue());
 		animal.setNom(fieldNom.getText());
-		animal.setType(choiceBoxType.getValue());
+		// animal.setType(choiceBoxType.getValue());
 
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
 		animal.setSexe(sexe.getText());
@@ -261,6 +263,12 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void supprimer() {
+		Alert quit = new Alert(AlertType.CONFIRMATION);
+		quit.setTitle("Supprimmer ?");
+		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		if (quit.showAndWait().get() == ButtonType.OK) {
+			ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+		}
 	}
 
 	@FXML
@@ -302,15 +310,46 @@ public class VuePermis implements IVue {
 	 */
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
+
+		// il y a un permis selectionné ?
+		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
+		datePickerDateDebut.setDisable(!permisselected);
+		datePickerDateFin.setDisable(!permisselected);
+		datePickerDateNaissance.setDisable(!permisselected);
+		buttonSupprimer.setDisable(!permisselected);
+		menuSupprimer.setDisable(!permisselected);
+		buttonAjouter.setDisable(!permisselected);
+		menuAjouter.setDisable(!permisselected);
+		buttonModifier.setDisable(!permisselected);
+		menuModifier.setDisable(!permisselected);
+		choiceBoxTerritoire.setDisable(!permisselected);
+		choiceBoxType.setDisable(!permisselected);
+		fieldNom.setDisable(!permisselected);
+		fieldPoids.setDisable(!permisselected);
+		choiceFemelle.setDisable(!permisselected);
+		choiceInconnu.setDisable(!permisselected);
+		choiceMale.setDisable(!permisselected);
+		checkBoxDangereux.setDisable(!permisselected);
+		checkBoxMicropuce.setDisable(!permisselected);
+		checkBoxSterelise.setDisable(!permisselected);
+		checkBoxVaccine.setDisable(!permisselected);
+		comboBoxCouleur.setDisable(!permisselected);
 	}
 
 	/**
-	 * Update tous les éléments de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
-		listeterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
-		listetype.setItems(FXCollections.observableArrayList(ctrl.getTypeListe()));
-		listViewPermis.setItems(FXCollections.observableArrayList(ctrl.getPermisListe()));
+		List<String> temp;
+
+		temp = ctrl.getTerritoireListe();
+		listeterritoire.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxTerritoire.setItems(FXCollections.observableArrayList(temp));
+		temp = ctrl.getTypeListe();
+		listetype.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
+		temp = ctrl.getPermisListe();
+		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
 
 }

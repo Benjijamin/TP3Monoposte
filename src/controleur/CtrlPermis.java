@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Scene;
-import manager.PermisManager;
-import manager.TerritoireManager;
-import manager.TypeManager;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
+import modele.manager.PermisManager;
+import modele.manager.TerritoireManager;
+import modele.manager.TypeManager;
 import vue.IVue;
 import vue.VuePermis;
 
@@ -34,7 +34,12 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getTerritoireListe() {
-		return new ArrayList<String>();
+		List<Territoire> temp = territoirem.getTerritoire();
+		ArrayList<String> retour = new ArrayList<String>();
+		for (Territoire t : temp) {
+			retour.add(t.toString());
+		}
+		return retour;
 	}
 
 	/**
@@ -56,6 +61,12 @@ public class CtrlPermis implements ICtrl {
 	@Override
 	public List<String> getPermisListe() {
 		return new ArrayList<String>();
+	}
+
+	@Override
+	public void supprimer(int permis) {
+		permism.supprimerPermis(permis);
+		
 	}
 
 }
