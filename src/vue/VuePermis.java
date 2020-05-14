@@ -2,6 +2,7 @@ package vue;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.List;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
@@ -89,7 +90,7 @@ public class VuePermis implements IVue {
 	@FXML
 	private CheckBox checkBoxDangereux;
 	@FXML
-	private ChoiceBox<Type> choiceBoxType;
+	private ChoiceBox<String> choiceBoxType;
 	@FXML
 	private TextField fieldPoids;
 	@FXML
@@ -203,7 +204,7 @@ public class VuePermis implements IVue {
 
 		// permis.setTerritoire(choiceBoxTerritoire.getValue());
 		animal.setNom(fieldNom.getText());
-		animal.setType(choiceBoxType.getValue());
+		//animal.setType(choiceBoxType.getValue());
 
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
 		animal.setSexe(sexe.getText());
@@ -308,9 +309,16 @@ public class VuePermis implements IVue {
 	 * Update tous les listes de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
-		listeterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
-		listetype.setItems(FXCollections.observableArrayList(ctrl.getTypeListe()));
-		listViewPermis.setItems(FXCollections.observableArrayList(ctrl.getPermisListe()));
+		List<String> temp;
+
+		temp = ctrl.getTerritoireListe();
+		listeterritoire.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxTerritoire.setItems(FXCollections.observableArrayList(temp));
+		temp = ctrl.getTypeListe();
+		listetype.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
+		temp = ctrl.getPermisListe();
+		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
 
 }
