@@ -267,7 +267,12 @@ public class VuePermis implements IVue {
 		quit.setTitle("Supprimmer ?");
 		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
 		if (quit.showAndWait().get() == ButtonType.OK) {
-			ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+			try {
+				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+			} catch (Exception e) {
+				error(e.getMessage());
+			}
+
 		}
 	}
 
@@ -279,6 +284,14 @@ public class VuePermis implements IVue {
 		help.showAndWait();
 	}
 
+	private void error(String message) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Erreur");
+		error.setContentText(message);
+		error.setHeaderText("Une erreur est survenue lors du traitement de votre demande.");
+		error.showAndWait();
+	}
+	
 	@FXML
 	public void export() {
 
