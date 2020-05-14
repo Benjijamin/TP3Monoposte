@@ -34,7 +34,12 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getTerritoireListe() {
-		return new ArrayList<String>();
+		List<Territoire> temp = territoirem.getTerritoire();
+		ArrayList<String> retour = new ArrayList<String>();
+		for (Territoire t : temp) {
+			retour.add(t.toString());
+		}
+		return retour;
 	}
 
 	/**

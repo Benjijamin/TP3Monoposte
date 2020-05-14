@@ -305,7 +305,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les éléments de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
 		listeterritoire.setItems(FXCollections.observableArrayList(ctrl.getTerritoireListe()));
