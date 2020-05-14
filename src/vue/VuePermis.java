@@ -179,6 +179,11 @@ public class VuePermis implements IVue {
 			gestionTerritoire.initModality(Modality.APPLICATION_MODAL);
 			gestionType.initModality(Modality.APPLICATION_MODAL);
 
+			listeterritoire.setEditable(true);
+			listetype.setEditable(true);
+			listeterritoire.setCellFactory(TextFieldListCell.forListView());
+			listetype.setCellFactory(TextFieldListCell.forListView());
+			
 			updateViewToDatabase();
 			updateButtonState();
 		} catch (IOException e) {
