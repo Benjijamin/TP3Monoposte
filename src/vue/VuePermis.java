@@ -177,6 +177,7 @@ public class VuePermis implements IVue {
 			gestionType.initModality(Modality.APPLICATION_MODAL);
 
 			updateViewToDatabase();
+			updateButtonState();
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -204,7 +205,7 @@ public class VuePermis implements IVue {
 
 		// permis.setTerritoire(choiceBoxTerritoire.getValue());
 		animal.setNom(fieldNom.getText());
-		//animal.setType(choiceBoxType.getValue());
+		// animal.setType(choiceBoxType.getValue());
 
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
 		animal.setSexe(sexe.getText());
@@ -262,6 +263,12 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void supprimer() {
+		Alert quit = new Alert(AlertType.CONFIRMATION);
+		quit.setTitle("Supprimmer ?");
+		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		if (quit.showAndWait().get() == ButtonType.OK) {
+			ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+		}
 	}
 
 	@FXML
@@ -303,6 +310,30 @@ public class VuePermis implements IVue {
 	 */
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
+
+		// il y a un permis selectionné ?
+		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
+		datePickerDateDebut.setDisable(!permisselected);
+		datePickerDateFin.setDisable(!permisselected);
+		datePickerDateNaissance.setDisable(!permisselected);
+		buttonSupprimer.setDisable(!permisselected);
+		menuSupprimer.setDisable(!permisselected);
+		buttonAjouter.setDisable(!permisselected);
+		menuAjouter.setDisable(!permisselected);
+		buttonModifier.setDisable(!permisselected);
+		menuModifier.setDisable(!permisselected);
+		choiceBoxTerritoire.setDisable(!permisselected);
+		choiceBoxType.setDisable(!permisselected);
+		fieldNom.setDisable(!permisselected);
+		fieldPoids.setDisable(!permisselected);
+		choiceFemelle.setDisable(!permisselected);
+		choiceInconnu.setDisable(!permisselected);
+		choiceMale.setDisable(!permisselected);
+		checkBoxDangereux.setDisable(!permisselected);
+		checkBoxMicropuce.setDisable(!permisselected);
+		checkBoxSterelise.setDisable(!permisselected);
+		checkBoxVaccine.setDisable(!permisselected);
+		comboBoxCouleur.setDisable(!permisselected);
 	}
 
 	/**

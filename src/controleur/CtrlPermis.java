@@ -63,4 +63,10 @@ public class CtrlPermis implements ICtrl {
 		return new ArrayList<String>();
 	}
 
+	@Override
+	public void supprimer(int permis) {
+		permism.supprimerPermis(permis);
+		
+	}
+
 }
