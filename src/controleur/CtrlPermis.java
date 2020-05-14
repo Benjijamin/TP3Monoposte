@@ -62,7 +62,7 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getPermisListe() {
-		List<Permis> temp = permism.getPermis();
+		List<Permis> temp = permism.getListPermis(0);
 		ArrayList<String> retour = new ArrayList<String>();
 		for (Permis t : temp) {
 			retour.add(t.toString());
