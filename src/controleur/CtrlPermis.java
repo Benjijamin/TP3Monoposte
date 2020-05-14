@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Scene;
-import manager.PermisManager;
-import manager.TerritoireManager;
-import manager.TypeManager;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
+import modele.manager.PermisManager;
+import modele.manager.TerritoireManager;
+import modele.manager.TypeManager;
 import vue.IVue;
 import vue.VuePermis;
 

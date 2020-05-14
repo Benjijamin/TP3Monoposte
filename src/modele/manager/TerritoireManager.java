@@ -1,4 +1,4 @@
-package manager;
+package modele.manager;
 
 import java.util.List;
 
