@@ -270,7 +270,12 @@ public class VuePermis implements IVue {
 		quit.setTitle("Supprimmer ?");
 		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
 		if (quit.showAndWait().get() == ButtonType.OK) {
-			ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+			try {
+				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
+			} catch (Exception e) {
+				error("Impossible de supprimmer ce permis, assurer vous que le numéro spécifié est contenu dans la base de données.");
+			}
+
 		}
 	}
 
@@ -280,6 +285,14 @@ public class VuePermis implements IVue {
 		help.setTitle("Aide");
 		help.setContentText("Cette Application permet la gestion de permis animaux.");
 		help.showAndWait();
+	}
+
+	private void error(String message) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Erreur");
+		error.setContentText(message);
+		error.setHeaderText("Une erreur est survenue lors du traitement de votre demande.");
+		error.showAndWait();
 	}
 
 	@FXML
