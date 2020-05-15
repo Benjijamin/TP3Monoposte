@@ -25,4 +25,6 @@ public interface ICtrl {
 	public void importerCSV(File file);
 
 	public void exporterXML(File selected);
+
+	public int getNextNumero();
 }

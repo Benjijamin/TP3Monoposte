@@ -116,4 +116,12 @@ public class PermisManager {
 		session.getTransaction().commit();
 		return permis;
 	}
+
+	public int getnext() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		int permis = (Integer)session.createQuery("select max(numero) from Permis").uniqueResult();
+		session.getTransaction().commit();
+		return permis+1;
+	}
 }

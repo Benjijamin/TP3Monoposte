@@ -165,8 +165,11 @@ public class VuePermis implements IVue {
 
 			// Listener pour la ListView permis
 			listViewPermis.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-				updateButtonState();
-				updateFields(newValue);
+				if(newValue!=null) {
+					updateButtonState();
+					updateFields(newValue);
+				}
+					
 			});
 
 			// Load Modals
@@ -317,10 +320,11 @@ public class VuePermis implements IVue {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("XML", "*.xml"));
 		File selected = fileChooser.showSaveDialog(new Stage());
-		
+
 		if (selected != null) {
 
-			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant que l'application génère votre fichier de données XML",
+			Alert wait = new Alert(AlertType.NONE,
+					"Veuillez Patientez pendant que l'application génère votre fichier de données XML",
 					ButtonType.CLOSE);
 			wait.setTitle("Écriture du Fichier XML à partir de la Base de Donnée");
 			wait.setHeaderText("Patientez...");
@@ -329,22 +333,21 @@ public class VuePermis implements IVue {
 			wait.getDialogPane()
 					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
 
-			
 			wait.show();
-			
-			Task<Void> task = new Task<Void>() {
-		        @Override
-		        public Void call() {
-		        	ctrl.exporterXML(selected);
-					return null;
-		        }
-		    };
 
-		    task.setOnSucceeded(e -> {
-		    	updateViewToDatabase();
+			Task<Void> task = new Task<Void>() {
+				@Override
+				public Void call() {
+					ctrl.exporterXML(selected);
+					return null;
+				}
+			};
+
+			task.setOnSucceeded(e -> {
+				updateViewToDatabase();
 				wait.hide();
-		    });
-		    new Thread(task).start();
+			});
+			new Thread(task).start();
 		}
 	}
 
@@ -448,7 +451,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons nécessaires lors de la création d'un permis
+	 * Disable et Enable les boutons nécessaires lors de la création d'un permis Et
+	 * mets les champs à zéro
 	 */
 	public void updateButtonNouveau() {
 		datePickerDateDebut.setDisable(false);
@@ -474,6 +478,29 @@ public class VuePermis implements IVue {
 		checkBoxSterelise.setDisable(false);
 		checkBoxVaccine.setDisable(false);
 		comboBoxCouleur.setDisable(false);
+
+		// Fields reset
+		fieldNumero.setText(ctrl.getNextNumero() + "");
+		fieldNom.setText("");
+
+		choiceBoxTerritoire.setValue("");
+		choiceBoxType.setValue("");
+
+		datePickerDateDebut.setValue(null);
+		datePickerDateFin.setValue(null);
+		datePickerDateNaissance.setValue(null);
+
+		fieldPoids.setText("");
+
+		comboBoxCouleur.setValue("");
+		checkBoxVaccine.setSelected(false);
+		checkBoxSterelise.setSelected(false);
+		checkBoxMicropuce.setSelected(false);
+		checkBoxDangereux.setSelected(false);
+
+		choiceInconnu.setSelected(true);
+
+		listViewPermis.getSelectionModel().clearSelection();
 	}
 
 	/**
@@ -485,7 +512,6 @@ public class VuePermis implements IVue {
 			fieldNumero.setText(String.valueOf((int) values.get("numero")));
 			fieldNom.setText((String) values.get("nom"));
 
-			
 			choiceBoxTerritoire.setValue(values.get("territoire").toString());
 			choiceBoxType.setValue(values.get("type").toString());
 
@@ -504,12 +530,11 @@ public class VuePermis implements IVue {
 			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
 			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
 			String sexe = (String) values.get("sexe");
-			System.out.println(sexe);
 			if(sexe.equals("Femelle")) {
 				choiceFemelle.setSelected(true);
 			}else if (sexe.equals("Male")) {
 				choiceMale.setSelected(true);
-			}else {
+			} else {
 				choiceInconnu.setSelected(true);
 			}
 
@@ -536,6 +561,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
+	 * Update la liste view permis
 	 * 
 	 * @return true si au moin une valeur à été insérée
 	 */
