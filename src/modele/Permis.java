@@ -199,7 +199,9 @@ public class Permis {
 
 	@Override
 	public String toString() {
-		return numero + "";
+		return "Permis [numero=" + numero + ", territoire=" + territoire + ", dateDebut=" + dateDebut + ", dateFin="
+				+ dateFin + ", animal=" + animal + ", permisManager=" + permisManager + ", animalManager="
+				+ animalManager + ", territoireManager=" + territoireManager + "]";
 	}
 
 }
