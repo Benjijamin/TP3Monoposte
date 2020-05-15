@@ -13,6 +13,7 @@ public class CtrlPermis implements ICtrl {
 
 	private TypeManager typem = new TypeManager();
 	private PermisManager permism = new PermisManager();
+	private AnimalManager animalm = new AnimalManager();
 	private TerritoireManager territoirem = new TerritoireManager();
 	private IVue vue;
 
@@ -66,7 +67,7 @@ public class CtrlPermis implements ICtrl {
 
 	public Map<String, Object> getPermis(String numeroPermis) {
 		Permis p = permism.getPermis(Integer.parseInt(numeroPermis));
-		Animal a = p.getAnimal();
+		Animal a = animalm.getAnimal(p.getAnimal().getId());
 		Map<String, Object> values = new HashMap<String, Object>();
 		values.put("numero", p.getNumero());
 		values.put("territoire", p.getTerritoire());
