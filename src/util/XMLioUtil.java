@@ -1,5 +1,6 @@
 package util;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -10,38 +11,45 @@ public abstract class XMLioUtil {
 
 	public static void write(List<Permis> liste, String filepath) {
 		try {
-			FileWriter encoder = new FileWriter(filepath);
+			BufferedWriter encoder = new BufferedWriter(new FileWriter(filepath));
 			encoder.write("<XML-GestionPermis/>\n");
+			int progress = 0;
+
 			for (Permis p : liste) {
-				encoder.append(xmlbaliseStart(0, "Permis", new XmlKeyV("numero", p.getNumero()),
-						new XmlKeyV("dateDebut", p.getDateDebut()), new XmlKeyV("dateFin", p.getDateFin())));
+				String toencode = "";
+				toencode += xmlbaliseStart(0, "Permis", new XmlKeyV("numero", p.getNumero()),
+						new XmlKeyV("dateDebut", p.getDateDebut()), new XmlKeyV("dateFin", p.getDateFin()));
 
-				encoder.append(xmlbaliseStart(1, "Territoire", new XmlKeyV("nom", p.getTerritoire().getNom())));
-				encoder.append(xmlbaliseEnd(1, "Territoire"));
+				toencode += xmlbaliseStart(1, "Territoire", new XmlKeyV("nom", p.getTerritoire().getNom()));
+				toencode += xmlbaliseEnd(1, "Territoire");
 
-				encoder.append(xmlbaliseStart(1, "Animal", new XmlKeyV("nom", p.getAnimal().getNom()),
+				toencode += xmlbaliseStart(1, "Animal", new XmlKeyV("nom", p.getAnimal().getNom()),
 						new XmlKeyV("sexe", p.getAnimal().getSexe()), new XmlKeyV("poids", p.getAnimal().getPoids()),
 						new XmlKeyV("dateNaissance", p.getAnimal().getDateNaissance()),
-						new XmlKeyV("couleur", p.getAnimal().getCouleur())));
-				encoder.append(xmlbaliseStart(2, "Type", new XmlKeyV("nom", p.getAnimal().getType().getNom())));
-				encoder.append(xmlbaliseEnd(2, "Type"));
-				encoder.append(xmlbaliseStart(2, "Caracteristique", new XmlKeyV("vaccine", p.getAnimal().isVaccine()),
+						new XmlKeyV("couleur", p.getAnimal().getCouleur()));
+				toencode += xmlbaliseStart(2, "Type", new XmlKeyV("nom", p.getAnimal().getType().getNom()));
+				toencode += xmlbaliseEnd(2, "Type");
+				toencode += xmlbaliseStart(2, "Caracteristique", new XmlKeyV("vaccine", p.getAnimal().isVaccine()),
 						new XmlKeyV("sterelise", p.getAnimal().isSterelise()),
 						new XmlKeyV("micropuce", p.getAnimal().isMicropuce()),
-						new XmlKeyV("dangereux", p.getAnimal().isDangereux())));
-				encoder.append(xmlbaliseEnd(2, "Caracteristique"));
-				encoder.append(xmlbaliseEnd(1, "Animal"));
+						new XmlKeyV("dangereux", p.getAnimal().isDangereux()));
+				toencode += xmlbaliseEnd(2, "Caracteristique");
+				toencode += xmlbaliseEnd(1, "Animal");
 
-				encoder.append(xmlbaliseEnd(0, "Permis"));
+				toencode += xmlbaliseEnd(0, "Permis");
+				encoder.append(toencode);
+				encoder.flush();
+				System.out.println(++progress + "/" + liste.size());
+				System.out.println("TEST");
 			}
 			encoder.close();
 		} catch (IOException e) {
-			System.err.println("Erreur d'écriture, impossible d'écrire dans le fichier : " + filepath);
+			System.err.println("Erreur d'Ã©criture, impossible d'Ã©crire dans le fichier : " + filepath);
 		}
 	}
 
 	/**
-	 * @param indent le niveau d'indentation de l'élément
+	 * @param indent le niveau d'indentation de l'Ã©lÃ©ment
 	 * @param type   le type de balise
 	 * @param values les valeurs interne de la balise sous forme d'objet Key/Value
 	 * @return
