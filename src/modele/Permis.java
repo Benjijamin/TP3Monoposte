@@ -57,29 +57,29 @@ public class Permis {
 	/**
 	 * Ajoute un permis dans la DB à partir d'une liste de string
 	 */
-	public void creerPermisDB(List<String> data) {
+	public void creerPermisDB(String[] data) {
 		Animal a = new Animal();
 		Permis p = new Permis();
 
-		int numero = Integer.parseInt(data.get(0));
+		int numero = Integer.parseInt(data[0]);
 
 		Territoire territoire;
 		try {
-			territoire = validerTerritoire(data.get(1));
+			territoire = validerTerritoire(data[3]);
 		} catch (NoResultException e) {
 			territoire = null;
 		}
 
 		Date dateDebut;
 		try {
-			dateDebut = Date.valueOf(LocalDate.parse(data.get(2)));
+			dateDebut = Date.valueOf(LocalDate.parse(data[1]));
 		} catch (DateTimeException e) {
 			dateDebut = new Date(System.currentTimeMillis());
 		}
 
 		Date dateFin;
 		try {
-			dateFin = Date.valueOf(LocalDate.parse(data.get(3)));
+			dateFin = Date.valueOf(LocalDate.parse(data[2]));
 			if (dateFin.getTime() < dateDebut.getTime()) {
 				dateFin = new Date(dateDebut.getTime() + 31536000000l);
 			}
@@ -87,49 +87,49 @@ public class Permis {
 			dateFin = new Date(dateDebut.getTime() + 31536000000l);
 		}
 
-		String nom = data.get(4);
+		String nom = data[5];
 
 		Type type;
 		try {
-			type = a.validerType(data.get(5));
+			type = a.validerType(data[4]);
 		} catch (NoResultException e) {
 			type = null;
 		}
 		
-		String sexe = data.get(6);
+		String sexe = data[9];
 
-		float poids = Float.parseFloat(data.get(7).replace(',', '.'));
+		float poids = Float.parseFloat(data[14].replace(',', '.'));
 
 		Date dateNaissance;
 		try {
-			dateNaissance = Date.valueOf(LocalDate.parse(data.get(8)));
+			dateNaissance = Date.valueOf(LocalDate.parse(data[11]));
 		} catch (DateTimeException e) {
 			dateNaissance = dateDebut;
 		}
 
-		String couleur = data.get(9);
+		String couleur = data[10];
 
 		boolean vaccine;
 		try {
-			vaccine = Integer.parseInt(data.get(10)) == 1;
+			vaccine = Integer.parseInt(data[12]) == 1;
 		} catch (NumberFormatException e) {
 			vaccine = false;
 		}
 		boolean sterelise;
 		try {
-			sterelise = Integer.parseInt(data.get(11)) == 1;
+			sterelise = Integer.parseInt(data[13]) == 1;
 		} catch (NumberFormatException e) {
 			sterelise = false;
 		}
 		boolean micropuce;
 		try {
-			micropuce = Integer.parseInt(data.get(12)) == 1;
+			micropuce = Integer.parseInt(data[15]) == 1;
 		} catch (NumberFormatException e) {
 			micropuce = false;
 		}
 		boolean dangereux;
 		try {
-			dangereux = Integer.parseInt(data.get(13)) == 1;
+			dangereux = Integer.parseInt(data[16]) == 1;
 		} catch (NumberFormatException e) {
 			dangereux = false;
 		}

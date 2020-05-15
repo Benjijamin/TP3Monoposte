@@ -175,6 +175,9 @@ public class VuePermis implements IVue {
 			this.modalTerritoire = loaderTerritoire.load();
 			this.modalType = loaderType.load();
 
+			// Disable le numero de permis
+			fieldNumero.setDisable(true);
+
 			gestionTerritoire.initStyle(StageStyle.UTILITY);
 			gestionType.initStyle(StageStyle.UTILITY);
 			gestionTerritoire.setResizable(false);
@@ -257,6 +260,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void nouveau() {
+		updateButtonNouveau();
 	}
 
 	@FXML
@@ -388,8 +392,6 @@ public class VuePermis implements IVue {
 	 * l'application.
 	 */
 	public void updateButtonState() {
-		fieldNumero.setDisable(true);
-
 		// il y a un permis selectionné ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
@@ -397,10 +399,12 @@ public class VuePermis implements IVue {
 		datePickerDateNaissance.setDisable(!permisselected);
 		buttonSupprimer.setDisable(!permisselected);
 		menuSupprimer.setDisable(!permisselected);
-		buttonAjouter.setDisable(!permisselected);
-		menuAjouter.setDisable(!permisselected);
+		buttonAjouter.setDisable(true);
+		menuAjouter.setDisable(true);
 		buttonModifier.setDisable(!permisselected);
 		menuModifier.setDisable(!permisselected);
+		buttonNouveau.setDisable(false);
+		menuNouveau.setDisable(false);
 		choiceBoxTerritoire.setDisable(!permisselected);
 		choiceBoxType.setDisable(!permisselected);
 		fieldNom.setDisable(!permisselected);
@@ -416,10 +420,39 @@ public class VuePermis implements IVue {
 	}
 
 	/**
+	 * Disable et Enable les boutons nécessaires lors de la création d'un permis
+	 */
+	public void updateButtonNouveau() {
+		datePickerDateDebut.setDisable(false);
+		datePickerDateFin.setDisable(false);
+		datePickerDateNaissance.setDisable(false);
+		buttonSupprimer.setDisable(true);
+		menuSupprimer.setDisable(true);
+		buttonAjouter.setDisable(false);
+		menuAjouter.setDisable(false);
+		buttonModifier.setDisable(true);
+		menuModifier.setDisable(true);
+		buttonNouveau.setDisable(true);
+		menuNouveau.setDisable(true);
+		choiceBoxTerritoire.setDisable(false);
+		choiceBoxType.setDisable(false);
+		fieldNom.setDisable(false);
+		fieldPoids.setDisable(false);
+		choiceFemelle.setDisable(false);
+		choiceInconnu.setDisable(false);
+		choiceMale.setDisable(false);
+		checkBoxDangereux.setDisable(false);
+		checkBoxMicropuce.setDisable(false);
+		checkBoxSterelise.setDisable(false);
+		checkBoxVaccine.setDisable(false);
+		comboBoxCouleur.setDisable(false);
+	}
+
+	/**
 	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
 	public void updateFields() {
-
+		
 	}
 
 	/**
