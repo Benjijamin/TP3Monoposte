@@ -113,7 +113,7 @@
                         <Label text="Nom" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
                         <TextField fx:id="fieldNom" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="60.0" />
                         <Label text="Sexe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0" />
-                        <RadioButton fx:id="choiceMale" mnemonicParsing="false" text="Mâle" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="95.0">
+                        <RadioButton fx:id="choiceMale" mnemonicParsing="false" text="Male" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="95.0">
                            <toggleGroup>
                               <ToggleGroup fx:id="toggleGroup" />
                            </toggleGroup>

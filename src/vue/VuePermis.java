@@ -504,9 +504,10 @@ public class VuePermis implements IVue {
 			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
 			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
 			String sexe = (String) values.get("sexe");
+			System.out.println(sexe);
 			if(sexe.equals("Femelle")) {
 				choiceFemelle.setSelected(true);
-			}else if (sexe.equals("Mâle")) {
+			}else if (sexe.equals("Male")) {
 				choiceMale.setSelected(true);
 			}else {
 				choiceInconnu.setSelected(true);
