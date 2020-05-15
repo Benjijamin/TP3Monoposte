@@ -37,22 +37,6 @@ public class Permis {
 		setAnimal(animal);
 	}
 
-	/**
-	 * Constructeur pour la lecture de CSV, donc quand le territoire et le type sont
-	 * recus en string
-	 * 
-	 * @param numero
-	 * @param territoire
-	 * @param dateDebut
-	 * @param dateFin
-	 */
-	public Permis(int numero, String territoire, Date dateDebut, Date dateFin, Animal animal) {
-		setNumero(numero);
-		setTerritoire(validerTerritoire(territoire));
-		setDateDebut(dateDebut);
-		setDateFin(dateFin);
-		setAnimal(animal);
-	}
 
 	/**
 	 * Ajoute un permis dans la DB à partir d'une liste de string
@@ -199,9 +183,7 @@ public class Permis {
 
 	@Override
 	public String toString() {
-		return "Permis [numero=" + numero + ", territoire=" + territoire + ", dateDebut=" + dateDebut + ", dateFin="
-				+ dateFin + ", animal=" + animal + ", permisManager=" + permisManager + ", animalManager="
-				+ animalManager + ", territoireManager=" + territoireManager + "]";
+		return numero + "";
 	}
 
 	public static List<Permis> getListPermis(int start) {
