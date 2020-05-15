@@ -160,6 +160,12 @@ public class VuePermis implements IVue {
 			this.scene = new Scene(root);
 			scene.getStylesheets().setAll(this.getClass().getResource("/style.css").toString());
 
+			// Listener pour la ListView permis
+			listViewPermis.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				updateButtonState();
+				updateFields();
+			});
+
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -189,6 +195,7 @@ public class VuePermis implements IVue {
 
 			updateViewToDatabase();
 			updateButtonState();
+
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
 			e.printStackTrace();
@@ -315,8 +322,21 @@ public class VuePermis implements IVue {
 		File selected = fileChooser.showOpenDialog(new Stage());
 
 		if (selected != null) {
+
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnée",
+					ButtonType.CLOSE);
+			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
+			wait.setHeaderText("Patientez...");
+			wait.initStyle(StageStyle.UNDECORATED);
+			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
+			wait.getDialogPane()
+					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
+			wait.show();
+
 			ctrl.importerCSV(selected);
 			updateViewToDatabase();
+
+			wait.hide();
 		}
 
 		// Event listener sur la scrollbar de ListView Permis pour loader plus de permis
@@ -328,7 +348,8 @@ public class VuePermis implements IVue {
 				double position = newValue.doubleValue();
 				ScrollBar scrollBar = getListViewScrollBar();
 				if (position == scrollBar.getMax()) {
-					if(updateViewPermis()) 	scrollBar.setValue(scrollBar.getValue() - 0.1);				
+					if (updateViewPermis())
+						scrollBar.setValue(scrollBar.getValue() - 0.1);
 				}
 			};
 			scrollbar.valueProperty().removeListener(listener);
@@ -353,7 +374,7 @@ public class VuePermis implements IVue {
 
 	/**
 	 * Disable et Enable les boutons nécessaires selon l'état actuel de
-	 * l'application
+	 * l'application.
 	 */
 	public void updateButtonState() {
 		fieldNumero.setDisable(true);
@@ -381,6 +402,13 @@ public class VuePermis implements IVue {
 		checkBoxSterelise.setDisable(!permisselected);
 		checkBoxVaccine.setDisable(!permisselected);
 		comboBoxCouleur.setDisable(!permisselected);
+	}
+
+	/**
+	 * Update tous les champs pour correspondre à l'élément selectionné
+	 */
+	public void updateFields() {
+
 	}
 
 	/**
