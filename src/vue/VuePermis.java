@@ -302,6 +302,7 @@ public class VuePermis implements IVue {
 
 		}
 		listViewPermis.getSelectionModel().clearSelection();
+		updateButtonState();
 		updateViewToDatabase();
 	}
 
