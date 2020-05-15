@@ -2,14 +2,18 @@ package modele;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Session;
+
 import modele.manager.TypeManager;
+import util.HibernateUtil;
 
 public class Type {
 	private int id;
 	private String nom;
-	TypeManager manager = new TypeManager();
+	static TypeManager manager = new TypeManager();
 
 	public Type() {
 	}
@@ -32,6 +36,11 @@ public class Type {
 		}
 	}
 
+	public static List<Type> getTypes() {
+		return manager.getTypes();
+	}
+
+	
 	public int getId() {
 		return id;
 	}

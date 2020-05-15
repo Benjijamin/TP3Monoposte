@@ -22,9 +22,9 @@ public class Permis {
 	private Date dateDebut;
 	private Date dateFin;
 	private Animal animal;
-	private PermisManager permisManager = new PermisManager();
-	private AnimalManager animalManager = new AnimalManager();
-	private TerritoireManager territoireManager = new TerritoireManager();
+	private static PermisManager permisManager = new PermisManager();
+	private static AnimalManager animalManager = new AnimalManager();
+	private static TerritoireManager territoireManager = new TerritoireManager();
 
 	public Permis() {
 	}
@@ -202,6 +202,22 @@ public class Permis {
 		return "Permis [numero=" + numero + ", territoire=" + territoire + ", dateDebut=" + dateDebut + ", dateFin="
 				+ dateFin + ", animal=" + animal + ", permisManager=" + permisManager + ", animalManager="
 				+ animalManager + ", territoireManager=" + territoireManager + "]";
+	}
+
+	public static List<Permis> getListPermis(int start) {
+		return permisManager.getListPermis(start);
+	}
+
+	public static Permis getPermis(int id) {
+		return permisManager.getPermis(id);
+	}
+
+	public static void supprimerPermis(int permis) {
+		permisManager.supprimerPermis(permis);
+	}
+
+	public static List<Permis> getListPermisFull() {
+		return permisManager.getListPermisFull();
 	}
 
 }
