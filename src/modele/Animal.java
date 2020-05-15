@@ -79,10 +79,10 @@ public class Animal {
 	}
 
 	/**
-	 * Valide si le nom n'est pas plus long que 40 caractères
+	 * Valide si le nom n'est pas plus long que 40 caractÃ¨res
 	 * 
 	 * @param nom
-	 * @return nom coupé après 40 caractères
+	 * @return nom coupÃ© aprÃ¨s 40 caractÃ¨res
 	 */
 	public String validerNom(String nom) {
 		if (nom.length() > 40) {
