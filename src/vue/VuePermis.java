@@ -453,9 +453,12 @@ public class VuePermis implements IVue {
 	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
 	public void updateFields(String numeroPermis) {
-		Map<String,Object> values = ctrl.getPermis(numeroPermis);
-		
-		
+		try{
+			Map<String,Object> values = ctrl.getPermis(numeroPermis);
+			
+		}catch(Exception e) {
+			error("Impossible d'obtenir l'information sur ce permis");
+		}
 		
 	}
 
