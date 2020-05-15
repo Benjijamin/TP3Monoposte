@@ -3,6 +3,7 @@ package vue;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -454,9 +455,10 @@ public class VuePermis implements IVue {
 	 */
 	public void updateFields(String numeroPermis) {
 		Map<String,Object> values = ctrl.getPermis(numeroPermis);
-		
-		
-		
+		fieldNumero.setText((String)values.get("numero"));
+		choiceBoxTerritoire.setValue((String)values.get("territoire").toString());
+		Date dateDebut = (Date)values.get("dateDebut");
+		datePickerDateDebut.setValue(new LocalDate(dateDebut.getTime()));
 	}
 
 	/**
