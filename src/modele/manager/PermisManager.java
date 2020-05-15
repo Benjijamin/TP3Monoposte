@@ -21,7 +21,6 @@ public class PermisManager {
 	public void ajouterPermis(Permis permis) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		System.out.println(permis);
 		session.save(permis);
 		session.getTransaction().commit();
 	}
