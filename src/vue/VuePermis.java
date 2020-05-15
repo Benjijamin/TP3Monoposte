@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import controleur.ICtrl;
 import javafx.application.Platform;
@@ -163,7 +164,7 @@ public class VuePermis implements IVue {
 			// Listener pour la ListView permis
 			listViewPermis.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				updateButtonState();
-				updateFields();
+				updateFields(newValue);
 			});
 
 			// Load Modals
@@ -440,7 +441,10 @@ public class VuePermis implements IVue {
 	/**
 	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
-	public void updateFields() {
+	public void updateFields(String numeroPermis) {
+		Map<String,Object> values = ctrl.getPermis(numeroPermis);
+		
+		
 		
 	}
 

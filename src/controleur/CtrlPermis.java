@@ -1,19 +1,13 @@
 package controleur;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javafx.scene.Scene;
-import modele.Permis;
-import modele.Territoire;
-import modele.Type;
-import modele.manager.PermisManager;
-import modele.manager.TerritoireManager;
-import modele.manager.TypeManager;
+import modele.*;
+import modele.manager.*;
 import util.CSVioUtil;
-import vue.IVue;
-import vue.VuePermis;
+import vue.*;
 
 public class CtrlPermis implements ICtrl {
 
@@ -70,15 +64,36 @@ public class CtrlPermis implements ICtrl {
 		return retour;
 	}
 
+	public Map<String, Object> getPermis(String numeroPermis) {
+		Permis p = permism.getPermis(Integer.parseInt(numeroPermis));
+		Animal a = p.getAnimal();
+		Map<String, Object> values = new HashMap<String, Object>();
+		values.put("numero", p.getNumero());
+		values.put("territoire", p.getTerritoire());
+		values.put("dateDebut", p.getDateDebut());
+		values.put("dateFin", p.getDateFin());
+		values.put("nom", a.getNom());
+		values.put("type", a.getType());
+		values.put("sexe", a.getSexe());
+		values.put("poids", a.getPoids());
+		values.put("dateNaissance", a.getDateNaissance());
+		values.put("couleur", a.getCouleur());
+		values.put("vaccine", a.isVaccine());
+		values.put("sterelise", a.isSterelise());
+		values.put("micropuce", a.isMicropuce());
+		values.put("dangereux", a.isDangereux());
+		return values;
+	}
+
 	@Override
 	public void supprimer(int permis) {
 		permism.supprimerPermis(permis);
-		
+
 	}
 
 	public void importerCSV(File file) {
 		CSVioUtil util = new CSVioUtil();
 		util.read(file);
 	}
-	
+
 }

@@ -2,6 +2,7 @@ package controleur;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javafx.scene.Scene;
 import modele.Permis;
@@ -16,6 +17,8 @@ public interface ICtrl {
 	public List<String> getTypeListe();
 
 	public List<String> getPermisListe(int start);
+	
+	public Map<String,Object> getPermis(String numeroPermis);
 
 	public void supprimer(int permis);
 	
