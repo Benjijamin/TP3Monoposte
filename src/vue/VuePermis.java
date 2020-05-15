@@ -167,7 +167,7 @@ public class VuePermis implements IVue {
 				updateButtonState();
 				updateFields(newValue);
 			});
-			
+
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -338,22 +338,21 @@ public class VuePermis implements IVue {
 			wait.getDialogPane()
 					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
 
-			
 			wait.show();
-			
-			Task<Void> task = new Task<Void>() {
-		        @Override
-		        public Void call() {
-		        	ctrl.importerCSV(selected);
-					return null;
-		        }
-		    };
 
-		    task.setOnSucceeded(e -> {
-		    	updateViewToDatabase();
+			Task<Void> task = new Task<Void>() {
+				@Override
+				public Void call() {
+					ctrl.importerCSV(selected);
+					return null;
+				}
+			};
+
+			task.setOnSucceeded(e -> {
+				updateViewToDatabase();
 				wait.hide();
-		    });
-		    new Thread(task).start();
+			});
+			new Thread(task).start();
 		}
 
 		// Event listener sur la scrollbar de ListView Permis pour loader plus de permis
@@ -454,11 +453,14 @@ public class VuePermis implements IVue {
 	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
 	public void updateFields(String numeroPermis) {
-		Map<String,Object> values = ctrl.getPermis(numeroPermis);
-		fieldNumero.setText((String)values.get("numero"));
-		choiceBoxTerritoire.setValue((String)values.get("territoire").toString());
-		Date dateDebut = (Date)values.get("dateDebut");
-		datePickerDateDebut.setValue(new LocalDate(dateDebut.getTime()));
+		try {
+			Map<String, Object> values = ctrl.getPermis(numeroPermis);
+			fieldNumero.setText((String) values.get("numero"));
+			choiceBoxTerritoire.setValue((String) values.get("territoire").toString());
+			Date dateDebut = (Date) values.get("dateDebut");
+		} catch (Exception e) {
+			error("Impossible d'obtenir l'information sur ce permis");
+		}
 	}
 
 	/**
