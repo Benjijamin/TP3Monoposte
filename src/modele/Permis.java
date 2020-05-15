@@ -12,6 +12,7 @@ import javax.persistence.NoResultException;
 
 import org.hibernate.ObjectNotFoundException;
 
+import modele.manager.AnimalManager;
 import modele.manager.PermisManager;
 import modele.manager.TerritoireManager;
 
@@ -22,6 +23,7 @@ public class Permis {
 	private Date dateFin;
 	private Animal animal;
 	private PermisManager permisManager = new PermisManager();
+	private AnimalManager animalManager = new AnimalManager();
 	private TerritoireManager territoireManager = new TerritoireManager();
 
 	public Permis() {
@@ -134,6 +136,7 @@ public class Permis {
 
 		a = new Animal(nom, type, sexe, poids, dateNaissance, couleur, vaccine, sterelise, micropuce, dangereux);
 		p = new Permis(numero, territoire, dateDebut, dateFin, a);
+		animalManager.ajouterAnimal(a);
 		permisManager.ajouterPermis(p);
 	}
 

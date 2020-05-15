@@ -37,7 +37,7 @@ public class TerritoireManager {
 			session.beginTransaction();
 		List<Territoire> territoires = session.createCriteria(Territoire.class).list();
 		if (session.getTransaction().isActive())
-			session.close();
+			session.getTransaction().commit();
 		return territoires;
 	}
 
@@ -48,7 +48,7 @@ public class TerritoireManager {
 		Territoire t = (Territoire) session.createQuery("FROM Territoire t where t.nom='" + territoire + "'")
 				.getSingleResult();
 		if (session.getTransaction().isActive())
-			session.close();
+			session.getTransaction().commit();
 		return t;
 	}
 
