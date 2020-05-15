@@ -56,8 +56,8 @@ public class CSVioUtil {
 			new Territoire().importerTerritoires(territoires);
 			new Type().importerTypes(types);
 			
-			Permis p = new Permis();
 			for (String[] list : permis) {
+				Permis p = new Permis();
 				p.creerPermisDB(list);
 			}
 			

@@ -1,9 +1,5 @@
 package util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +10,6 @@ public abstract class XMLioUtil {
 
 	public static void write(List<Permis> liste, String filepath) {
 		try {
-			XMLtextWriter t;
 			FileWriter encoder = new FileWriter(filepath);
 			encoder.write("<XML-GestionPermis/>");
 			for(Permis p : liste) {
