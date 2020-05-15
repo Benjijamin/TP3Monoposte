@@ -506,7 +506,7 @@ public class VuePermis implements IVue {
 		temp = ctrl.getTypeListe();
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
-		temp = ctrl.getPermisListe(0);
+		temp = ctrl.getPermisListe(1);
 		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
 

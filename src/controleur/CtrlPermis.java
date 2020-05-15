@@ -12,9 +12,6 @@ import vue.*;
 
 public class CtrlPermis implements ICtrl {
 
-	private TypeManager typem = new TypeManager();
-	private PermisManager permism = new PermisManager();
-	private AnimalManager animalm = new AnimalManager();
 	private TerritoireManager territoirem = new TerritoireManager();
 	private IVue vue;
 

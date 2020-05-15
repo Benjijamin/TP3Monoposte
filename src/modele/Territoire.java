@@ -9,7 +9,7 @@ import modele.manager.TerritoireManager;
 public class Territoire {
 	private int id;
 	private String nom;
-	TerritoireManager manager = new TerritoireManager();
+	static TerritoireManager manager = new TerritoireManager();
 
 	public Territoire() {
 	}

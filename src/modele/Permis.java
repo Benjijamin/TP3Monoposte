@@ -22,9 +22,9 @@ public class Permis {
 	private Date dateDebut;
 	private Date dateFin;
 	private Animal animal;
-	private PermisManager permisManager = new PermisManager();
-	private AnimalManager animalManager = new AnimalManager();
-	private TerritoireManager territoireManager = new TerritoireManager();
+	private static PermisManager permisManager = new PermisManager();
+	private static AnimalManager animalManager = new AnimalManager();
+	private static TerritoireManager territoireManager = new TerritoireManager();
 
 	public Permis() {
 	}
