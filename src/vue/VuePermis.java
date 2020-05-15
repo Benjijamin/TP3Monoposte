@@ -3,7 +3,7 @@ package vue;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -240,7 +240,7 @@ public class VuePermis implements IVue {
 	public void quitter() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
 		quit.setTitle("Quitter ?");
-		quit.setContentText("Etes-vous s�r de vouloir quitter ?\nLes changements non sauvegard� seront perdus.");
+		quit.setContentText("Etes-vous sûr de vouloir quitter ?\nLes changements non sauvegardés seront perdus.");
 		if (quit.showAndWait().get() == ButtonType.OK) {
 			Platform.exit();
 		}
@@ -275,12 +275,12 @@ public class VuePermis implements IVue {
 	public void supprimer() {
 		Alert del = new Alert(AlertType.CONFIRMATION);
 		del.setTitle("Supprimmer ?");
-		del.setContentText("Etes-vous s�r de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		del.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
 		if (del.showAndWait().get() == ButtonType.OK) {
 			try {
 				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
 			} catch (Exception e) {
-				error("Impossible de supprimmer ce permis, assurer vous que le num�ro sp�cifi� est contenu dans la base de donn�es.");
+				error("Impossible de supprimmer ce permis, assurer vous que le numéro spécifié est contenu dans la base de données.");
 			}
 
 		}
@@ -314,9 +314,9 @@ public class VuePermis implements IVue {
 		if (selected != null) {
 
 			Alert wait = new Alert(AlertType.NONE,
-					"Veuillez Patientez pendant que l'application g�n�re votre fichier de donn�es XML",
+					"Veuillez Patientez pendant que l'application génère votre fichier de données XML",
 					ButtonType.CLOSE);
-			wait.setTitle("�criture du Fichier XML � partir de la Base de Donn�e");
+			wait.setTitle("écriture du Fichier XML à partir de la Base de Donn�e");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -351,7 +351,7 @@ public class VuePermis implements IVue {
 
 			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donn�e",
 					ButtonType.CLOSE);
-			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donn�e");
+			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
