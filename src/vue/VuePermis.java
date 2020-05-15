@@ -164,11 +164,11 @@ public class VuePermis implements IVue {
 
 			// Listener pour la ListView permis
 			listViewPermis.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-				if(newValue!=null) {
+				if (newValue != null) {
 					updateButtonState();
 					updateFields(newValue);
 				}
-					
+
 			});
 
 			// Load Modals
@@ -534,9 +534,9 @@ public class VuePermis implements IVue {
 			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
 			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
 			String sexe = (String) values.get("sexe");
-			if (sexe.equals("Femelle")) {
+			if (sexe.contains("F")) {
 				choiceFemelle.setSelected(true);
-			} else if (sexe.equals("Mâle")) {
+			} else if (sexe.contains("M")) {
 				choiceMale.setSelected(true);
 			} else {
 				choiceInconnu.setSelected(true);
