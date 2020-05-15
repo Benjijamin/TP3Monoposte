@@ -486,11 +486,31 @@ public class VuePermis implements IVue {
 	public void updateFields(String numeroPermis) {
 		try {
 			Map<String, Object> values = ctrl.getPermis(numeroPermis);
-			fieldNumero.setText((String) values.get("numero"));
-			choiceBoxTerritoire.setValue((String) values.get("territoire").toString());
+			fieldNumero.setText(String.valueOf((int) values.get("numero")));
+			fieldNom.setText((String) values.get("nom"));
+
+			
+			choiceBoxTerritoire.setValue((String) values.get("territoire"));
+			choiceBoxType.setValue(values.get("type").toString());
+
 			Date dateDebut = (Date) values.get("dateDebut");
+			datePickerDateDebut.setValue(dateDebut.toLocalDate());
+			Date dateFin = (Date) values.get("dateFin");
+			datePickerDateFin.setValue(dateFin.toLocalDate());
+			Date dateNaissance = (Date) values.get("dateNaissance");
+			datePickerDateNaissance.setValue(dateNaissance.toLocalDate());
+
+			fieldPoids.setText(String.valueOf((int) values.get("poids")));
+
+			comboBoxCouleur.setValue((String) values.get("couleur"));
+			checkBoxVaccine.setSelected((boolean) values.get("vaccine"));
+			checkBoxSterelise.setSelected((boolean) values.get("sterelise"));
+			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
+			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
+
 		} catch (Exception e) {
 			error("Impossible d'obtenir l'information sur ce permis");
+			e.printStackTrace();
 		}
 	}
 

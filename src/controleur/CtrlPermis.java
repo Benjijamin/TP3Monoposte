@@ -67,12 +67,13 @@ public class CtrlPermis implements ICtrl {
 		Permis p = Permis.getPermis(Integer.parseInt(numeroPermis));
 		Animal a = Animal.getAnimal(p.getAnimal().getId());
 		Map<String, Object> values = new HashMap<String, Object>();
+		System.out.println(p);
 		values.put("numero", p.getNumero());
 		values.put("territoire", p.getTerritoire());
 		values.put("dateDebut", p.getDateDebut());
 		values.put("dateFin", p.getDateFin());
 		values.put("nom", a.getNom());
-		values.put("type", a.getType());
+		values.put("type", a.getType().toString());
 		values.put("sexe", a.getSexe());
 		values.put("poids", a.getPoids());
 		values.put("dateNaissance", a.getDateNaissance());
