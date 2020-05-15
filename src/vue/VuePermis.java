@@ -317,7 +317,38 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void export() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("XML", "*.xml"));
+		File selected = fileChooser.showSaveDialog(new Stage());
+		
+		if (selected != null) {
 
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant que l'application génère votre fichier de données XML",
+					ButtonType.CLOSE);
+			wait.setTitle("Écriture du Fichier XML à partir de la Base de Donnée");
+			wait.setHeaderText("Patientez...");
+			wait.initStyle(StageStyle.UNDECORATED);
+			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
+			wait.getDialogPane()
+					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
+
+			
+			wait.show();
+			
+			Task<Void> task = new Task<Void>() {
+		        @Override
+		        public Void call() {
+		        	ctrl.exporterXML(selected);
+					return null;
+		        }
+		    };
+
+		    task.setOnSucceeded(e -> {
+		    	updateViewToDatabase();
+				wait.hide();
+		    });
+		    new Thread(task).start();
+		}
 	}
 
 	@FXML

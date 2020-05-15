@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import modele.*;
 import modele.manager.*;
 import util.CSVioUtil;
+import util.XMLioUtil;
 import vue.*;
 
 public class CtrlPermis implements ICtrl {
@@ -94,6 +95,12 @@ public class CtrlPermis implements ICtrl {
 	public void importerCSV(File file) {
 		CSVioUtil util = new CSVioUtil();
 		util.read(file);
+	}
+
+	@Override
+	public void exporterXML(File selected) {
+		XMLioUtil.write(permism.getListPermisFull(), selected.getAbsolutePath());
+		
 	}
 
 }
