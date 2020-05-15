@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -197,6 +198,15 @@ public class VuePermis implements IVue {
 			listetype.setEditable(true);
 			listeterritoire.setCellFactory(TextFieldListCell.forListView());
 			listetype.setCellFactory(TextFieldListCell.forListView());
+			
+			comboBoxCouleur.getItems().addAll(
+					"Noir",
+					"Blanc",
+					"Gris",
+					"Lilac",
+					"Caramel",
+					"Creme"
+					);
 
 			updateViewToDatabase();
 			updateButtonState();
@@ -211,43 +221,28 @@ public class VuePermis implements IVue {
 		return scene;
 	}
 
-	// TODO Déplacer vers le contrôleur (Seulement envoyer la valeur des champs dans
-	// un dictionnaire ou une array)
-	public Permis getFormulaire() {
-		Permis permis = new Permis();
-		Animal animal = new Animal();
-		int numero;
-		try {
-			numero = Integer.parseInt(fieldNumero.getText());
-		} catch (NumberFormatException e) {
-			numero = -1;
-		}
-		permis.setNumero(numero);
-		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
-		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-
-		// permis.setTerritoire(choiceBoxTerritoire.getValue());
-		animal.setNom(fieldNom.getText());
-		// animal.setType(choiceBoxType.getValue());
-
+	
+	/**
+	 * @return Map contenant toutes les informations du formulaire
+	 */
+	public Map<String, Object> getFormulaire() {
+		Map<String, Object> data = new HashMap<String,Object>();
+		data.put("numero",fieldNumero.getText());
+		data.put("dateDebut", datePickerDateDebut.getValue());
+		data.put("dateFin",datePickerDateFin.getValue());
+		data.put("territoire",choiceBoxTerritoire.getValue());
+		data.put("nom", fieldNom.getText());
+		data.put("type", choiceBoxType.getValue());
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
-		animal.setSexe(sexe.getText());
-
-		float poids;
-		try {
-			poids = Float.parseFloat(fieldPoids.getText());
-		} catch (NumberFormatException e) {
-			poids = -1;
-		}
-		animal.setPoids(poids);
-		animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
-		animal.setCouleur(comboBoxCouleur.getValue());
-		animal.setVaccine(checkBoxVaccine.isSelected());
-		animal.setSterelise(checkBoxSterelise.isSelected());
-		animal.setMicropuce(checkBoxMicropuce.isSelected());
-		animal.setDangereux(checkBoxDangereux.isSelected());
-		permis.setAnimal(animal);
-		return permis;
+		data.put("sexe", sexe.getText());
+		data.put("poids", fieldPoids.getText());
+		data.put("dateNaissance", datePickerDateNaissance.getValue());
+		data.put("couleur", comboBoxCouleur.getValue());
+		data.put("vaccine", checkBoxVaccine.isSelected());
+		data.put("sterelise", checkBoxSterelise.isSelected());
+		data.put("micropuce", checkBoxMicropuce.isSelected());
+		data.put("dangereux", checkBoxDangereux.isSelected());
+		return data;
 	}
 
 	@FXML
@@ -283,6 +278,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void modifier() {
+		System.out.println(getFormulaire());
 	}
 
 	@FXML
