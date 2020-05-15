@@ -10,6 +10,7 @@ import controleur.ICtrl;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.*;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -153,7 +154,6 @@ public class VuePermis implements IVue {
 	public VuePermis(ICtrl ctrl) {
 		this.ctrl = ctrl;
 		try {
-
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/VuePermis.fxml"));
 			loader.setController(this);
 
@@ -166,7 +166,7 @@ public class VuePermis implements IVue {
 				updateButtonState();
 				updateFields(newValue);
 			});
-
+			
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
 			FXMLLoader loaderType = new FXMLLoader(getClass().getResource("/vue/modal/type.fxml"));
@@ -336,12 +336,23 @@ public class VuePermis implements IVue {
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
 			wait.getDialogPane()
 					.setStyle("-fx-border-color:black; -fx-background-color:linear-gradient(white,lightgrey)");
+
+			
 			wait.show();
+			
+			Task<Void> task = new Task<Void>() {
+		        @Override
+		        public Void call() {
+		        	ctrl.importerCSV(selected);
+					return null;
+		        }
+		    };
 
-			ctrl.importerCSV(selected);
-			updateViewToDatabase();
-
-			wait.hide();
+		    task.setOnSucceeded(e -> {
+		    	updateViewToDatabase();
+				wait.hide();
+		    });
+		    new Thread(task).start();
 		}
 
 		// Event listener sur la scrollbar de ListView Permis pour loader plus de permis
