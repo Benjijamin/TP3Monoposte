@@ -37,7 +37,7 @@ public class CSVioUtil {
 				String[] data = ligne.split("\",");
 
 				for (int i = 0; i < data.length; i++) {
-					data[i] = data[i].replace("\"", "");
+					data[i] = data[i].replace("\"", ""); // OK
 				}
 				
 				try {
