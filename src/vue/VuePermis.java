@@ -494,7 +494,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les champs pour correspondre � l'�l�ment selectionn�
+	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
 	public void updateFields(String numeroPermis) {
 		try {
@@ -535,7 +535,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les listes de la vue pour correspondre au donn�es
+	 * Update tous les listes de la vue pour correspondre au données
 	 */
 	public void updateViewToDatabase() {
 		List<String> temp;
@@ -546,14 +546,14 @@ public class VuePermis implements IVue {
 		temp = ctrl.getTypeListe();
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
-		temp = ctrl.getPermisListe(1);
+		temp = ctrl.getPermisListe(0);
 		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
 
 	/**
 	 * Update la liste view permis
 	 * 
-	 * @return true si au moin une valeur � �t� ins�r�e
+	 * @return true si au moin une valeur à été insérée
 	 */
 	private boolean updateViewPermis() {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
