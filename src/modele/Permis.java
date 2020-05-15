@@ -6,12 +6,13 @@ import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Queue;
+import java.util.Map;
 
 import javax.persistence.NoResultException;
 
 import org.hibernate.ObjectNotFoundException;
 
+import javafx.scene.control.RadioButton;
 import modele.manager.AnimalManager;
 import modele.manager.PermisManager;
 import modele.manager.TerritoireManager;
@@ -124,6 +125,49 @@ public class Permis {
 		permisManager.ajouterPermis(p);
 	}
 
+	/**
+	 * Creer un permis à partir de données provenant de la vue
+	 */
+	public void creerPermis(Map<String,Object> data) {
+		
+		//TODO 
+		/*
+		Permis permis = new Permis();
+		Animal animal = new Animal();
+		int numero;
+		try {
+			numero = Integer.parseInt(fieldNumero.getText());
+		} catch (NumberFormatException e) {
+			numero = -1;
+		}
+		permis.setNumero(numero);
+		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
+		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
+
+		// permis.setTerritoire(choiceBoxTerritoire.getValue());
+		animal.setNom(fieldNom.getText());
+		// animal.setType(choiceBoxType.getValue());
+
+		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
+		animal.setSexe(sexe.getText());
+
+		float poids;
+		try {
+			poids = Float.parseFloat(fieldPoids.getText());
+		} catch (NumberFormatException e) {
+			poids = -1;
+		}
+		animal.setPoids(poids);
+		animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
+		animal.setCouleur(comboBoxCouleur.getValue());
+		animal.setVaccine(checkBoxVaccine.isSelected());
+		animal.setSterelise(checkBoxSterelise.isSelected());
+		animal.setMicropuce(checkBoxMicropuce.isSelected());
+		animal.setDangereux(checkBoxDangereux.isSelected());
+		permis.setAnimal(animal);
+		*/
+	}
+	
 	public int getNumero() {
 		return numero;
 	}
