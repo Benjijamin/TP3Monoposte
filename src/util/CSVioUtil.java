@@ -31,7 +31,7 @@ public class CSVioUtil {
 			String ligne;
 			Set<String> territoires = new HashSet<String>();
 			Set<String> types = new HashSet<String>();
-			Set<List<String>> permis = new HashSet<List<String>>();
+			Set<String[]> permis = new HashSet<String[]>();
 			br.readLine();
 			while ((ligne = br.readLine()) != null) {
 				String[] data = ligne.split("\",");
@@ -47,24 +47,8 @@ public class CSVioUtil {
 				}
 
 				
-				
-				List<String> stringData = new ArrayList<String>();
-				stringData.add(data[0]);
-				stringData.add(data[3]);
-				stringData.add(data[1]);
-				stringData.add(data[2]);
-				stringData.add(data[5]);
-				stringData.add(data[4]);
-				stringData.add(data[9]);
-				stringData.add(data[14]);
-				stringData.add(data[11]);
-				stringData.add(data[10]);
-				stringData.add(data[12]);
-				stringData.add(data[13]);
-				stringData.add(data[15]);
-				stringData.add(data[16]);
 
-				permis.add(stringData);
+				permis.add(data);
 				territoires.add(data[3]);
 				types.add(data[4]);
 				
@@ -73,7 +57,7 @@ public class CSVioUtil {
 			new Type().importerTypes(types);
 			
 			Permis p = new Permis();
-			for (List<String> list : permis) {
+			for (String[] list : permis) {
 				p.creerPermisDB(list);
 			}
 			

@@ -45,8 +45,9 @@ public class TerritoireManager {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		if (!session.getTransaction().isActive())
 			session.beginTransaction();
-		Territoire t = (Territoire) session.createQuery("FROM Territoire t where t.nom='" + territoire + "'")
-				.getSingleResult();
+		int id =  session.createQuery("FROM Territoire t where t.nom='" + territoire + "'")
+				.getFirstResult();
+		Territoire t = session.load(Territoire.class, id); 
 		if (session.getTransaction().isActive())
 			session.getTransaction().commit();
 		return t;
