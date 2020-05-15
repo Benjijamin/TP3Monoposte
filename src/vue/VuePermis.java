@@ -290,10 +290,10 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void supprimer() {
-		Alert quit = new Alert(AlertType.CONFIRMATION);
-		quit.setTitle("Supprimmer ?");
-		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
-		if (quit.showAndWait().get() == ButtonType.OK) {
+		Alert del = new Alert(AlertType.CONFIRMATION);
+		del.setTitle("Supprimmer ?");
+		del.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		if (del.showAndWait().get() == ButtonType.OK) {
 			try {
 				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
 			} catch (Exception e) {
@@ -301,6 +301,8 @@ public class VuePermis implements IVue {
 			}
 
 		}
+		listViewPermis.getSelectionModel().clearSelection();
+		updateViewToDatabase();
 	}
 
 	@FXML
