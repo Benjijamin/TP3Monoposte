@@ -349,7 +349,7 @@ public class VuePermis implements IVue {
 
 		if (selected != null) {
 
-			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donn�e",
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnée",
 					ButtonType.CLOSE);
 			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
 			wait.setHeaderText("Patientez...");
