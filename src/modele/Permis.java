@@ -128,7 +128,7 @@ public class Permis {
 	/**
 	 * Creer un permis à partir de données provenant de la vue
 	 */
-	public void creerPermis(Map<String,Object> data) {
+	public static Permis creerPermis(Map<String,Object> data) {
 		
 		//TODO 
 		/*
@@ -166,6 +166,7 @@ public class Permis {
 		animal.setDangereux(checkBoxDangereux.isSelected());
 		permis.setAnimal(animal);
 		*/
+		return null;
 	}
 	
 	public int getNumero() {

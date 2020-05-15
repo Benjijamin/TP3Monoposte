@@ -170,6 +170,8 @@ public class VuePermis implements IVue {
 				}
 
 			});
+			// Options de base pour la couleure
+			comboBoxCouleur.getItems().addAll("Noir", "Blanc", "Gris", "Lilac", "Caramel", "Creme");
 
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
@@ -214,50 +216,31 @@ public class VuePermis implements IVue {
 		return scene;
 	}
 
-	// TODO Déplacer vers le contrôleur (Seulement envoyer la valeur des champs dans
-	// un dictionnaire ou une array)
-	public Permis getFormulaire() {
-		Permis permis = new Permis();
-		Animal animal = new Animal();
-		int numero;
-		try {
-			numero = Integer.parseInt(fieldNumero.getText());
-		} catch (NumberFormatException e) {
-			numero = -1;
-		}
-		permis.setNumero(numero);
-		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
-		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-
-		// permis.setTerritoire(choiceBoxTerritoire.getValue());
-		animal.setNom(fieldNom.getText());
-		// animal.setType(choiceBoxType.getValue());
-
+	public Map<String, Object> getFormulaire() {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("numero", fieldNumero.getText());
+		data.put("dateDebut", datePickerDateDebut.getValue());
+		data.put("dateFin", datePickerDateFin.getValue());
+		data.put("territoire", choiceBoxTerritoire.getValue());
+		data.put("nom", fieldNom.getText());
+		data.put("type", choiceBoxType.getValue());
 		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
-		animal.setSexe(sexe.getText());
-
-		float poids;
-		try {
-			poids = Float.parseFloat(fieldPoids.getText());
-		} catch (NumberFormatException e) {
-			poids = -1;
-		}
-		animal.setPoids(poids);
-		animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
-		animal.setCouleur(comboBoxCouleur.getValue());
-		animal.setVaccine(checkBoxVaccine.isSelected());
-		animal.setSterelise(checkBoxSterelise.isSelected());
-		animal.setMicropuce(checkBoxMicropuce.isSelected());
-		animal.setDangereux(checkBoxDangereux.isSelected());
-		permis.setAnimal(animal);
-		return permis;
+		data.put("sexe", sexe.getText());
+		data.put("poids", fieldPoids.getText());
+		data.put("dateNaissance", datePickerDateNaissance.getValue());
+		data.put("couleur", comboBoxCouleur.getValue());
+		data.put("vaccine", checkBoxVaccine.isSelected());
+		data.put("sterelise", checkBoxSterelise.isSelected());
+		data.put("micropuce", checkBoxMicropuce.isSelected());
+		data.put("dangereux", checkBoxDangereux.isSelected());
+		return data;
 	}
 
 	@FXML
 	public void quitter() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
 		quit.setTitle("Quitter ?");
-		quit.setContentText("Etes-vous sûr de vouloir quitter ?\nLes changements non sauvegardé seront perdus.");
+		quit.setContentText("Etes-vous sï¿½r de vouloir quitter ?\nLes changements non sauvegardï¿½ seront perdus.");
 		if (quit.showAndWait().get() == ButtonType.OK) {
 			Platform.exit();
 		}
@@ -292,12 +275,12 @@ public class VuePermis implements IVue {
 	public void supprimer() {
 		Alert del = new Alert(AlertType.CONFIRMATION);
 		del.setTitle("Supprimmer ?");
-		del.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		del.setContentText("Etes-vous sï¿½r de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
 		if (del.showAndWait().get() == ButtonType.OK) {
 			try {
 				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
 			} catch (Exception e) {
-				error("Impossible de supprimmer ce permis, assurer vous que le numéro spécifié est contenu dans la base de données.");
+				error("Impossible de supprimmer ce permis, assurer vous que le numï¿½ro spï¿½cifiï¿½ est contenu dans la base de donnï¿½es.");
 			}
 
 		}
@@ -331,9 +314,9 @@ public class VuePermis implements IVue {
 		if (selected != null) {
 
 			Alert wait = new Alert(AlertType.NONE,
-					"Veuillez Patientez pendant que l'application génère votre fichier de données XML",
+					"Veuillez Patientez pendant que l'application gï¿½nï¿½re votre fichier de donnï¿½es XML",
 					ButtonType.CLOSE);
-			wait.setTitle("Écriture du Fichier XML à partir de la Base de Donnée");
+			wait.setTitle("ï¿½criture du Fichier XML ï¿½ partir de la Base de Donnï¿½e");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -366,9 +349,9 @@ public class VuePermis implements IVue {
 
 		if (selected != null) {
 
-			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnée",
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnï¿½e",
 					ButtonType.CLOSE);
-			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
+			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnï¿½e");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -426,11 +409,11 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons nécessaires selon l'état actuel de
+	 * Disable et Enable les boutons nï¿½cessaires selon l'ï¿½tat actuel de
 	 * l'application.
 	 */
 	public void updateButtonState() {
-		// il y a un permis selectionné ?
+		// il y a un permis selectionnï¿½ ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
 		datePickerDateFin.setDisable(!permisselected);
@@ -458,8 +441,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons nécessaires lors de la création d'un permis Et
-	 * mets les champs à zéro
+	 * Disable et Enable les boutons nï¿½cessaires lors de la crï¿½ation d'un permis Et
+	 * mets les champs ï¿½ zï¿½ro
 	 */
 	public void updateButtonNouveau() {
 		datePickerDateDebut.setDisable(false);
@@ -511,7 +494,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les champs pour correspondre à l'élément selectionné
+	 * Update tous les champs pour correspondre ï¿½ l'ï¿½lï¿½ment selectionnï¿½
 	 */
 	public void updateFields(String numeroPermis) {
 		try {
@@ -552,7 +535,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les listes de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au donnï¿½es
 	 */
 	public void updateViewToDatabase() {
 		List<String> temp;
@@ -570,7 +553,7 @@ public class VuePermis implements IVue {
 	/**
 	 * Update la liste view permis
 	 * 
-	 * @return true si au moin une valeur à été insérée
+	 * @return true si au moin une valeur ï¿½ ï¿½tï¿½ insï¿½rï¿½e
 	 */
 	private boolean updateViewPermis() {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
