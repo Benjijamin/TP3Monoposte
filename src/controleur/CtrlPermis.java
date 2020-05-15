@@ -102,4 +102,9 @@ public class CtrlPermis implements ICtrl {
 		
 	}
 
+	@Override
+	public int getNextNumero() {
+		return Permis.getnext();
+	}
+
 }

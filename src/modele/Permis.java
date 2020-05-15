@@ -202,4 +202,9 @@ public class Permis {
 		return permisManager.getListPermisFull();
 	}
 
+	public static int getnext() {
+		return permisManager.getnext();
+		
+	}
+
 }
