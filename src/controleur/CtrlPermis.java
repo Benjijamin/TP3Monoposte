@@ -42,7 +42,7 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getTypeListe() {
-		List<Type> temp = typem.getTypes();
+		List<Type> temp = Type.getTypes();
 		ArrayList<String> retour = new ArrayList<String>();
 		for (Type t : temp) {
 			retour.add(t.toString());
@@ -55,7 +55,7 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getPermisListe(int start) {
-		List<Permis> temp = permism.getListPermis(start);
+		List<Permis> temp = Permis.getListPermis(start);
 		ArrayList<String> retour = new ArrayList<String>();
 		for (Permis t : temp) {
 			retour.add(t.toString());
@@ -64,8 +64,8 @@ public class CtrlPermis implements ICtrl {
 	}
 
 	public Map<String, Object> getPermis(String numeroPermis) {
-		Permis p = permism.getPermis(Integer.parseInt(numeroPermis));
-		Animal a = animalm.getAnimal(p.getAnimal().getId());
+		Permis p = Permis.getPermis(Integer.parseInt(numeroPermis));
+		Animal a = Animal.getAnimal(p.getAnimal().getId());
 		Map<String, Object> values = new HashMap<String, Object>();
 		values.put("numero", p.getNumero());
 		values.put("territoire", p.getTerritoire());
@@ -86,7 +86,7 @@ public class CtrlPermis implements ICtrl {
 
 	@Override
 	public void supprimer(int permis) {
-		permism.supprimerPermis(permis);
+		Permis.supprimerPermis(permis);
 
 	}
 
@@ -97,7 +97,7 @@ public class CtrlPermis implements ICtrl {
 
 	@Override
 	public void exporterXML(File selected) {
-		XMLioUtil.write(permism.getListPermisFull(), selected.getAbsolutePath());
+		XMLioUtil.write(Permis.getListPermisFull(), selected.getAbsolutePath());
 		
 	}
 

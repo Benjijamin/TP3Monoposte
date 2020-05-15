@@ -202,4 +202,20 @@ public class Permis {
 		return numero + "";
 	}
 
+	public static List<Permis> getListPermis(int start) {
+		return permisManager.getListPermis(start);
+	}
+
+	public static Permis getPermis(int id) {
+		return permisManager.getPermis(id);
+	}
+
+	public static void supprimerPermis(int permis) {
+		permisManager.supprimerPermis(permis);
+	}
+
+	public static List<Permis> getListPermisFull() {
+		return permisManager.getListPermisFull();
+	}
+
 }

@@ -9,6 +9,7 @@ import java.util.Queue;
 
 import org.hibernate.ObjectNotFoundException;
 
+import modele.manager.AnimalManager;
 import modele.manager.TypeManager;
 
 public class Animal {
@@ -23,7 +24,8 @@ public class Animal {
 	private boolean sterelise;
 	private boolean micropuce;
 	private boolean dangereux;
-	private TypeManager typeManager = new TypeManager();
+	private static TypeManager typeManager = new TypeManager();
+	private static AnimalManager animalManager = new AnimalManager();
 
 	public Animal() {}
 	
@@ -225,5 +227,9 @@ public class Animal {
 
 	public void setDangereux(boolean dangereux) {
 		this.dangereux = dangereux;
+	}
+
+	public static Animal getAnimal(int id) {
+		return animalManager.getAnimal(id);
 	}
 }
