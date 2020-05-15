@@ -10,7 +10,7 @@
          <generator class="increment"/>
       </id>
       
-      <property name = "nom" column = "nom" type = "string"/>
+      <property name = "nom" column = "nom"  type = "string"/>
  
    </class>
 </hibernate-mapping>
