@@ -2,6 +2,8 @@ package vue;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -252,7 +254,7 @@ public class VuePermis implements IVue {
 	public void quitter() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
 		quit.setTitle("Quitter ?");
-		quit.setContentText("Etes-vous sûr de vouloir quitter ?\nLes changements non sauvegardé seront perdus.");
+		quit.setContentText("Etes-vous sÃ»r de vouloir quitter ?\nLes changements non sauvegardÃ© seront perdus.");
 		if (quit.showAndWait().get() == ButtonType.OK) {
 			Platform.exit();
 		}
@@ -288,12 +290,12 @@ public class VuePermis implements IVue {
 	public void supprimer() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
 		quit.setTitle("Supprimmer ?");
-		quit.setContentText("Etes-vous sûr de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
+		quit.setContentText("Etes-vous sÃ»r de vouloir Supprimer le permis " + fieldNumero.getText() + " ?");
 		if (quit.showAndWait().get() == ButtonType.OK) {
 			try {
 				ctrl.supprimer(Integer.parseInt(fieldNumero.getText()));
 			} catch (Exception e) {
-				error("Impossible de supprimmer ce permis, assurer vous que le numéro spécifié est contenu dans la base de données.");
+				error("Impossible de supprimmer ce permis, assurer vous que le numÃ©ro spÃ©cifiÃ© est contenu dans la base de donnÃ©es.");
 			}
 
 		}
@@ -324,9 +326,9 @@ public class VuePermis implements IVue {
 		if (selected != null) {
 
 			Alert wait = new Alert(AlertType.NONE,
-					"Veuillez Patientez pendant que l'application génère votre fichier de données XML",
+					"Veuillez Patientez pendant que l'application gÃ©nÃ¨re votre fichier de donnÃ©es XML",
 					ButtonType.CLOSE);
-			wait.setTitle("Écriture du Fichier XML à partir de la Base de Donnée");
+			wait.setTitle("Ã‰criture du Fichier XML Ã  partir de la Base de DonnÃ©e");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -359,9 +361,9 @@ public class VuePermis implements IVue {
 
 		if (selected != null) {
 
-			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnée",
+			Alert wait = new Alert(AlertType.NONE, "Veuillez Patientez pendant l'insertion dans la base de donnÃ©e",
 					ButtonType.CLOSE);
-			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de Donnée");
+			wait.setTitle("Lecture du Fichier CSV et Insertion dans la Base de DonnÃ©e");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -419,11 +421,11 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons nécessaires selon l'état actuel de
+	 * Disable et Enable les boutons nÃ©cessaires selon l'Ã©tat actuel de
 	 * l'application.
 	 */
 	public void updateButtonState() {
-		// il y a un permis selectionné ?
+		// il y a un permis selectionnÃ© ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
 		datePickerDateFin.setDisable(!permisselected);
@@ -451,8 +453,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons nécessaires lors de la création d'un permis Et
-	 * mets les champs à zéro
+	 * Disable et Enable les boutons nÃ©cessaires lors de la crÃ©ation d'un permis Et
+	 * mets les champs Ã  zÃ©ro
 	 */
 	public void updateButtonNouveau() {
 		datePickerDateDebut.setDisable(false);
@@ -504,7 +506,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les champs pour correspondre à l'élément selectionné
+	 * Update tous les champs pour correspondre Ã  l'Ã©lÃ©ment selectionnÃ©
 	 */
 	public void updateFields(String numeroPermis) {
 		try {
@@ -530,9 +532,10 @@ public class VuePermis implements IVue {
 			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
 			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
 			String sexe = (String) values.get("sexe");
+			
 			if(sexe.equals("Femelle")) {
 				choiceFemelle.setSelected(true);
-			}else if (sexe.equals("Male")) {
+			}else if (sexe.equals("MÃ¢le")) {
 				choiceMale.setSelected(true);
 			} else {
 				choiceInconnu.setSelected(true);
@@ -545,7 +548,7 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les listes de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au donnÃ©es
 	 */
 	public void updateViewToDatabase() {
 		List<String> temp;
@@ -563,7 +566,7 @@ public class VuePermis implements IVue {
 	/**
 	 * Update la liste view permis
 	 * 
-	 * @return true si au moin une valeur à été insérée
+	 * @return true si au moin une valeur Ã  Ã©tÃ© insÃ©rÃ©e
 	 */
 	private boolean updateViewPermis() {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
