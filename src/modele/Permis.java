@@ -59,7 +59,7 @@ public class Permis {
 	 */
 	public void creerPermisDB(String[] data) {
 		Animal a = new Animal();
-		Permis p = new Permis();
+		Permis p = this;
 
 		int numero = Integer.parseInt(data[0]);
 
