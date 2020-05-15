@@ -490,7 +490,7 @@ public class VuePermis implements IVue {
 			fieldNom.setText((String) values.get("nom"));
 
 			
-			choiceBoxTerritoire.setValue((String) values.get("territoire"));
+			choiceBoxTerritoire.setValue(values.get("territoire").toString());
 			choiceBoxType.setValue(values.get("type").toString());
 
 			Date dateDebut = (Date) values.get("dateDebut");
@@ -500,13 +500,21 @@ public class VuePermis implements IVue {
 			Date dateNaissance = (Date) values.get("dateNaissance");
 			datePickerDateNaissance.setValue(dateNaissance.toLocalDate());
 
-			fieldPoids.setText(String.valueOf((int) values.get("poids")));
+			fieldPoids.setText(String.valueOf((float) values.get("poids")));
 
 			comboBoxCouleur.setValue((String) values.get("couleur"));
 			checkBoxVaccine.setSelected((boolean) values.get("vaccine"));
 			checkBoxSterelise.setSelected((boolean) values.get("sterelise"));
 			checkBoxMicropuce.setSelected((boolean) values.get("micropuce"));
 			checkBoxDangereux.setSelected((boolean) values.get("dangereux"));
+			String sexe = (String) values.get("sexe");
+			if(sexe.equals("Femelle")) {
+				choiceFemelle.setSelected(true);
+			}else if (sexe.equals("Mâle")) {
+				choiceMale.setSelected(true);
+			}else {
+				choiceInconnu.setSelected(true);
+			}
 
 		} catch (Exception e) {
 			error("Impossible d'obtenir l'information sur ce permis");
