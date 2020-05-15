@@ -27,7 +27,7 @@ public class PermisManager {
 
 	/**
 	 * @param id
-	 * @return Permis correspondant à l'id
+	 * @return Permis correspondant ï¿½ l'id
 	 */
 	public Permis getPermis(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -90,14 +90,13 @@ public class PermisManager {
 		permis.setDateFin(p.getDateFin());
 		permis.setTerritoire(p.getTerritoire());
 		permis.setAnimal(p.getAnimal());
-		animalManager.modifierAnimal(p.getAnimal());
 		session.saveOrUpdate(permis);
 		session.getTransaction().commit();
 	}
 
 	/**
-	 *  retourne 100 résultat de permis
-	 * @param start le point de départ
+	 *  retourne 100 rï¿½sultat de permis
+	 * @param start le point de dï¿½part
 	 * @return
 	 */
 	public List<Permis> getListPermis(int start) {

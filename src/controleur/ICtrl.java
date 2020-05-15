@@ -25,6 +25,8 @@ public interface ICtrl {
 	public void importerCSV(File file);
 
 	public void exporterXML(File selected);
+	
+	public void modifier(Map<String,Object> data);
 
 	public int getNextNumero();
 }

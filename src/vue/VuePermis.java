@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -269,6 +270,7 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void modifier() {
+		ctrl.modifier(getFormulaire());
 	}
 
 	@FXML

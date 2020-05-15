@@ -16,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import modele.manager.AnimalManager;
 import modele.manager.PermisManager;
 import modele.manager.TerritoireManager;
+import modele.manager.TypeManager;
 
 public class Permis {
 	private int numero;
@@ -26,6 +27,7 @@ public class Permis {
 	private static PermisManager permisManager = new PermisManager();
 	private static AnimalManager animalManager = new AnimalManager();
 	private static TerritoireManager territoireManager = new TerritoireManager();
+	private static TypeManager typeManager  = new TypeManager();
 
 	public Permis() {
 	}
@@ -38,9 +40,8 @@ public class Permis {
 		setAnimal(animal);
 	}
 
-
 	/**
-	 * Ajoute un permis dans la DB à partir d'une liste de string
+	 * Ajoute un permis dans la DB ï¿½ partir d'une liste de string
 	 */
 	public void creerPermisDB(String[] data) {
 		Animal a = new Animal();
@@ -80,7 +81,7 @@ public class Permis {
 		} catch (NoResultException e) {
 			type = null;
 		}
-		
+
 		String sexe = data[9];
 
 		float poids = Float.parseFloat(data[14].replace(',', '.'));
@@ -126,49 +127,66 @@ public class Permis {
 	}
 
 	/**
-	 * Creer un permis à partir de données provenant de la vue
+	 * Creer un permis ï¿½ partir de donnï¿½es provenant de la vue
+	 * 
+	 * @param data : donnees de la vue
 	 */
-	public static Permis creerPermis(Map<String,Object> data) {
-		
-		//TODO 
+	public static Permis creerPermis(Map<String, Object> data) {
+
+		// TODO
 		/*
-		Permis permis = new Permis();
-		Animal animal = new Animal();
-		int numero;
-		try {
-			numero = Integer.parseInt(fieldNumero.getText());
-		} catch (NumberFormatException e) {
-			numero = -1;
-		}
-		permis.setNumero(numero);
-		permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
-		permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
-
-		// permis.setTerritoire(choiceBoxTerritoire.getValue());
-		animal.setNom(fieldNom.getText());
-		// animal.setType(choiceBoxType.getValue());
-
-		RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
-		animal.setSexe(sexe.getText());
-
-		float poids;
-		try {
-			poids = Float.parseFloat(fieldPoids.getText());
-		} catch (NumberFormatException e) {
-			poids = -1;
-		}
-		animal.setPoids(poids);
-		animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
-		animal.setCouleur(comboBoxCouleur.getValue());
-		animal.setVaccine(checkBoxVaccine.isSelected());
-		animal.setSterelise(checkBoxSterelise.isSelected());
-		animal.setMicropuce(checkBoxMicropuce.isSelected());
-		animal.setDangereux(checkBoxDangereux.isSelected());
-		permis.setAnimal(animal);
-		*/
+		 * Permis permis = new Permis(); Animal animal = new Animal(); int numero; try {
+		 * numero = Integer.parseInt(fieldNumero.getText()); } catch
+		 * (NumberFormatException e) { numero = -1; } permis.setNumero(numero);
+		 * permis.setDateFin(Date.valueOf(datePickerDateDebut.getValue()));
+		 * permis.setDateDebut(Date.valueOf(datePickerDateDebut.getValue()));
+		 * 
+		 * // permis.setTerritoire(choiceBoxTerritoire.getValue());
+		 * animal.setNom(fieldNom.getText()); //
+		 * animal.setType(choiceBoxType.getValue());
+		 * 
+		 * RadioButton sexe = (RadioButton) toggleGroup.getSelectedToggle();
+		 * animal.setSexe(sexe.getText());
+		 * 
+		 * float poids; try { poids = Float.parseFloat(fieldPoids.getText()); } catch
+		 * (NumberFormatException e) { poids = -1; } animal.setPoids(poids);
+		 * animal.setDateNaissance(Date.valueOf(datePickerDateNaissance.getValue()));
+		 * animal.setCouleur(comboBoxCouleur.getValue());
+		 * animal.setVaccine(checkBoxVaccine.isSelected());
+		 * animal.setSterelise(checkBoxSterelise.isSelected());
+		 * animal.setMicropuce(checkBoxMicropuce.isSelected());
+		 * animal.setDangereux(checkBoxDangereux.isSelected());
+		 * permis.setAnimal(animal);
+		 */
 		return null;
 	}
-	
+
+	/**
+	 * Modifie un formulaire existant avec les donnees
+	 * 
+	 * @param data : donnees de la vue
+	 */
+	public static void modifierPermis(Map<String, Object> data) {
+		Permis permis = permisManager.getPermis(Integer.parseInt((String) data.get("numero")));
+		Animal animal = permis.getAnimal();
+		permis.setDateDebut(Date.valueOf((LocalDate) data.get("dateDebut")));
+		permis.setDateFin(Date.valueOf((LocalDate) data.get("dateFin")));
+		permis.setTerritoire(territoireManager.getTerritoire((String) data.get("territoire")));
+		animal.setNom((String) data.get("nom"));
+		animal.setSexe((String) data.get("sexe"));
+		animal.setType(typeManager.getType((String) data.get("type")));
+		animal.setCouleur((String) data.get("couleur"));
+		animal.setDateNaissance(Date.valueOf((LocalDate) data.get("dateNaissance")));
+		animal.setPoids(Float.valueOf((String) data.get("poids")));
+		animal.setVaccine((boolean) data.get("vaccine"));
+		animal.setSterelise((boolean) data.get("sterelise"));
+		animal.setMicropuce((boolean) data.get("micropuce"));
+		animal.setDangereux((boolean) data.get("dangereux"));
+		animalManager.modifierAnimal(animal);
+		permisManager.modifierPermis(permis);
+		System.out.println("succes modification");
+	}
+
 	public int getNumero() {
 		return numero;
 	}
@@ -194,7 +212,7 @@ public class Permis {
 	public Territoire validerTerritoire(String terr) {
 		try {
 			byte[] bytes = terr.getBytes(Charset.forName("windows-1252"));
-			Territoire t = territoireManager.getTerritoire(new String(bytes,StandardCharsets.UTF_8));
+			Territoire t = territoireManager.getTerritoire(new String(bytes, StandardCharsets.UTF_8));
 			return t;
 		} catch (ObjectNotFoundException e) {
 			System.err.println("territoire non existant");
@@ -249,7 +267,7 @@ public class Permis {
 
 	public static int getnext() {
 		return permisManager.getnext();
-		
+
 	}
 
 }

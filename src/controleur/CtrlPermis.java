@@ -63,6 +63,9 @@ public class CtrlPermis implements ICtrl {
 		return retour;
 	}
 
+	/**
+	 *Obtient le permis dans la BD et retourne une map de toutes ses valeurs
+	 */
 	public Map<String, Object> getPermis(String numeroPermis) {
 		Permis p = Permis.getPermis(Integer.parseInt(numeroPermis));
 		Animal a = Animal.getAnimal(p.getAnimal().getId());
@@ -85,6 +88,10 @@ public class CtrlPermis implements ICtrl {
 		return values;
 	}
 
+	public void modifier(Map<String,Object> data) {
+		Permis.modifierPermis(data);
+	}
+	
 	@Override
 	public void supprimer(int permis) {
 		Permis.supprimerPermis(permis);
