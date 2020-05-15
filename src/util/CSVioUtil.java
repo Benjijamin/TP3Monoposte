@@ -37,7 +37,7 @@ public class CSVioUtil {
 				String[] data = ligne.split("\",");
 
 				for (int i = 0; i < data.length; i++) {
-					data[i] = data[i].replace("\"", "").replace("â", "a");
+					data[i] = data[i].replace("\"", "").replace("\u00e2", "a");
 				}
 				
 				try {
