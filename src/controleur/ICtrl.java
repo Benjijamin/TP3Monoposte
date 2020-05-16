@@ -33,8 +33,6 @@ public interface ICtrl {
 
 	public int getNextNumero();
 
-	public void territoireTypeDeBase();
-
 	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items);
 
 	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items);

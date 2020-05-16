@@ -6,14 +6,12 @@ import java.util.*;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import modele.*;
-import modele.manager.*;
 import util.CSVioUtil;
 import util.XMLioUtil;
 import vue.*;
 
 public class CtrlPermis implements ICtrl {
 
-	private TerritoireManager territoirem = new TerritoireManager();
 	private IVue vue;
 
 	public CtrlPermis() {
@@ -30,7 +28,7 @@ public class CtrlPermis implements ICtrl {
 	 */
 	@Override
 	public List<String> getTerritoireListe() {
-		List<Territoire> temp = territoirem.getTerritoires();
+		List<Territoire> temp = Territoire.getTerritoires();
 		ArrayList<String> retour = new ArrayList<String>();
 		for (Territoire t : temp) {
 			retour.add(t.toString());
@@ -118,22 +116,27 @@ public class CtrlPermis implements ICtrl {
 	public int getNextNumero() {
 		return Permis.getnext();
 	}
-	
-	public void territoireTypeDeBase() {
-		Territoire.ajouterTerritoire("Inconnu");
-		Type.ajouterType("Inconnu");
-	}
 
 	@Override
 	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i = 0; i<oldListTerritoire.size();i++) {
+			Territoire.updateTerritoire(oldListTerritoire.get(i),items.get(i));
+		}
+		for(int i = oldListTerritoire.size();i<items.size();i++) {
+			Territoire.ajouterTerritoire(items.get(i));
+		}
+		return getTerritoireListe();
 	}
 
 	@Override
 	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i = 0; i<oldListType.size();i++) {
+			Type.updateType(oldListType.get(i),items.get(i));
+		}
+		for(int i = oldListType.size();i<items.size();i++) {
+			Type.ajouterType(items.get(i));
+		}
+		return getTypeListe();
 	}
 
 }
