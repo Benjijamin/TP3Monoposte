@@ -517,11 +517,11 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons n�cessaires selon l'�tat actuel de
+	 * Disable et Enable les boutons nécessaires selon l'état actuel de
 	 * l'application.
 	 */
 	public void updateButtonState() {
-		// il y a un permis selectionn� ?
+		// il y a un permis selectionné ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
 		datePickerDateFin.setDisable(!permisselected);
