@@ -458,6 +458,11 @@ public class VuePermis implements IVue {
 		checkBoxSterelise.setDisable(!permisselected);
 		checkBoxVaccine.setDisable(!permisselected);
 		comboBoxCouleur.setDisable(!permisselected);
+		if(listViewPermis.getItems().isEmpty()) {
+			menuImporterCSV.setDisable(false);
+		}else {
+			menuImporterCSV.setDisable(true);
+		}
 	}
 
 	/**
