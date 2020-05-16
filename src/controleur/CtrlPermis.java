@@ -117,5 +117,10 @@ public class CtrlPermis implements ICtrl {
 	public int getNextNumero() {
 		return Permis.getnext();
 	}
+	
+	public void territoireTypeDeBase() {
+		Territoire.ajouterTerritoire("Inconnu");
+		Type.ajouterType("Inconnu");
+	}
 
 }

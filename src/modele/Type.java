@@ -34,6 +34,10 @@ public class Type {
 			}
 		}
 	}
+	
+	public static void ajouterType(String type) {
+		manager.ajouterType(type);
+	}
 
 	public static List<Type> getTypes() {
 		return manager.getTypes();

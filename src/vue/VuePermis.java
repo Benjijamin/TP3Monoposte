@@ -171,7 +171,16 @@ public class VuePermis implements IVue {
 				}
 
 			});
-			// Options de base pour la couleure
+
+			// Listeners pour les datePickers
+			ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
+				validerDates();
+			};
+			datePickerDateDebut.valueProperty().addListener(dateListener);
+			datePickerDateFin.valueProperty().addListener(dateListener);
+			datePickerDateNaissance.valueProperty().addListener(dateListener);
+
+			// Options de base pour la couleur
 			comboBoxCouleur.getItems().addAll("Noir", "Blanc", "Gris", "Lilac", "Caramel", "Creme");
 
 			// Load Modals
@@ -182,6 +191,8 @@ public class VuePermis implements IVue {
 			loaderType.setController(this);
 			this.modalTerritoire = loaderTerritoire.load();
 			this.modalType = loaderType.load();
+
+			ctrl.territoireTypeDeBase();
 
 			// Disable le numero de permis
 			fieldNumero.setDisable(true);
@@ -241,9 +252,68 @@ public class VuePermis implements IVue {
 	 * @return true si formulaire valide
 	 */
 	public boolean validerFormulaire() {
-		// TODO
-		// Voir l'enonce pour toutes les contraintes
+		if (choiceBoxTerritoire.getValue() == null || choiceBoxTerritoire.getValue() == "") {
+			error("Le territoire ne peux pas être vide.");
+			return false;
+		}
+		if (datePickerDateDebut.getValue() == null) {
+			error("La date de début de permis ne peux pas être vide");
+			return false;
+		}
+		if (datePickerDateFin.getValue() == null) {
+			error("La date de fin de permis ne peux pas être vide");
+			return false;
+		}
+		if (fieldNom.getText() == "") {
+			error("Le nom de l'animal ne peux pas être vide.");
+			return false;
+		}
+		if (choiceBoxType.getValue() == null || choiceBoxType.getValue() == "") {
+			error("Le type de l'animal ne peux pas être vide");
+			return false;
+		}
+		if (datePickerDateNaissance.getValue() == null) {
+			error("La date de naissance de l'animal ne peux pas être vide");
+			return false;
+		}
+		try {
+			Float.parseFloat(fieldPoids.getText());
+		} catch (NumberFormatException e) {
+			error("Le poids doit être une valeure numérique");
+			return false;
+		}
+		if (comboBoxCouleur.getValue() == null || comboBoxCouleur.getValue() == "") {
+			error("La couleur de l'animal ne peux pas être vide");
+			return false;
+		}
 		return true;
+	}
+
+	/**
+	 * Modifie les dates dans le formulaire pour qu'elles soient conformes aux
+	 * exigences
+	 */
+	public void validerDates() {
+		LocalDate debut;
+		LocalDate fin;
+		LocalDate naissance;
+
+		if ((debut = datePickerDateDebut.getValue()) == null) {
+			debut = LocalDate.now();
+		}
+		if ((naissance = datePickerDateNaissance.getValue()) == null) {
+			naissance = debut;
+		}
+		if ((fin = datePickerDateFin.getValue()) == null) {
+			fin = debut.plusMonths(1);
+		}
+
+		if (fin.isBefore(debut) || fin.isBefore(debut.plusMonths(1))) {
+			datePickerDateFin.setValue(debut.plusMonths(1));
+		}
+		if (debut.isBefore(naissance)) {
+			datePickerDateNaissance.setValue(debut);
+		}
 	}
 
 	@FXML
@@ -354,13 +424,13 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				wait.hide();
 			});
-			
+
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				wait.hide();
 				error("Erreur d'importation");
 			});
-			
+
 			new Thread(task).start();
 		}
 	}
@@ -369,7 +439,7 @@ public class VuePermis implements IVue {
 	public void importcsv() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV", "*.csv"));
-		fileChooser.setInitialDirectory(new File(this.getClass().getResource("/Fichiers_CSV").getPath()));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\io\\Fichiers_CSV"));
 		File selected = fileChooser.showOpenDialog(new Stage());
 
 		if (selected != null) {
@@ -390,7 +460,7 @@ public class VuePermis implements IVue {
 				public Boolean call() {
 					try {
 						ctrl.importerCSV(selected);
-					}catch(Exception e) {
+					} catch (Exception e) {
 						this.failed();
 					}
 					return true;
@@ -401,13 +471,13 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				wait.hide();
 			});
-			
+
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				wait.hide();
 				error("Erreur d'importation");
 			});
-			
+
 			new Thread(task).start();
 		}
 
@@ -510,14 +580,11 @@ public class VuePermis implements IVue {
 		fieldNumero.setText(ctrl.getNextNumero() + "");
 		fieldNom.setText("");
 
-		choiceBoxTerritoire.getSelectionModel().clearSelection();
-		choiceBoxTerritoire.setValue(null);
-		choiceBoxType.getSelectionModel().clearSelection();
-		choiceBoxType.setValue(null);
-
-		datePickerDateDebut.setValue(null);
-		datePickerDateFin.setValue(null);
-		datePickerDateNaissance.setValue(null);
+		choiceBoxTerritoire.setValue("Inconnu");
+		choiceBoxType.setValue("Inconnu");
+		datePickerDateDebut.setValue(LocalDate.now());
+		datePickerDateFin.setValue(LocalDate.now().plusMonths(1));
+		datePickerDateNaissance.setValue(LocalDate.now());
 
 		fieldPoids.setText("");
 

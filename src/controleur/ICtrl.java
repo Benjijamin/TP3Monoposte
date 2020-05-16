@@ -31,4 +31,6 @@ public interface ICtrl {
 	public void ajouter(Map<String, Object> data);
 
 	public int getNextNumero();
+	
+	public void territoireTypeDeBase();
 }
