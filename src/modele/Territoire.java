@@ -2,6 +2,7 @@ package modele;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Set;
 
 import modele.manager.TerritoireManager;
@@ -50,6 +51,18 @@ public class Territoire {
 	@Override
 	public String toString() {
 		return nom;
+	}
+
+	public static List<Territoire> getTerritoires() {
+		return manager.getTerritoires();
+	}
+
+	public static void updateTerritoire(String territoirebefore, String territoireafter) {
+		manager.modifierTerritoire(territoirebefore, territoireafter);
+	}
+
+	public static void ajouterTerritoire(String territoire) {
+		manager.ajouterTerritoire(territoire);
 	}
 
 }

@@ -667,7 +667,14 @@ public class VuePermis implements IVue {
 	 * doublons) ensuite : update la choicebox
 	 */
 	private void enregistrerTerritoire() {
-		ctrl.enregistrerTerritoire(oldListTerritoire, listeterritoire.getItems());
+		try {
+			choiceBoxTerritoire.setItems(FXCollections
+					.observableArrayList(ctrl.enregistrerTerritoire(oldListTerritoire, listeterritoire.getItems())));
+		} catch (Exception e) {
+			error("Impossible d'enregistrer");
+		} finally {
+			gestionTerritoire.hide();
+		}
 	}
 
 	@FXML
@@ -677,6 +684,13 @@ public class VuePermis implements IVue {
 	 * ensuite : update la choicebox
 	 */
 	private void enregistrerType() {
-		ctrl.enregistrerType(oldListType, listetype.getItems());
+		try {
+			choiceBoxType.setItems(
+					FXCollections.observableArrayList(ctrl.enregistrerType(oldListType, listetype.getItems())));
+		} catch (Exception e) {
+			error("Impossible d'enregistrer");
+		} finally {
+			gestionType.hide();
+		}
 	}
 }

@@ -39,7 +39,6 @@ public class Type {
 		return manager.getTypes();
 	}
 
-	
 	public int getId() {
 		return id;
 	}
@@ -59,6 +58,14 @@ public class Type {
 	@Override
 	public String toString() {
 		return nom;
+	}
+
+	public static void updateType(String typebefore, String typeafter) {
+		manager.modifierType(typebefore, typeafter);
+	}
+
+	public static void ajouterType(String type) {
+		manager.ajouterType(type);
 	}
 
 }
