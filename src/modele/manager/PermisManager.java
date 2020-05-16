@@ -95,7 +95,8 @@ public class PermisManager {
 	}
 
 	/**
-	 *  retourne 100 r�sultat de permis
+	 * retourne 100 r�sultat de permis
+	 * 
 	 * @param start le point de d�part
 	 * @return
 	 */
@@ -107,7 +108,7 @@ public class PermisManager {
 		session.getTransaction().commit();
 		return permis;
 	}
-	
+
 	public List<Permis> getListPermisFull() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -119,8 +120,14 @@ public class PermisManager {
 	public int getnext() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		int permis = (Integer)session.createQuery("select max(numero) from Permis").uniqueResult();
+		int permis;
+		try {
+			permis = (Integer) session.createQuery("select max(numero) from Permis").uniqueResult();
+
+		} catch (NullPointerException e) {
+			permis = 0;
+		}
 		session.getTransaction().commit();
-		return permis+1;
+		return permis + 1;
 	}
 }
