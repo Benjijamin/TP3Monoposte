@@ -19,6 +19,7 @@
                <children>
                   <TextField fx:id="fieldtype" />
                   <Button fx:id="ajoutertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
+                  <Button fx:id="enregistrertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Enregister" />
                </children>
             </VBox>
          </children>
