@@ -5,9 +5,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Cette Aplication Requi�re une base de donn�es MySQL nomm�e "GestionPermis"
+ * Cette Aplication Requiére une base de données MySQL nommée "GestionPermis"
  * 
- * Apr�s la cr�ation de la base de donn�es (Premi�re Execution du programme)
+ * Aprés la création de la base de données (Première Execution du programme)
  * Changer "create" par "update" dans hibernate.cfg.xml
  * 
  * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau

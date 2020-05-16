@@ -10,7 +10,7 @@ import util.HibernateUtil;
 
 public class AnimalManager {
 	/**
-	 * Ajoute un Animal à la BD
+	 * Ajoute un Animal Ã  la BD
 	 * 
 	 * @param animal
 	 */
@@ -26,7 +26,7 @@ public class AnimalManager {
 
 	/**
 	 * @param id
-	 * @return Animal correspondant à l'id
+	 * @return Animal correspondant Ã  l'id
 	 */
 	public Animal getAnimal(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -93,7 +93,7 @@ public class AnimalManager {
 	}
 
 	/**
-	 * Modifie l'animal dans la BD avec un id identique à l'animal en paramètre
+	 * Modifie l'animal dans la BD avec un id identique Ã  l'animal en paramÃ¨tre
 	 * 
 	 * @param animal
 	 */
