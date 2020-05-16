@@ -40,7 +40,6 @@ public abstract class XMLioUtil {
 				encoder.append(toencode);
 				encoder.flush();
 				System.out.println(++progress + "/" + liste.size());
-				System.out.println("TEST");
 			}
 			encoder.close();
 		} catch (IOException e) {
