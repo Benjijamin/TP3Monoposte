@@ -730,8 +730,8 @@ public class VuePermis implements IVue {
 	@FXML
 	/**
 	 * Demande au controleur : Enregistrer les territoire dans la liste view. >
-	 * modifier les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de
-	 * doublons) ensuite : update la choicebox
+	 * modifier les anciens et ajouter les nouveaux 
+	 * ensuite : update la choicebox
 	 */
 	private void enregistrerTerritoire() {
 		try {
@@ -747,7 +747,7 @@ public class VuePermis implements IVue {
 	@FXML
 	/**
 	 * Demande au controleur : Enregistrer les types dans la liste view. > modifier
-	 * les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 * les anciens et ajouter les nouveaux
 	 * ensuite : update la choicebox
 	 */
 	private void enregistrerType() {
