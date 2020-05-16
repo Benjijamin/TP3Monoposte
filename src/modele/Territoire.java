@@ -31,6 +31,10 @@ public class Territoire {
 			}
 		}
 	}
+	
+	public static void ajouterTerritoire(String territoire) {
+		manager.ajouterTerritoire(territoire);
+	}
 
 	public int getId() {
 		return id;
