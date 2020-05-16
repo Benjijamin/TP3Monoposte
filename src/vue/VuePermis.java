@@ -428,11 +428,13 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void gestionTerritoire() {
+		updateViewTerritoire();
 		gestionTerritoire.show();
 	}
 
 	@FXML
 	public void gestionType() {
+		updateViewType();
 		gestionType.show();
 	}
 
@@ -600,6 +602,30 @@ public class VuePermis implements IVue {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
 		System.out.println("Updating viewPermis");
 		listViewPermis.getItems().addAll(temp);
+		return temp.size() != 0;
+	}
+	
+	/**
+	 * Update la liste view territoire
+	 * 
+	 * @return true si au moin une valeur à été insérée
+	 */
+	private boolean updateViewTerritoire() {
+		List<String> temp = ctrl.getTerritoireListe();
+		System.out.println("Updating viewTerritoire");
+		listeterritoire.setItems(FXCollections.observableArrayList(temp));
+		return temp.size() != 0;
+	}
+	
+	/**
+	 * Update la liste view type
+	 * 
+	 * @return true si au moin une valeur à été insérée
+	 */
+	private boolean updateViewType() {
+		List<String> temp = ctrl.getTypeListe();
+		System.out.println("Updating viewType");
+		listetype.setItems(FXCollections.observableArrayList(temp));
 		return temp.size() != 0;
 	}
 
