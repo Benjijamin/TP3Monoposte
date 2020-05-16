@@ -17,8 +17,8 @@
          <children>
             <VBox prefHeight="51.0" prefWidth="202.0">
                <children>
-                  <TextField fx:id="fieldtype" />
-                  <Button fx:id="ajoutertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
+                  <Button fx:id="ajoutertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" onAction="#ajouterType"/>
+                  <Button fx:id="enregistrertype" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Enregister" onAction="#enregistrerType"/>
                </children>
             </VBox>
          </children>

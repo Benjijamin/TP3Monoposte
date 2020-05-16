@@ -3,6 +3,7 @@ package controleur;
 import java.io.File;
 import java.util.*;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import modele.*;
 import modele.manager.*;
@@ -121,6 +122,18 @@ public class CtrlPermis implements ICtrl {
 	public void territoireTypeDeBase() {
 		Territoire.ajouterTerritoire("Inconnu");
 		Type.ajouterType("Inconnu");
+	}
+
+	@Override
+	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
