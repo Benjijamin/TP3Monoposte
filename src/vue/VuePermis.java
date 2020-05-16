@@ -303,7 +303,7 @@ public class VuePermis implements IVue {
 			naissance = debut;
 		}
 		if ((fin = datePickerDateFin.getValue()) == null) {
-			fin = debut.plusMonths(1);
+			fin = debut.plusYears(1);
 		}
 
 		if (fin.isBefore(debut) || fin.isBefore(debut.plusMonths(1))) {
@@ -590,7 +590,7 @@ public class VuePermis implements IVue {
 		choiceBoxTerritoire.setValue("Inconnu");
 		choiceBoxType.setValue("Inconnu");
 		datePickerDateDebut.setValue(LocalDate.now());
-		datePickerDateFin.setValue(LocalDate.now().plusMonths(1));
+		datePickerDateFin.setValue(LocalDate.now().plusYears(1));
 		datePickerDateNaissance.setValue(LocalDate.now());
 
 		fieldPoids.setText("");

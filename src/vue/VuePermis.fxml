@@ -28,29 +28,29 @@
       <menus>
         <Menu mnemonicParsing="false" text="Fichier">
                <items>
-                  <MenuItem fx:id="menuExporterXML" onAction="#export" mnemonicParsing="false" text="Exporter XML" />
-                  <MenuItem fx:id="menuImporterCSV" onAction="#importcsv" mnemonicParsing="false" text="Importer CSV" />
+                  <MenuItem fx:id="menuExporterXML" mnemonicParsing="false" onAction="#export" text="Exporter XML" />
+                  <MenuItem fx:id="menuImporterCSV" mnemonicParsing="false" onAction="#importcsv" text="Importer CSV" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="menuQuitter" onAction="#quitter" mnemonicParsing="false" text="Quitter" />
+                  <MenuItem fx:id="menuQuitter" mnemonicParsing="false" onAction="#quitter" text="Quitter" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Permis">
                <items>
-                  <MenuItem fx:id="menuNouveau" onAction="#nouveau" mnemonicParsing="false" text="Nouveau" />
-                  <MenuItem fx:id="menuAjouter" onAction="#ajouter" mnemonicParsing="false" text="Ajouter" />
-                  <MenuItem fx:id="menuModifier" onAction="#modifier" mnemonicParsing="false" text="Modifier" />
-                  <MenuItem fx:id="menuSupprimer" onAction="#supprimer" mnemonicParsing="false" text="Supprimer" />
+                  <MenuItem fx:id="menuNouveau" mnemonicParsing="false" onAction="#nouveau" text="Nouveau" />
+                  <MenuItem fx:id="menuAjouter" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+                  <MenuItem fx:id="menuModifier" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+                  <MenuItem fx:id="menuSupprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Listes des données">
           <items>
-            <MenuItem fx:id="menuGererTerritoires" onAction="#gestionTerritoire" mnemonicParsing="false" text="Gérer la liste des territoires" />
-                  <MenuItem fx:id="menuGererTypes" onAction="#gestionType" mnemonicParsing="false" text="Gérer la liste des types" />
+            <MenuItem fx:id="menuGererTerritoires" mnemonicParsing="false" onAction="#gestionTerritoire" text="Gérer la liste des territoires" />
+                  <MenuItem fx:id="menuGererTypes" mnemonicParsing="false" onAction="#gestionType" text="Gérer la liste des types" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Aide">
               <items>
-                <MenuItem fx:id="menuAide" onAction="#aide" mnemonicParsing="false" text="Aide" />
+                <MenuItem fx:id="menuAide" mnemonicParsing="false" onAction="#aide" text="Aide" />
               </items>
             </Menu>
       </menus>
@@ -67,7 +67,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="fieldRecherche" />
-                        <Button fx:id="buttonRecherche" onAction="#recherche" mnemonicParsing="false" text="Button" />
+                        <Button fx:id="buttonRecherche" mnemonicParsing="false" onAction="#recherche" text="Button" />
                      </children>
                   </HBox>
                   <ListView fx:id="listViewPermis" prefWidth="200.0" />
@@ -87,23 +87,23 @@
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="fieldNumero" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
+                        <TextField fx:id="fieldNumero" prefHeight="25.0" prefWidth="225.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="35.0" />
                         <Label layoutX="20.0" layoutY="25.0" text="Numéro" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="35.0" />
-                        <ChoiceBox fx:id="choiceBoxTerritoire" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonTerritoire" onAction="#gestionTerritoire" mnemonicParsing="false" styleClass="paramButton" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="70.0" />
+                        <ChoiceBox fx:id="choiceBoxTerritoire" prefWidth="185.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
+                        <Button fx:id="buttonTerritoire" mnemonicParsing="false" onAction="#gestionTerritoire" styleClass="paramButton" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Territoire" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0" />
                         <Label text="Date de début" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="35.0" />
-                        <DatePicker fx:id="datePickerDateDebut" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
-                        <Label layoutX="303.0" layoutY="62.0" text="Date de fin" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="70.0" />
-                        <DatePicker fx:id="datePickerDateFin" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-                        <Button fx:id="buttonSupprimer" onAction="#supprimer" mnemonicParsing="false" styleClass="delButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <DatePicker fx:id="datePickerDateDebut" prefHeight="25.0" prefWidth="185.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+                        <Label layoutX="360.0" layoutY="70.0" text="Date de fin" AnchorPane.rightAnchor="238.0" AnchorPane.topAnchor="70.0" />
+                        <DatePicker fx:id="datePickerDateFin" layoutX="10.0" layoutY="10.0" prefWidth="185.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                        <Button fx:id="buttonSupprimer" mnemonicParsing="false" onAction="#supprimer" styleClass="delButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
                   </AnchorPane>
                   <Separator minWidth="100.0" prefWidth="485.0" scaleX="0.8" />
-                  <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="100000.0">
+                  <AnchorPane maxHeight="2000" prefHeight="2000">
                      <children>
                         <Label text="Animal" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0">
                            <font>
@@ -111,7 +111,7 @@
                            </font>
                         </Label>
                         <Label text="Nom" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                        <TextField fx:id="fieldNom" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="60.0" />
+                        <TextField fx:id="fieldNom" prefHeight="25.0" prefWidth="225.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="60.0" />
                         <Label text="Sexe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0" />
                         <RadioButton fx:id="choiceMale" mnemonicParsing="false" text="Male" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="95.0">
                            <toggleGroup>
@@ -127,18 +127,18 @@
                         <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="165.0" />
                         <CheckBox fx:id="checkBoxMicropuce" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Micropuce" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="165.0" />
                         <CheckBox fx:id="checkBoxDangereux" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Dangereux" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="165.0" />
-                        <Label text="Type" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="60.0" />
-                        <Label layoutX="333.0" layoutY="83.0" text="Poids en Kg" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="95.0" />
-                        <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="130.0" />
-                        <ChoiceBox fx:id="choiceBoxType" layoutX="409.0" layoutY="56.0" prefWidth="150.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
-                        <TextField fx:id="fieldPoids" layoutX="410.0" layoutY="100.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
-                        <Button fx:id="buttonType" onAction="#gestionType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" styleClass="paramButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                        <ComboBox fx:id="comboBoxCouleur" editable="true" layoutX="410.0" layoutY="126.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0" />
-                        <Button fx:id="buttonNouveau" onAction="#nouveau" mnemonicParsing="false" text="Nouveau" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
-                        <Button fx:id="buttonAjouter" onAction="#ajouter" mnemonicParsing="false" text="Ajouter" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
-                        <Button fx:id="buttonModifier" onAction="#modifier" mnemonicParsing="false" text="Modifier" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" />
-                        <Button fx:id="buttonQuitter" onAction="#quitter" mnemonicParsing="false" text="Quitter" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="50.0" />
-                        <Button fx:id="buttonAide"  onAction="#aide" mnemonicParsing="false" text="?" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label text="Type" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="60.0" />
+                        <Label layoutX="333.0" layoutY="83.0" text="Poids en Kg" AnchorPane.rightAnchor="233.0" AnchorPane.topAnchor="95.0" />
+                        <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="130.0" />
+                        <ChoiceBox fx:id="choiceBoxType" layoutX="460.0" layoutY="60.0" prefHeight="25.0" prefWidth="145.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="60.0" />
+                        <TextField fx:id="fieldPoids" layoutX="410.0" layoutY="100.0" prefHeight="25.0" prefWidth="185.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+                        <Button fx:id="buttonType" layoutX="570.0" layoutY="60.0" mnemonicParsing="false" onAction="#gestionType" styleClass="paramButton" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                        <ComboBox fx:id="comboBoxCouleur" editable="true" layoutX="410.0" layoutY="126.0" prefWidth="185.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0" />
+                        <Button fx:id="buttonNouveau" mnemonicParsing="false" onAction="#nouveau" text="Nouveau" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
+                        <Button fx:id="buttonAjouter" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
+                        <Button fx:id="buttonModifier" mnemonicParsing="false" onAction="#modifier" text="Modifier" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" />
+                        <Button fx:id="buttonQuitter" mnemonicParsing="false" onAction="#quitter" text="Quitter" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="50.0" />
+                        <Button fx:id="buttonAide" mnemonicParsing="false" onAction="#aide" text="?" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>
