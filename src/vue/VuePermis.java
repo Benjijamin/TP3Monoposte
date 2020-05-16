@@ -26,11 +26,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.StringConverter;
-import modele.Animal;
-import modele.Permis;
-import modele.Territoire;
-import modele.Type;
 
 public class VuePermis implements IVue {
 	private ICtrl ctrl;
