@@ -192,8 +192,6 @@ public class VuePermis implements IVue {
 			this.modalTerritoire = loaderTerritoire.load();
 			this.modalType = loaderType.load();
 
-			ctrl.territoireTypeDeBase();
-
 			// Disable le numero de permis
 			fieldNumero.setDisable(true);
 
@@ -658,9 +656,11 @@ public class VuePermis implements IVue {
 		temp = ctrl.getTerritoireListe();
 		listeterritoire.setItems(FXCollections.observableArrayList(temp));
 		choiceBoxTerritoire.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxTerritoire.getItems().add(0, "Inconnu");
 		temp = ctrl.getTypeListe();
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		choiceBoxType.setItems(FXCollections.observableArrayList(temp));
+		choiceBoxType.getItems().add(0, "Inconnu");
 		temp = ctrl.getPermisListe(0);
 		listViewPermis.setItems(FXCollections.observableArrayList(temp));
 	}
@@ -730,13 +730,13 @@ public class VuePermis implements IVue {
 	@FXML
 	/**
 	 * Demande au controleur : Enregistrer les territoire dans la liste view. >
-	 * modifier les anciens et ajouter les nouveaux 
-	 * ensuite : update la choicebox
+	 * modifier les anciens et ajouter les nouveaux ensuite : update la choicebox
 	 */
 	private void enregistrerTerritoire() {
 		try {
 			choiceBoxTerritoire.setItems(FXCollections
 					.observableArrayList(ctrl.enregistrerTerritoire(oldListTerritoire, listeterritoire.getItems())));
+			choiceBoxTerritoire.getItems().add(0, "Inconnu");
 		} catch (Exception e) {
 			error("Impossible d'enregistrer");
 		} finally {
@@ -747,13 +747,13 @@ public class VuePermis implements IVue {
 	@FXML
 	/**
 	 * Demande au controleur : Enregistrer les types dans la liste view. > modifier
-	 * les anciens et ajouter les nouveaux
-	 * ensuite : update la choicebox
+	 * les anciens et ajouter les nouveaux ensuite : update la choicebox
 	 */
 	private void enregistrerType() {
 		try {
 			choiceBoxType.setItems(
 					FXCollections.observableArrayList(ctrl.enregistrerType(oldListType, listetype.getItems())));
+			choiceBoxType.getItems().add(0, "Inconnu");
 		} catch (Exception e) {
 			error("Impossible d'enregistrer");
 		} finally {
