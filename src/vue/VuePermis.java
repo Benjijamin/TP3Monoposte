@@ -388,7 +388,7 @@ public class VuePermis implements IVue {
 			Alert wait = new Alert(AlertType.NONE,
 					"Veuillez Patientez pendant que l'application génère votre fichier de données XML",
 					ButtonType.CLOSE);
-			wait.setTitle("écriture du Fichier XML à partir de la Base de Donn�e");
+			wait.setTitle("écriture du Fichier XML à partir de la Base de Donnée");
 			wait.setHeaderText("Patientez...");
 			wait.initStyle(StageStyle.UNDECORATED);
 			wait.getDialogPane().lookupButton(ButtonType.CLOSE).setVisible(false);
@@ -541,8 +541,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons n�cessaires lors de la cr�ation d'un permis Et
-	 * mets les champs � z�ro
+	 * Disable et Enable les boutons nécessaires lors de la création d'un permis Et
+	 * mets les champs à zéro
 	 */
 	public void updateButtonNouveau() {
 		fieldNumero.setText(String.valueOf(ctrl.getNextNumero()));

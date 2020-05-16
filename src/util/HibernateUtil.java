@@ -11,7 +11,7 @@ public abstract class HibernateUtil {
 		try {
 			sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
-			System.err.println("Initialation de SessionFactory  a échoué." + ex);
+			System.err.println("Initialation de SessionFactory  a Ã©chouÃ©." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}

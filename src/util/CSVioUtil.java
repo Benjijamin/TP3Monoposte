@@ -18,10 +18,10 @@ import modele.manager.TypeManager;
 public class CSVioUtil {
 
 	/**
-	 * Lit l'entieret� du CSV pour remplir la base de donn�es avec des permis,des
-	 * animaux, des territoires et des types. Si des �l�ments ont �t� modifi�s ou
-	 * des entr�es correspondent � des entr�es qui sont d�ja dans la base de
-	 * donn�es, ils seront mis � jour.
+	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis,des
+	 * animaux, des territoires et des types. Si des éléments ont été modifiés ou
+	 * des entrées correspondent à des entrées qui sont déja dans la base de
+	 * données, ils seront mis à jour.
 	 * 
 	 * @param file
 	 */
