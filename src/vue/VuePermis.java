@@ -615,4 +615,35 @@ public class VuePermis implements IVue {
 		}
 		return scrollbar;
 	}
+	
+	
+	// Modal Buttons
+	@FXML
+	private void ajouterTerritoire() {
+		listeterritoire.getItems().add("Nouveau Territoire");
+	}
+	
+	@FXML
+	private void ajouterType() {
+		listetype.getItems().add("Nouveau Type");
+	}
+	
+	@FXML
+	/**
+	 * Demande au controleur :
+	 * Enregistrer les territoire dans la liste view.
+	 * > supprimmer les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 */
+	private void enregistrerTerritoire() {
+		
+	}
+	
+	/**
+	 * Demande au controleur :
+	 * Enregistrer les types dans la liste view.
+	 * > supprimmer les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 */
+	private void enregistrerType() {
+		
+	}
 }

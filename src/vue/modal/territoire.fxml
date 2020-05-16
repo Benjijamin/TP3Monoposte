@@ -17,9 +17,8 @@
          <children>
             <VBox prefHeight="51.0" prefWidth="202.0">
                <children>
-               	  <TextField fx:id="fieldterritoire" />
-                  <Button fx:id="ajouterterritoire" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" />
-                  <Button fx:id="enregistrerterritoire" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Enregister" />
+                  <Button fx:id="ajouterterritoire" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Ajouter+" onAction="#ajouterTerritoire"/>
+                  <Button fx:id="enregistrerterritoire" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" text="Enregister" onAction="#enregistrerTerritoire"/>
                </children>
             </VBox>
          </children>
