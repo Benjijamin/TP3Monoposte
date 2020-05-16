@@ -27,7 +27,7 @@ public class PermisManager {
 
 	/**
 	 * @param id
-	 * @return Permis correspondant � l'id
+	 * @return Permis correspondant à l'id
 	 */
 	public Permis getPermis(int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -95,9 +95,9 @@ public class PermisManager {
 	}
 
 	/**
-	 * retourne 100 r�sultat de permis
+	 * retourne 100 résultat de permis
 	 * 
-	 * @param start le point de d�part
+	 * @param start le point de départ
 	 * @return
 	 */
 	public List<Permis> getListPermis(int start) {

@@ -277,7 +277,7 @@ public class VuePermis implements IVue {
 		try {
 			Float.parseFloat(fieldPoids.getText());
 		} catch (NumberFormatException e) {
-			error("Le poids doit être une valeure numérique");
+			error("Le poids doit être une valeur numérique");
 			return false;
 		}
 		if (comboBoxCouleur.getValue() == null || comboBoxCouleur.getValue() == "") {
@@ -331,19 +331,6 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void ajouter() {
-		if (listViewPermis == null) {
-			System.out.println("Permis null");
-		}
-		if (listetype == null) {
-			System.out.println("type null");
-		}
-		if (listeterritoire == null) {
-			System.out.println("territoire null");
-		}
-		if (ajoutertype == null) {
-			System.out.println("ajouter null");
-		}
-
 		if (validerFormulaire()) {
 			ctrl.ajouter(getFormulaire());
 			updateViewToDatabase();
@@ -426,7 +413,7 @@ public class VuePermis implements IVue {
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				wait.hide();
-				error("Erreur d'importation");
+				error("Erreur d'exportation");
 			});
 
 			new Thread(task).start();
@@ -517,11 +504,11 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Disable et Enable les boutons n�cessaires selon l'�tat actuel de
+	 * Disable et Enable les boutons nécessaires selon l'état actuel de
 	 * l'application.
 	 */
 	public void updateButtonState() {
-		// il y a un permis selectionn� ?
+		// il y a un permis selectionné ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
 		datePickerDateFin.setDisable(!permisselected);
@@ -615,8 +602,9 @@ public class VuePermis implements IVue {
 			fieldNumero.setText(String.valueOf((int) values.get("numero")));
 			fieldNom.setText((String) values.get("nom"));
 
-			choiceBoxTerritoire.setValue(values.get("territoire").toString());
-			choiceBoxType.setValue(values.get("type").toString());
+			choiceBoxTerritoire
+					.setValue(values.get("territoire") == null ? "Inconnu" : values.get("territoire").toString());
+			choiceBoxType.setValue(values.get("type") == null ? "Inconnu" : values.get("type").toString());
 
 			Date dateDebut = (Date) values.get("dateDebut");
 			datePickerDateDebut.setValue(dateDebut.toLocalDate());
@@ -672,7 +660,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewPermis() {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
-		System.out.println("Updating viewPermis");
 		listViewPermis.getItems().addAll(temp);
 		return temp.size() != 0;
 	}
@@ -684,7 +671,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewTerritoire() {
 		List<String> temp = ctrl.getTerritoireListe();
-		System.out.println("Updating viewTerritoire");
 		listeterritoire.setItems(FXCollections.observableArrayList(temp));
 		oldListTerritoire = temp;
 		return temp.size() != 0;
@@ -697,7 +683,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewType() {
 		List<String> temp = ctrl.getTypeListe();
-		System.out.println("Updating viewType");
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		oldListType = temp;
 		return temp.size() != 0;
