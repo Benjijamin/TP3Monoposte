@@ -74,8 +74,7 @@ public class Animal {
 	 * @param nom
 	 */
 	public void setNom(String nom) {
-		byte[] bytes = nom.getBytes(Charset.forName("windows-1252"));
-		this.nom = validerNom(new String(bytes,StandardCharsets.UTF_8));
+		this.nom = validerNom(nom);
 	}
 
 	/**
@@ -107,8 +106,7 @@ public class Animal {
 	 */
 	public Type validerType(String type) {
 		try {
-			byte[] bytes = type.getBytes(Charset.forName("windows-1252"));
-			Type t = typeManager.getType(new String(bytes,StandardCharsets.UTF_8));
+			Type t = typeManager.getType(type);
 			return t;
 		}catch(ObjectNotFoundException e) {
 			return null;
@@ -124,8 +122,7 @@ public class Animal {
 	 * @param sexe
 	 */
 	public void setSexe(String sexe) {
-		byte[] bytes = sexe.getBytes(Charset.forName("windows-1252"));
-		this.sexe = validerSexe(new String(bytes,StandardCharsets.UTF_8));
+		this.sexe = validerSexe(sexe);
 	}
 
 	/**
@@ -179,8 +176,7 @@ public class Animal {
 	 * @param couleur
 	 */
 	public void setCouleur(String couleur) {
-		byte[] bytes = couleur.getBytes(Charset.forName("windows-1252"));
-		this.couleur = validerCouleur(new String(bytes,StandardCharsets.UTF_8));
+		this.couleur = validerCouleur(couleur);
 	}
 
 	/**

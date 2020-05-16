@@ -17,16 +17,18 @@ public interface ICtrl {
 	public List<String> getTypeListe();
 
 	public List<String> getPermisListe(int start);
-	
-	public Map<String,Object> getPermis(String numeroPermis);
+
+	public Map<String, Object> getPermis(String numeroPermis);
 
 	public void supprimer(int permis);
-	
+
 	public void importerCSV(File file);
 
 	public void exporterXML(File selected);
-	
-	public void modifier(Map<String,Object> data);
+
+	public void modifier(Map<String, Object> data);
+
+	public void ajouter(Map<String, Object> data);
 
 	public int getNextNumero();
 }

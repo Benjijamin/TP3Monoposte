@@ -58,7 +58,7 @@ public class CSVioUtil {
 			
 			for (String[] list : permis) {
 				Permis p = new Permis();
-				p.creerPermisDB(list);
+				p.creerPermis(list);
 			}
 			
 			

@@ -30,8 +30,7 @@ public class Type {
 	public void importerTypes(Set<String> types) {
 		for (String type : types) {
 			if (!type.isEmpty()) {
-				byte[] bytes = type.getBytes(Charset.forName("windows-1252"));
-				manager.ajouterType(new String(bytes, StandardCharsets.UTF_8));
+				manager.ajouterType(type);
 			}
 		}
 	}
