@@ -16,6 +16,15 @@
 -fx-max-width: 24;
 }
 
+#buttonRecherche{
+	-fx-background-image: url('search.png');
+	-fx-background-size: 24;
+-fx-min-height: 24;
+-fx-min-width: 24;
+-fx-max-height: 24;
+-fx-max-width: 24;
+}
+
 AnchorPane{
 	-fx-spacing:300px;
 }

@@ -64,9 +64,9 @@
                         <Font name="System Bold Italic" size="12.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <TextField fx:id="fieldRecherche" />
+                        <TextField fx:id="fieldRecherche" prefHeight="25.0" prefWidth="170.0" />
                         <Button fx:id="buttonRecherche" mnemonicParsing="false" onAction="#recherche" text="Button" />
                      </children>
                   </HBox>
@@ -122,11 +122,11 @@
                         <RadioButton fx:id="choiceInconnu" mnemonicParsing="false" selected="true" text="Inconnu" toggleGroup="$toggleGroup" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="95.0" />
                         <Label text="Date de naissance" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="130.0" />
                         <DatePicker fx:id="datePickerDateNaissance" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="130.0" />
-                        <Label text="Caractéristiques suplémentaires :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxVaccine" mnemonicParsing="false" text="Vacciné" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxMicropuce" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Micropuce" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="165.0" />
-                        <CheckBox fx:id="checkBoxDangereux" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Dangereux" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="165.0" />
+                        <Label text="Caractéristiques suplémentaires :" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="185.0" />
+                        <CheckBox fx:id="checkBoxVaccine" mnemonicParsing="false" text="Vacciné" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="185.0" />
+                        <CheckBox fx:id="checkBoxSterelise" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Stérilisé" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="185.0" />
+                        <CheckBox fx:id="checkBoxMicropuce" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Micropuce" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="185.0" />
+                        <CheckBox fx:id="checkBoxDangereux" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Dangereux" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="185.0" />
                         <Label text="Type" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="60.0" />
                         <Label layoutX="333.0" layoutY="83.0" text="Poids en Kg" AnchorPane.rightAnchor="233.0" AnchorPane.topAnchor="95.0" />
                         <Label layoutX="333.0" layoutY="130.0" text="Couleur" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="130.0" />
