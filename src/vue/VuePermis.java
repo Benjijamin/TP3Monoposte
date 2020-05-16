@@ -237,6 +237,15 @@ public class VuePermis implements IVue {
 		return data;
 	}
 
+	/**
+	 * @return true si formulaire valide
+	 */
+	public boolean validerFormulaire() {
+		// TODO
+		// Voir l'enonce pour toutes les contraintes
+		return true;
+	}
+
 	@FXML
 	public void quitter() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
@@ -266,11 +275,17 @@ public class VuePermis implements IVue {
 		if (ajoutertype == null) {
 			System.out.println("ajouter null");
 		}
+
+		if (validerFormulaire()) {
+			ctrl.ajouter(getFormulaire());
+			updateViewToDatabase();
+		}
 	}
 
 	@FXML
 	public void modifier() {
-		ctrl.modifier(getFormulaire());
+		if (validerFormulaire())
+			ctrl.modifier(getFormulaire());
 	}
 
 	@FXML
@@ -347,6 +362,7 @@ public class VuePermis implements IVue {
 	public void importcsv() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV", "*.csv"));
+		fileChooser.setInitialDirectory(new File(this.getClass().getResource("/Fichiers_CSV").getPath()));
 		File selected = fileChooser.showOpenDialog(new Stage());
 
 		if (selected != null) {
@@ -447,6 +463,7 @@ public class VuePermis implements IVue {
 	 * mets les champs � z�ro
 	 */
 	public void updateButtonNouveau() {
+		fieldNumero.setText(String.valueOf(ctrl.getNextNumero()));
 		datePickerDateDebut.setDisable(false);
 		datePickerDateFin.setDisable(false);
 		datePickerDateNaissance.setDisable(false);
@@ -475,8 +492,10 @@ public class VuePermis implements IVue {
 		fieldNumero.setText(ctrl.getNextNumero() + "");
 		fieldNom.setText("");
 
-		choiceBoxTerritoire.setValue("");
-		choiceBoxType.setValue("");
+		choiceBoxTerritoire.getSelectionModel().clearSelection();
+		choiceBoxTerritoire.setValue(null);
+		choiceBoxType.getSelectionModel().clearSelection();
+		choiceBoxType.setValue(null);
 
 		datePickerDateDebut.setValue(null);
 		datePickerDateFin.setValue(null);

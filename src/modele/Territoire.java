@@ -26,8 +26,7 @@ public class Territoire {
 	public void importerTerritoires(Set<String> territoires) {
 		for (String territoire : territoires) {
 			if (!territoire.isEmpty()) {
-				byte[] bytes = territoire.getBytes(Charset.forName("windows-1252"));
-				manager.ajouterTerritoire((new String(bytes, StandardCharsets.UTF_8)));
+				manager.ajouterTerritoire(territoire);
 			}
 		}
 	}

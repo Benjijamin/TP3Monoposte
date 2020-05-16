@@ -19,9 +19,9 @@ import modele.manager.TypeManager;
 public class CSVioUtil {
 
 	/**
-	 * Lit l'entiereté du CSV pour remplir la base de données avec des permis,des animaux, des territoires et des types. Si
-	 * des éléments ont été modifiés ou des entrées correspondent à des entrées qui
-	 * sont déja dans la base de données, ils seront mis à jour.
+	 * Lit l'entieretï¿½ du CSV pour remplir la base de donnï¿½es avec des permis,des animaux, des territoires et des types. Si
+	 * des ï¿½lï¿½ments ont ï¿½tï¿½ modifiï¿½s ou des entrï¿½es correspondent ï¿½ des entrï¿½es qui
+	 * sont dï¿½ja dans la base de donnï¿½es, ils seront mis ï¿½ jour.
 	 * 
 	 * @param file
 	 */
@@ -58,7 +58,7 @@ public class CSVioUtil {
 			
 			for (String[] list : permis) {
 				Permis p = new Permis();
-				p.creerPermisDB(list);
+				p.creerPermis(list);
 			}
 			
 			

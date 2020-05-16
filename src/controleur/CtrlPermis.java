@@ -68,7 +68,7 @@ public class CtrlPermis implements ICtrl {
 	 */
 	public Map<String, Object> getPermis(String numeroPermis) {
 		Permis p = Permis.getPermis(Integer.parseInt(numeroPermis));
-		Animal a = Animal.getAnimal(p.getAnimal().getId());
+		Animal a = p.getAnimal();
 		Map<String, Object> values = new HashMap<String, Object>();
 		System.out.println(p);
 		values.put("numero", p.getNumero());
@@ -76,7 +76,7 @@ public class CtrlPermis implements ICtrl {
 		values.put("dateDebut", p.getDateDebut());
 		values.put("dateFin", p.getDateFin());
 		values.put("nom", a.getNom());
-		values.put("type", a.getType().toString());
+		values.put("type", a.getType());
 		values.put("sexe", a.getSexe());
 		values.put("poids", a.getPoids());
 		values.put("dateNaissance", a.getDateNaissance());
@@ -90,6 +90,10 @@ public class CtrlPermis implements ICtrl {
 
 	public void modifier(Map<String,Object> data) {
 		Permis.modifierPermis(data);
+	}
+	
+	public void ajouter(Map<String,Object> data) {
+		Permis.creerPermis(data);
 	}
 	
 	@Override
