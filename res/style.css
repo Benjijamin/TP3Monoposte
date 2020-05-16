@@ -1,19 +1,31 @@
 .paramButton{
 -fx-background-image: url('param.png');
--fx-min-height: 32;
--fx-min-width: 32;
--fx-max-height: 32;
--fx-max-width: 32;
+-fx-background-size: 24;
+-fx-min-height: 24;
+-fx-min-width: 24;
+-fx-max-height: 24;
+-fx-max-width: 24;
 }
 
 .delButton{
 -fx-background-image: url('del.png');
--fx-min-height: 32;
--fx-min-width: 32;
--fx-max-height: 32;
--fx-max-width: 32;
+-fx-background-size: 24;
+-fx-min-height: 24;
+-fx-min-width: 24;
+-fx-max-height: 24;
+-fx-max-width: 24;
 }
 
 AnchorPane{
 	-fx-spacing:300px;
+}
+
+#checkBoxDangereux:selected{
+-fx-focus-color: red;
+-fx-font-weight: bold;
+-fx-text-fill: red;
+}
+
+#checkBoxDangereux:selected > .box > .mark{
+-fx-background-color: #a82f3b;
 }

@@ -8,7 +8,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
@@ -19,9 +18,10 @@ import modele.manager.TypeManager;
 public class CSVioUtil {
 
 	/**
-	 * Lit l'entieret� du CSV pour remplir la base de donn�es avec des permis,des animaux, des territoires et des types. Si
-	 * des �l�ments ont �t� modifi�s ou des entr�es correspondent � des entr�es qui
-	 * sont d�ja dans la base de donn�es, ils seront mis � jour.
+	 * Lit l'entieret� du CSV pour remplir la base de donn�es avec des permis,des
+	 * animaux, des territoires et des types. Si des �l�ments ont �t� modifi�s ou
+	 * des entr�es correspondent � des entr�es qui sont d�ja dans la base de
+	 * donn�es, ils seront mis � jour.
 	 * 
 	 * @param file
 	 */
@@ -39,34 +39,34 @@ public class CSVioUtil {
 				for (int i = 0; i < data.length; i++) {
 					data[i] = data[i].replace("\"", ""); // OK
 				}
-				
+
 				try {
 					Integer.parseInt(data[0]);
 				} catch (NumberFormatException e) {
 					continue;
 				}
 
-				
-
 				permis.add(data);
-				territoires.add(data[3]);
-				types.add(data[4]);
-				
+				if (!data[3].equalsIgnoreCase("inconnu") && !data[3].equalsIgnoreCase("null")) {
+					territoires.add(data[3]);
+				}
+				if (!data[4].equalsIgnoreCase("inconnu") && !data[4].equalsIgnoreCase("null")) {
+					types.add(data[4]);
+				}
 			}
 			new Territoire().importerTerritoires(territoires);
 			new Type().importerTypes(types);
-			
+
 			for (String[] list : permis) {
 				Permis p = new Permis();
 				p.creerPermis(list);
 			}
-			
-			
+
 			System.out.println("importation fini");
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 }

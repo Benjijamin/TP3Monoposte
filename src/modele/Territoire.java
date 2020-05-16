@@ -1,7 +1,5 @@
 package modele;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 import modele.manager.TerritoireManager;
