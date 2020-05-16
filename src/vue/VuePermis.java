@@ -615,8 +615,9 @@ public class VuePermis implements IVue {
 			fieldNumero.setText(String.valueOf((int) values.get("numero")));
 			fieldNom.setText((String) values.get("nom"));
 
-			choiceBoxTerritoire.setValue(values.get("territoire").toString());
-			choiceBoxType.setValue(values.get("type").toString());
+			choiceBoxTerritoire
+					.setValue(values.get("territoire") == null ? "Inconnu" : values.get("territoire").toString());
+			choiceBoxType.setValue(values.get("type") == null ? "Inconnu" : values.get("type").toString());
 
 			Date dateDebut = (Date) values.get("dateDebut");
 			datePickerDateDebut.setValue(dateDebut.toLocalDate());
