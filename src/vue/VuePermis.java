@@ -331,19 +331,6 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void ajouter() {
-		if (listViewPermis == null) {
-			System.out.println("Permis null");
-		}
-		if (listetype == null) {
-			System.out.println("type null");
-		}
-		if (listeterritoire == null) {
-			System.out.println("territoire null");
-		}
-		if (ajoutertype == null) {
-			System.out.println("ajouter null");
-		}
-
 		if (validerFormulaire()) {
 			ctrl.ajouter(getFormulaire());
 			updateViewToDatabase();
@@ -673,7 +660,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewPermis() {
 		List<String> temp = ctrl.getPermisListe(listViewPermis.getItems().size());
-		System.out.println("Updating viewPermis");
 		listViewPermis.getItems().addAll(temp);
 		return temp.size() != 0;
 	}
@@ -685,7 +671,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewTerritoire() {
 		List<String> temp = ctrl.getTerritoireListe();
-		System.out.println("Updating viewTerritoire");
 		listeterritoire.setItems(FXCollections.observableArrayList(temp));
 		oldListTerritoire = temp;
 		return temp.size() != 0;
@@ -698,7 +683,6 @@ public class VuePermis implements IVue {
 	 */
 	private boolean updateViewType() {
 		List<String> temp = ctrl.getTypeListe();
-		System.out.println("Updating viewType");
 		listetype.setItems(FXCollections.observableArrayList(temp));
 		oldListType = temp;
 		return temp.size() != 0;
