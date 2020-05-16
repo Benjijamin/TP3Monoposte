@@ -413,7 +413,7 @@ public class VuePermis implements IVue {
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				wait.hide();
-				error("Erreur d'importation");
+				error("Erreur d'exportation");
 			});
 
 			new Thread(task).start();

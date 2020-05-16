@@ -20,14 +20,16 @@ public abstract class XMLioUtil {
 				toencode += xmlbaliseStart(0, "Permis", new XmlKeyV("numero", p.getNumero()),
 						new XmlKeyV("dateDebut", p.getDateDebut()), new XmlKeyV("dateFin", p.getDateFin()));
 
-				toencode += xmlbaliseStart(1, "Territoire", new XmlKeyV("nom", p.getTerritoire().getNom()));
+				toencode += xmlbaliseStart(1, "Territoire",
+						new XmlKeyV("nom", p.getTerritoire() == null ? "Inconnu" : p.getTerritoire().getNom()));
 				toencode += xmlbaliseEnd(1, "Territoire");
 
 				toencode += xmlbaliseStart(1, "Animal", new XmlKeyV("nom", p.getAnimal().getNom()),
 						new XmlKeyV("sexe", p.getAnimal().getSexe()), new XmlKeyV("poids", p.getAnimal().getPoids()),
 						new XmlKeyV("dateNaissance", p.getAnimal().getDateNaissance()),
 						new XmlKeyV("couleur", p.getAnimal().getCouleur()));
-				toencode += xmlbaliseStart(2, "Type", new XmlKeyV("nom", p.getAnimal().getType().getNom()));
+				toencode += xmlbaliseStart(2, "Type", new XmlKeyV("nom",
+						p.getAnimal().getType() == null ? "Inconnu" : p.getAnimal().getType().getNom()));
 				toencode += xmlbaliseEnd(2, "Type");
 				toencode += xmlbaliseStart(2, "Caracteristique", new XmlKeyV("vaccine", p.getAnimal().isVaccine()),
 						new XmlKeyV("sterelise", p.getAnimal().isSterelise()),
