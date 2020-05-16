@@ -638,6 +638,7 @@ public class VuePermis implements IVue {
 		
 	}
 	
+	@FXML
 	/**
 	 * Demande au controleur :
 	 * Enregistrer les types dans la liste view.
