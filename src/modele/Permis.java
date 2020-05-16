@@ -41,7 +41,7 @@ public class Permis {
 	}
 
 	/**
-	 * Ajoute un permis dans la DB � partir d'une liste de string
+	 * Ajoute un permis dans la DB à partir d'une liste de string
 	 */
 	public void creerPermis(String[] data) {
 		Animal a = new Animal();
@@ -135,11 +135,11 @@ public class Permis {
 		permis.setNumero(Integer.valueOf((String) data.get("numero")));
 		permis.setDateDebut(Date.valueOf((LocalDate) data.get("dateDebut")));
 		permis.setDateFin(Date.valueOf((LocalDate) data.get("dateFin")));
-		permis.setTerritoire(territoireManager.getTerritoire((String) data.get("territoire")));
+		permis.setTerritoire(permis.validerTerritoire((String) data.get("territoire")));
 		permis.setAnimal(animal);
 		animal.setNom((String) data.get("nom"));
 		animal.setSexe((String) data.get("sexe"));
-		animal.setType(typeManager.getType((String) data.get("type")));
+		animal.setType(animal.validerType((String) data.get("type")));
 		animal.setCouleur((String) data.get("couleur"));
 		animal.setDateNaissance(Date.valueOf((LocalDate) data.get("dateNaissance")));
 		animal.setPoids(Float.valueOf((String) data.get("poids")));
@@ -162,10 +162,10 @@ public class Permis {
 		Animal animal = permis.getAnimal();
 		permis.setDateDebut(Date.valueOf((LocalDate) data.get("dateDebut")));
 		permis.setDateFin(Date.valueOf((LocalDate) data.get("dateFin")));
-		permis.setTerritoire(territoireManager.getTerritoire((String) data.get("territoire")));
+		permis.setTerritoire(permis.validerTerritoire((String) data.get("territoire")));
 		animal.setNom((String) data.get("nom"));
 		animal.setSexe((String) data.get("sexe"));
-		animal.setType(typeManager.getType((String) data.get("type")));
+		animal.setType(animal.validerType((String) data.get("type")));
 		animal.setCouleur((String) data.get("couleur"));
 		animal.setDateNaissance(Date.valueOf((LocalDate) data.get("dateNaissance")));
 		animal.setPoids(Float.valueOf((String) data.get("poids")));
