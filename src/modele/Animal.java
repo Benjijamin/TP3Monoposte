@@ -7,6 +7,8 @@ import java.time.DateTimeException;
 import java.util.List;
 import java.util.Queue;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.ObjectNotFoundException;
 
 import modele.manager.AnimalManager;
@@ -108,7 +110,7 @@ public class Animal {
 		try {
 			Type t = typeManager.getType(type);
 			return t;
-		}catch(ObjectNotFoundException e) {
+		}catch(NoResultException e) {
 			return null;
 		}
 	}

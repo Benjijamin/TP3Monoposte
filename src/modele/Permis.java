@@ -204,7 +204,7 @@ public class Permis {
 		try {
 			Territoire t = territoireManager.getTerritoire(terr);
 			return t;
-		} catch (ObjectNotFoundException e) {
+		} catch (NoResultException e) {
 			System.err.println("territoire non existant");
 			return null;
 		}
