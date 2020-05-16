@@ -277,7 +277,7 @@ public class VuePermis implements IVue {
 		try {
 			Float.parseFloat(fieldPoids.getText());
 		} catch (NumberFormatException e) {
-			error("Le poids doit être une valeure numérique");
+			error("Le poids doit être une valeur numérique");
 			return false;
 		}
 		if (comboBoxCouleur.getValue() == null || comboBoxCouleur.getValue() == "") {
