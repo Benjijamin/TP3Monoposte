@@ -369,7 +369,7 @@ public class VuePermis implements IVue {
 	public void importcsv() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV", "*.csv"));
-		fileChooser.setInitialDirectory(new File(this.getClass().getResource("/Fichiers_CSV").getPath()));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\io\\Fichiers_CSV"));
 		File selected = fileChooser.showOpenDialog(new Stage());
 
 		if (selected != null) {
@@ -399,11 +399,13 @@ public class VuePermis implements IVue {
 
 			task.setOnSucceeded(e -> {
 				updateViewToDatabase();
+				updateButtonState();
 				wait.hide();
 			});
 			
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
+				updateButtonState();
 				wait.hide();
 				error("Erreur d'importation");
 			});
