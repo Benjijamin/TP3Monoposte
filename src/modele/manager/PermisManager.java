@@ -123,7 +123,6 @@ public class PermisManager {
 		int permis;
 		try {
 			permis = (Integer) session.createQuery("select max(numero) from Permis").uniqueResult();
-
 		} catch (NullPointerException e) {
 			permis = 0;
 		}

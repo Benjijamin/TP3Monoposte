@@ -339,6 +339,13 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				wait.hide();
 			});
+			
+			task.setOnFailed(e -> {
+				updateViewToDatabase();
+				wait.hide();
+				error("Erreur d'importation");
+			});
+			
 			new Thread(task).start();
 		}
 	}
@@ -362,11 +369,15 @@ public class VuePermis implements IVue {
 
 			wait.show();
 
-			Task<Void> task = new Task<Void>() {
+			Task<Boolean> task = new Task<Boolean>() {
 				@Override
-				public Void call() {
-					ctrl.importerCSV(selected);
-					return null;
+				public Boolean call() {
+					try {
+						ctrl.importerCSV(selected);
+					}catch(Exception e) {
+						this.failed();
+					}
+					return true;
 				}
 			};
 
@@ -374,6 +385,13 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				wait.hide();
 			});
+			
+			task.setOnFailed(e -> {
+				updateViewToDatabase();
+				wait.hide();
+				error("Erreur d'importation");
+			});
+			
 			new Thread(task).start();
 		}
 
