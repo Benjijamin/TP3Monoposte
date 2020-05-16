@@ -35,6 +35,11 @@ public class VuePermis implements IVue {
 	private Stage gestionType = new Stage();
 	private Stage gestionTerritoire = new Stage();
 
+	// Listes temporaires pour retenir les informations avant la modification des
+	// listes
+	private List<String> oldListTerritoire;
+	private List<String> oldListType;
+
 	// CONTROLS
 
 	// menu
@@ -349,13 +354,13 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				wait.hide();
 			});
-			
+
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				wait.hide();
 				error("Erreur d'importation");
 			});
-			
+
 			new Thread(task).start();
 		}
 	}
@@ -385,7 +390,7 @@ public class VuePermis implements IVue {
 				public Boolean call() {
 					try {
 						ctrl.importerCSV(selected);
-					}catch(Exception e) {
+					} catch (Exception e) {
 						this.failed();
 					}
 					return true;
@@ -397,14 +402,14 @@ public class VuePermis implements IVue {
 				updateButtonState();
 				wait.hide();
 			});
-			
+
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
 				updateButtonState();
 				wait.hide();
 				error("Erreur d'importation");
 			});
-			
+
 			new Thread(task).start();
 		}
 
@@ -473,9 +478,9 @@ public class VuePermis implements IVue {
 		checkBoxSterelise.setDisable(!permisselected);
 		checkBoxVaccine.setDisable(!permisselected);
 		comboBoxCouleur.setDisable(!permisselected);
-		if(listViewPermis.getItems().isEmpty()) {
+		if (listViewPermis.getItems().isEmpty()) {
 			menuImporterCSV.setDisable(false);
-		}else {
+		} else {
 			menuImporterCSV.setDisable(true);
 		}
 	}
@@ -604,9 +609,9 @@ public class VuePermis implements IVue {
 		listViewPermis.getItems().addAll(temp);
 		return temp.size() != 0;
 	}
-	
+
 	/**
-	 * Update la liste view territoire
+	 * Update la liste view territoire et la store dans oldliste
 	 * 
 	 * @return true si au moin une valeur à été insérée
 	 */
@@ -614,11 +619,12 @@ public class VuePermis implements IVue {
 		List<String> temp = ctrl.getTerritoireListe();
 		System.out.println("Updating viewTerritoire");
 		listeterritoire.setItems(FXCollections.observableArrayList(temp));
+		oldListTerritoire = temp;
 		return temp.size() != 0;
 	}
-	
+
 	/**
-	 * Update la liste view type
+	 * Update la liste view type et la store dans oldliste
 	 * 
 	 * @return true si au moin une valeur à été insérée
 	 */
@@ -626,6 +632,7 @@ public class VuePermis implements IVue {
 		List<String> temp = ctrl.getTypeListe();
 		System.out.println("Updating viewType");
 		listetype.setItems(FXCollections.observableArrayList(temp));
+		oldListType = temp;
 		return temp.size() != 0;
 	}
 
@@ -641,36 +648,35 @@ public class VuePermis implements IVue {
 		}
 		return scrollbar;
 	}
-	
-	
+
 	// Modal Buttons
 	@FXML
 	private void ajouterTerritoire() {
 		listeterritoire.getItems().add("Nouveau Territoire");
 	}
-	
+
 	@FXML
 	private void ajouterType() {
 		listetype.getItems().add("Nouveau Type");
 	}
-	
+
 	@FXML
 	/**
-	 * Demande au controleur :
-	 * Enregistrer les territoire dans la liste view.
-	 * > supprimmer les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 * Demande au controleur : Enregistrer les territoire dans la liste view. >
+	 * modifier les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de
+	 * doublons) ensuite : update la choicebox
 	 */
 	private void enregistrerTerritoire() {
-		
+		ctrl.enregistrerTerritoire(oldListTerritoire, listeterritoire.getItems());
 	}
-	
+
 	@FXML
 	/**
-	 * Demande au controleur :
-	 * Enregistrer les types dans la liste view.
-	 * > supprimmer les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 * Demande au controleur : Enregistrer les types dans la liste view. > modifier
+	 * les anciens et ajouter les nouveaux (s'assure qu'il n'y a pas de doublons)
+	 * ensuite : update la choicebox
 	 */
 	private void enregistrerType() {
-		
+		ctrl.enregistrerType(oldListType, listetype.getItems());
 	}
 }

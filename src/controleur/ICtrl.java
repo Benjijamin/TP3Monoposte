@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import modele.Permis;
 import modele.Territoire;
@@ -31,4 +32,8 @@ public interface ICtrl {
 	public void ajouter(Map<String, Object> data);
 
 	public int getNextNumero();
+
+	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items);
+
+	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items);
 }
