@@ -500,7 +500,17 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void recherche() {
-
+		try {
+			if (fieldRecherche.getText().isEmpty()) {
+				updateViewToDatabase();
+			} else {
+				listViewPermis.setItems(FXCollections
+						.observableArrayList(ctrl.rechercher(Integer.parseInt(fieldRecherche.getText().trim()))));
+			}
+		} catch (NumberFormatException e) {
+			error("Le champ de recherche doit être un nombre");
+		}
+		fieldRecherche.setText("");
 	}
 
 	/**
@@ -636,7 +646,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les listes de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au données (remet la liste
+	 * permis à 100 enregistrement visibles)
 	 */
 	public void updateViewToDatabase() {
 		List<String> temp;

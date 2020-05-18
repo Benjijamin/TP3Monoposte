@@ -36,4 +36,6 @@ public interface ICtrl {
 	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items);
 
 	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items);
+
+	public List<String> rechercher(int parseInt);
 }

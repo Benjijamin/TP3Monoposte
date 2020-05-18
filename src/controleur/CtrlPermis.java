@@ -138,4 +138,17 @@ public class CtrlPermis implements ICtrl {
 		return getTypeListe();
 	}
 
+	/**
+	 * Retourne la liste des permis qui commence avec le nombre reçu en paramètre
+	 */
+	@Override
+	public List<String> rechercher(int i) {
+		List<Permis> temp = Permis.search(i);
+		ArrayList<String> retour = new ArrayList<String>();
+		for (Permis t : temp) {
+			retour.add(t.toString());
+		}
+		return retour;
+	}
+
 }
