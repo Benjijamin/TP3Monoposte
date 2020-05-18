@@ -23,7 +23,7 @@ public interface ICtrl {
 
 	public void supprimer(int permis);
 
-	public void importerCSV(File file);
+	public long[] importerCSV(File file);
 
 	public void exporterXML(File selected);
 

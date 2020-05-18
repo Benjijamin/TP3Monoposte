@@ -100,9 +100,9 @@ public class CtrlPermis implements ICtrl {
 
 	}
 
-	public void importerCSV(File file) {
+	public long[] importerCSV(File file) {
 		CSVioUtil util = new CSVioUtil();
-		util.read(file);
+		return util.read(file);
 	}
 
 	@Override

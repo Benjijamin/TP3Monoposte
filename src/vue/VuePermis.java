@@ -440,15 +440,15 @@ public class VuePermis implements IVue {
 
 			wait.show();
 
-			Task<Boolean> task = new Task<Boolean>() {
+			Task<long[]> task = new Task<long[]>() {
 				@Override
-				public Boolean call() {
+				public long[] call() {
 					try {
-						ctrl.importerCSV(selected);
+						return ctrl.importerCSV(selected);
 					} catch (Exception e) {
 						this.failed();
 					}
-					return true;
+					return null;
 				}
 			};
 
@@ -456,6 +456,7 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				updateButtonState();
 				wait.hide();
+				this.importerResult(task.getValue());
 			});
 
 			task.setOnFailed(e -> {
@@ -755,5 +756,14 @@ public class VuePermis implements IVue {
 		} finally {
 			gestionType.hide();
 		}
+	}
+
+	@Override
+	public void importerResult(long[] read) {
+		Alert help = new Alert(AlertType.INFORMATION);
+		help.setTitle("Fichier CSV");
+		help.setContentText("Le fichier CSV à été lu,\n" + read[0] + " Eneregistrements lu, " + read[1] + " retenu.\n"
+				+ (read[0] - read[1]) + " ont été ignoré.");
+		help.showAndWait();
 	}
 }
