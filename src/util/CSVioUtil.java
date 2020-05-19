@@ -32,6 +32,7 @@ public class CSVioUtil {
 			Set<String> territoires = new HashSet<String>();
 			Set<String> types = new HashSet<String>();
 			Set<String[]> permis = new HashSet<String[]>();
+			long execStart = System.currentTimeMillis();
 			br.readLine();
 			while ((ligne = br.readLine()) != null) {
 				String[] data = ligne.split("\",");
@@ -63,6 +64,7 @@ public class CSVioUtil {
 			}
 
 			System.out.println("importation fini");
+			System.out.println("temps en ms = " + (System.currentTimeMillis() - execStart));
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
