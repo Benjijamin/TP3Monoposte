@@ -543,8 +543,12 @@ public class VuePermis implements IVue {
 		comboBoxCouleur.setDisable(!permisselected);
 		if (listViewPermis.getItems().isEmpty()) {
 			menuImporterCSV.setDisable(false);
+			fieldRecherche.setDisable(true);
+			buttonRecherche.setStyle("-fx-background-image: url('refresh.png');");
 		} else {
 			menuImporterCSV.setDisable(true);
+			fieldRecherche.setDisable(false);
+			buttonRecherche.setStyle("-fx-background-image: url('search.png');");
 		}
 	}
 
