@@ -23,7 +23,7 @@ public interface ICtrl {
 
 	public void supprimer(int permis);
 
-	public void importerCSV(File file);
+	public long[] importerCSV(File file);
 
 	public void exporterXML(File selected);
 
@@ -36,4 +36,6 @@ public interface ICtrl {
 	public List<String> enregistrerTerritoire(List<String> oldListTerritoire, ObservableList<String> items);
 
 	public List<String> enregistrerType(List<String> oldListType, ObservableList<String> items);
+
+	public List<String> rechercher(int parseInt);
 }

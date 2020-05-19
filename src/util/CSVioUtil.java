@@ -4,16 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
-import modele.manager.PermisManager;
-import modele.manager.TerritoireManager;
-import modele.manager.TypeManager;
 
 public class CSVioUtil {
 
@@ -24,19 +19,21 @@ public class CSVioUtil {
 	 * données, ils seront mis à jour.
 	 * 
 	 * @param file
+	 * @return une array long [nb d'enregistrement lu, nb retenu]
 	 */
-	public void read(File file) {
+	public long[] read(File file) {
+		int readed = 0;
+		Set<String> territoires = new HashSet<String>();
+		Set<String> types = new HashSet<String>();
+		Set<String[]> permis = new HashSet<String[]>();
+		long execStart = System.currentTimeMillis();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String ligne;
-			Set<String> territoires = new HashSet<String>();
-			Set<String> types = new HashSet<String>();
-			Set<String[]> permis = new HashSet<String[]>();
-			long execStart = System.currentTimeMillis();
 			br.readLine();
 			while ((ligne = br.readLine()) != null) {
 				String[] data = ligne.split("\",");
-
+				readed++;
 				for (int i = 0; i < data.length; i++) {
 					data[i] = data[i].replace("\"", ""); // OK
 				}
@@ -69,6 +66,7 @@ public class CSVioUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return new long[] { readed, permis.size() };
 	}
 
 }

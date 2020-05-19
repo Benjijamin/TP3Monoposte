@@ -129,4 +129,12 @@ public class PermisManager {
 		session.getTransaction().commit();
 		return permis + 1;
 	}
+
+	public List<Permis> search(int i) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Permis> permis = session.createQuery("FROM Permis WHERE numero LIKE '" + i + "%' ORDER BY numero").list();
+		session.getTransaction().commit();
+		return permis;
+	}
 }

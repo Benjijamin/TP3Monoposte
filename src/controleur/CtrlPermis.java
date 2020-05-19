@@ -100,9 +100,9 @@ public class CtrlPermis implements ICtrl {
 
 	}
 
-	public void importerCSV(File file) {
+	public long[] importerCSV(File file) {
 		CSVioUtil util = new CSVioUtil();
-		util.read(file);
+		return util.read(file);
 	}
 
 	@Override
@@ -136,6 +136,19 @@ public class CtrlPermis implements ICtrl {
 			Type.ajouterType(items.get(i));
 		}
 		return getTypeListe();
+	}
+
+	/**
+	 * Retourne la liste des permis qui commence avec le nombre reçu en paramètre
+	 */
+	@Override
+	public List<String> rechercher(int i) {
+		List<Permis> temp = Permis.search(i);
+		ArrayList<String> retour = new ArrayList<String>();
+		for (Permis t : temp) {
+			retour.add(t.toString());
+		}
+		return retour;
 	}
 
 }

@@ -440,15 +440,15 @@ public class VuePermis implements IVue {
 
 			wait.show();
 
-			Task<Boolean> task = new Task<Boolean>() {
+			Task<long[]> task = new Task<long[]>() {
 				@Override
-				public Boolean call() {
+				public long[] call() {
 					try {
-						ctrl.importerCSV(selected);
+						return ctrl.importerCSV(selected);
 					} catch (Exception e) {
 						this.failed();
 					}
-					return true;
+					return null;
 				}
 			};
 
@@ -456,6 +456,7 @@ public class VuePermis implements IVue {
 				updateViewToDatabase();
 				updateButtonState();
 				wait.hide();
+				this.importerResult(task.getValue());
 			});
 
 			task.setOnFailed(e -> {
@@ -500,7 +501,17 @@ public class VuePermis implements IVue {
 
 	@FXML
 	public void recherche() {
-
+		try {
+			if (fieldRecherche.getText().isEmpty()) {
+				updateViewToDatabase();
+			} else {
+				listViewPermis.setItems(FXCollections
+						.observableArrayList(ctrl.rechercher(Integer.parseInt(fieldRecherche.getText().trim()))));
+			}
+		} catch (NumberFormatException e) {
+			error("Le champ de recherche doit être un nombre");
+		}
+		fieldRecherche.setText("");
 	}
 
 	/**
@@ -636,7 +647,8 @@ public class VuePermis implements IVue {
 	}
 
 	/**
-	 * Update tous les listes de la vue pour correspondre au données
+	 * Update tous les listes de la vue pour correspondre au données (remet la liste
+	 * permis à 100 enregistrement visibles)
 	 */
 	public void updateViewToDatabase() {
 		List<String> temp;
@@ -744,5 +756,14 @@ public class VuePermis implements IVue {
 		} finally {
 			gestionType.hide();
 		}
+	}
+
+	@Override
+	public void importerResult(long[] read) {
+		Alert help = new Alert(AlertType.INFORMATION);
+		help.setTitle("Fichier CSV");
+		help.setContentText("Le fichier CSV à été lu,\n" + read[0] + " Eneregistrements lu, " + read[1] + " retenu.\n"
+				+ (read[0] - read[1]) + " ont été ignoré.");
+		help.showAndWait();
 	}
 }

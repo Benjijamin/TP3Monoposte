@@ -14,4 +14,6 @@ public interface IVue {
 	public void modifier();
 
 	public void supprimer();
+
+	public void importerResult(long[] read);
 }

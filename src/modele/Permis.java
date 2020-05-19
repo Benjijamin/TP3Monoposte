@@ -260,4 +260,8 @@ public class Permis {
 
 	}
 
+	public static List<Permis> search(int i) {
+		return permisManager.search(i);
+	}
+
 }
