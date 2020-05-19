@@ -214,7 +214,6 @@ public class VuePermis implements IVue {
 			listetype.setCellFactory(TextFieldListCell.forListView());
 
 			updateViewToDatabase();
-			updateButtonState();
 
 		} catch (IOException e) {
 			System.err.println("Erreur de chargement du fxml");
@@ -357,7 +356,6 @@ public class VuePermis implements IVue {
 
 		}
 		listViewPermis.getSelectionModel().clearSelection();
-		updateButtonState();
 		updateViewToDatabase();
 	}
 
@@ -454,14 +452,12 @@ public class VuePermis implements IVue {
 
 			task.setOnSucceeded(e -> {
 				updateViewToDatabase();
-				updateButtonState();
 				wait.hide();
 				this.importerResult(task.getValue());
 			});
 
 			task.setOnFailed(e -> {
 				updateViewToDatabase();
-				updateButtonState();
 				wait.hide();
 				error("Erreur d'importation");
 			});
@@ -507,6 +503,7 @@ public class VuePermis implements IVue {
 			} else {
 				listViewPermis.setItems(FXCollections
 						.observableArrayList(ctrl.rechercher(Integer.parseInt(fieldRecherche.getText().trim()))));
+				updateButtonState();
 			}
 		} catch (NumberFormatException e) {
 			error("Le champ de recherche doit être un nombre");
@@ -663,6 +660,7 @@ public class VuePermis implements IVue {
 		choiceBoxType.getItems().add(0, "Inconnu");
 		temp = ctrl.getPermisListe(0);
 		listViewPermis.setItems(FXCollections.observableArrayList(temp));
+		updateButtonState();
 	}
 
 	/**
