@@ -22,7 +22,7 @@ public class Territoire {
 		this.nom = nom;
 	}
 
-	public void importerTerritoires(Set<String> territoires) {
+	public static void importerTerritoires(Set<String> territoires) {
 		for (String territoire : territoires) {
 			if (!territoire.isEmpty()) {
 				manager.ajouterTerritoire(territoire);

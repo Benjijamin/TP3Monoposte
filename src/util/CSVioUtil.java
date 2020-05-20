@@ -52,11 +52,11 @@ public class CSVioUtil {
 					types.add(data[4]);
 				}
 			}
-			new Territoire().importerTerritoires(territoires);
-			new Type().importerTypes(types);
+			Territoire.importerTerritoires(territoires);
+			Type.importerTypes(types);
 
 			for (String[] list : permis) {
-				new Permis().creerPermis(list);
+				Permis.creerPermis(list);
 			}
 			br.close();
 		} catch (IOException e) {

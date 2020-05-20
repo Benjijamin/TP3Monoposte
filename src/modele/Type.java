@@ -22,7 +22,7 @@ public class Type {
 		this.nom = nom;
 	}
 
-	public void importerTypes(Set<String> types) {
+	public static void importerTypes(Set<String> types) {
 		for (String type : types) {
 			if (!type.isEmpty()) {
 				manager.ajouterType(type);
