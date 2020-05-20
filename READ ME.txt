@@ -1,0 +1,7 @@
+La BD devrait ce créer automatiquement à la première execution.
+
+s'assurer d'avoir un schema accessible nommé "GestionPermis" sur localhost:3306.
+
+La configuration de la BD ce trouve dans le fichier hibernate.cfg.xml
+
+Une classe est disponible pour vider la BD

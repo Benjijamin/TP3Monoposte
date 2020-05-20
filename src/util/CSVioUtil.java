@@ -9,7 +9,12 @@ import java.util.*;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
-
+/**
+ * Classe utilitaire pour lire un CSV de permis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class CSVioUtil {
 
 	/**
@@ -35,7 +40,7 @@ public class CSVioUtil {
 				String[] data = ligne.split("\",");
 				readed++;
 				for (int i = 0; i < data.length; i++) {
-					data[i] = data[i].replace("\"", ""); // OK
+					data[i] = data[i].replace("\"", "");
 				}
 
 				try {

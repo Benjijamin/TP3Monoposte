@@ -71,7 +71,7 @@ public interface ICtrl {
 	 * 
 	 * @param file Le fichier à lire
 	 * @return une Array Long dont les index correspondent à : [0 : Total de Permis
-	 *         lu, 1: Total de Permis Retenu]
+	 *         lu, 1: Total de Permis Retenu, 2: temps pris pour la lecture en millisecondes]
 	 */
 	public long[] importerCSV(File file);
 

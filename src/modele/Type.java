@@ -5,6 +5,12 @@ import java.util.Set;
 import javax.persistence.NoResultException;
 import modele.manager.TypeManager;
 
+/**
+ * Modèle Type
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Type {
 	private int id;
 	private String nom;

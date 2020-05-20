@@ -7,7 +7,12 @@ import org.hibernate.criterion.Restrictions;
 
 import modele.Type;
 import util.HibernateUtil;
-
+/**
+ * Manager Type (Connexion à la BD)
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class TypeManager {
 
 	public void ajouterType(String type) {

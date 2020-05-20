@@ -10,6 +10,12 @@ import javax.persistence.NoResultException;
 import modele.manager.AnimalManager;
 import modele.manager.PermisManager;
 
+/**
+ * Modèle Permis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Permis {
 	private int numero;
 	private Territoire territoire;

@@ -3,6 +3,12 @@ package modele;
 import java.sql.Date;
 import modele.manager.AnimalManager;
 
+/**
+ * Modèle Animal
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Animal {
 	private int id;
 	private String nom;

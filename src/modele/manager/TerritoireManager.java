@@ -7,7 +7,12 @@ import org.hibernate.criterion.Restrictions;
 
 import modele.Territoire;
 import util.HibernateUtil;
-
+/**
+ * Manager Territoire (Connexion à la BD)
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class TerritoireManager {
 
 	public void ajouterTerritoire(String territoire) {
