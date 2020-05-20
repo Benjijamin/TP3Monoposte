@@ -1,7 +1,5 @@
 package modele;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -9,14 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.NoResultException;
-
-import org.hibernate.ObjectNotFoundException;
-
-import javafx.scene.control.RadioButton;
 import modele.manager.AnimalManager;
 import modele.manager.PermisManager;
-import modele.manager.TerritoireManager;
-import modele.manager.TypeManager;
 
 public class Permis {
 	private int numero;
@@ -26,8 +18,6 @@ public class Permis {
 	private Animal animal;
 	private static PermisManager permisManager = new PermisManager();
 	private static AnimalManager animalManager = new AnimalManager();
-	private static TerritoireManager territoireManager = new TerritoireManager();
-	private static TypeManager typeManager = new TypeManager();
 
 	public Permis() {
 	}
@@ -43,15 +33,15 @@ public class Permis {
 	/**
 	 * Ajoute un permis dans la DB à partir d'une liste de string
 	 */
-	public void creerPermis(String[] data) {
+	public static void creerPermis(String[] data) {
 		Animal a = new Animal();
-		Permis p = this;
+		Permis p = new Permis();
 
 		int numero = Integer.parseInt(data[0]);
 
 		Territoire territoire;
 		try {
-			territoire = validerTerritoire(data[3]);
+			territoire = Territoire.validerTerritoire(data[3]);
 		} catch (NoResultException e) {
 			territoire = null;
 		}
@@ -77,7 +67,7 @@ public class Permis {
 
 		Type type;
 		try {
-			type = a.validerType(data[4]);
+			type = Type.validerType(data[4]);
 		} catch (NoResultException e) {
 			type = null;
 		}
@@ -135,11 +125,11 @@ public class Permis {
 		permis.setNumero(Integer.valueOf((String) data.get("numero")));
 		permis.setDateDebut(Date.valueOf((LocalDate) data.get("dateDebut")));
 		permis.setDateFin(Date.valueOf((LocalDate) data.get("dateFin")));
-		permis.setTerritoire(permis.validerTerritoire((String) data.get("territoire")));
+		permis.setTerritoire(Territoire.validerTerritoire((String) data.get("territoire")));
 		permis.setAnimal(animal);
 		animal.setNom((String) data.get("nom"));
 		animal.setSexe((String) data.get("sexe"));
-		animal.setType(animal.validerType((String) data.get("type")));
+		animal.setType(Type.validerType((String) data.get("type")));
 		animal.setCouleur((String) data.get("couleur"));
 		animal.setDateNaissance(Date.valueOf((LocalDate) data.get("dateNaissance")));
 		animal.setPoids(Float.valueOf((String) data.get("poids")));
@@ -162,10 +152,10 @@ public class Permis {
 		Animal animal = permis.getAnimal();
 		permis.setDateDebut(Date.valueOf((LocalDate) data.get("dateDebut")));
 		permis.setDateFin(Date.valueOf((LocalDate) data.get("dateFin")));
-		permis.setTerritoire(permis.validerTerritoire((String) data.get("territoire")));
+		permis.setTerritoire(Territoire.validerTerritoire((String) data.get("territoire")));
 		animal.setNom((String) data.get("nom"));
 		animal.setSexe((String) data.get("sexe"));
-		animal.setType(animal.validerType((String) data.get("type")));
+		animal.setType(Type.validerType((String) data.get("type")));
 		animal.setCouleur((String) data.get("couleur"));
 		animal.setDateNaissance(Date.valueOf((LocalDate) data.get("dateNaissance")));
 		animal.setPoids(Float.valueOf((String) data.get("poids")));
@@ -192,22 +182,6 @@ public class Permis {
 
 	public void setTerritoire(Territoire territoire) {
 		this.territoire = territoire;
-	}
-
-	/**
-	 * Valide la string recu et l'associe au bon objet Territoire
-	 * 
-	 * @param terr
-	 * @return
-	 */
-	public Territoire validerTerritoire(String terr) {
-		try {
-			Territoire t = territoireManager.getTerritoire(terr);
-			return t;
-		} catch (NoResultException e) {
-			System.err.println("territoire non existant");
-			return null;
-		}
 	}
 
 	public Date getDateDebut() {

@@ -1,14 +1,9 @@
 package modele;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
-
-import org.hibernate.Session;
-
+import javax.persistence.NoResultException;
 import modele.manager.TypeManager;
-import util.HibernateUtil;
 
 public class Type {
 	private int id;
@@ -34,7 +29,6 @@ public class Type {
 			}
 		}
 	}
-	
 
 	public static List<Type> getTypes() {
 		return manager.getTypes();
@@ -67,6 +61,21 @@ public class Type {
 
 	public static void ajouterType(String type) {
 		manager.ajouterType(type);
+	}
+
+	/**
+	 * Valide la string recu et l'associe au bon objet Type
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public static Type validerType(String type) {
+		try {
+			Type t = manager.getType(type);
+			return t;
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 }

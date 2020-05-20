@@ -1,18 +1,7 @@
 package modele;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
-import java.time.DateTimeException;
-import java.util.List;
-import java.util.Queue;
-
-import javax.persistence.NoResultException;
-
-import org.hibernate.ObjectNotFoundException;
-
 import modele.manager.AnimalManager;
-import modele.manager.TypeManager;
 
 public class Animal {
 	private int id;
@@ -26,11 +15,11 @@ public class Animal {
 	private boolean sterelise;
 	private boolean micropuce;
 	private boolean dangereux;
-	private static TypeManager typeManager = new TypeManager();
 	private static AnimalManager animalManager = new AnimalManager();
 
-	public Animal() {}
-	
+	public Animal() {
+	}
+
 	public Animal(String nom, Type type, String sexe, float poids, Date dateNaissance, String couleur, boolean vaccine,
 			boolean sterelise, boolean micropuce, boolean dangereux) {
 		setNom(nom);
@@ -48,7 +37,7 @@ public class Animal {
 	public Animal(String nom, String type, String sexe, float poids, Date dateNaissance, String couleur,
 			boolean vaccine, boolean sterelise, boolean micropuce, boolean dangereux) {
 		setNom(nom);
-		setType(validerType(type));
+		setType(Type.validerType(type));
 		setSexe(sexe);
 		setPoids(poids);
 		setDateNaissance(dateNaissance);
@@ -73,6 +62,7 @@ public class Animal {
 
 	/**
 	 * Set le nom, fixe les erreurs d'encodage
+	 * 
 	 * @param nom
 	 */
 	public void setNom(String nom) {
@@ -100,27 +90,13 @@ public class Animal {
 		this.type = type;
 	}
 
-	/**
-	 * Valide la string recu et l'associe au bon objet Type
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public Type validerType(String type) {
-		try {
-			Type t = typeManager.getType(type);
-			return t;
-		}catch(NoResultException e) {
-			return null;
-		}
-	}
-
 	public String getSexe() {
 		return sexe;
 	}
 
 	/**
 	 * Set le sexe, fixe les erreurs d'encodage
+	 * 
 	 * @param sexe
 	 */
 	public void setSexe(String sexe) {
@@ -175,6 +151,7 @@ public class Animal {
 
 	/**
 	 * Set la couleur, fixe les erreurs d'encodage
+	 * 
 	 * @param couleur
 	 */
 	public void setCouleur(String couleur) {
