@@ -41,9 +41,13 @@ public class VuePermis implements IVue {
 	private Stage gestionType = new Stage();
 	private Stage gestionTerritoire = new Stage();
 
-	// Listes temporaires pour retenir les informations avant la modification des
-	// listes
+	/**
+	 * Liste Temporaire pour retenir les territoires
+	 */
 	private List<String> oldListTerritoire;
+	/**
+	 * Liste Temporaire pour retenir les types
+	 */
 	private List<String> oldListType;
 
 	// CONTROLS
