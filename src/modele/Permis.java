@@ -18,6 +18,12 @@ import modele.manager.PermisManager;
 import modele.manager.TerritoireManager;
 import modele.manager.TypeManager;
 
+/**
+ * Modèle Permis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Permis {
 	private int numero;
 	private Territoire territoire;

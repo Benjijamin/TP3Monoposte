@@ -7,7 +7,12 @@ import org.hibernate.Session;
 import modele.Animal;
 import modele.Type;
 import util.HibernateUtil;
-
+/**
+ * Manager Animal (Connexion à la BD)
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class AnimalManager {
 	/**
 	 * Ajoute un Animal à la BD

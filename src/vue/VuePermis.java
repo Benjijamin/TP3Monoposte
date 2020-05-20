@@ -27,6 +27,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Vue GestionPermis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class VuePermis implements IVue {
 	private ICtrl ctrl;
 	private Scene scene;

@@ -10,6 +10,12 @@ import modele.Permis;
 import modele.Territoire;
 import util.HibernateUtil;
 
+/**
+ * Manager Permis (Connexion à la BD)
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class PermisManager {
 	AnimalManager animalManager = new AnimalManager();
 

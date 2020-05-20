@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import modele.manager.TerritoireManager;
-
+/**
+ * Modèle Territoire
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Territoire {
 	private int id;
 	private String nom;

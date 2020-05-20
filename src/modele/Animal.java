@@ -14,6 +14,12 @@ import org.hibernate.ObjectNotFoundException;
 import modele.manager.AnimalManager;
 import modele.manager.TypeManager;
 
+/**
+ * Modèle Animal
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Animal {
 	private int id;
 	private String nom;

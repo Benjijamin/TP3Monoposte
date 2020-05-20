@@ -9,7 +9,12 @@ import java.util.*;
 import modele.Permis;
 import modele.Territoire;
 import modele.Type;
-
+/**
+ * Classe utilitaire pour lire un CSV de permis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class CSVioUtil {
 
 	/**

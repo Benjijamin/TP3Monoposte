@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.util.List;
 
 import modele.Permis;
-
+/**
+ * Classe utilitaire pour écrire un XML de permis
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public abstract class XMLioUtil {
 
 	public static void write(List<Permis> liste, String filepath) {

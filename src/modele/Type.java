@@ -10,6 +10,12 @@ import org.hibernate.Session;
 import modele.manager.TypeManager;
 import util.HibernateUtil;
 
+/**
+ * Modèle Type
+ * 
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
+ *
+ */
 public class Type {
 	private int id;
 	private String nom;
@@ -34,7 +40,6 @@ public class Type {
 			}
 		}
 	}
-	
 
 	public static List<Type> getTypes() {
 		return manager.getTypes();
