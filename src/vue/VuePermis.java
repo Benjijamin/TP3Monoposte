@@ -231,6 +231,7 @@ public class VuePermis implements IVue {
 		}
 	}
 
+	@Override
 	public Scene getScene() {
 		return scene;
 	}
@@ -258,7 +259,7 @@ public class VuePermis implements IVue {
 	/**
 	 * @return true si formulaire valide
 	 */
-	public boolean validerFormulaire() {
+	private boolean validerFormulaire() {
 		if (choiceBoxTerritoire.getValue() == null || choiceBoxTerritoire.getValue() == "") {
 			error("Le territoire ne peux pas être vide.");
 			return false;
@@ -300,7 +301,7 @@ public class VuePermis implements IVue {
 	 * Modifie les dates dans le formulaire pour qu'elles soient conformes aux
 	 * exigences
 	 */
-	public void validerDates() {
+	private void validerDates() {
 		LocalDate debut;
 		LocalDate fin;
 		LocalDate naissance;
@@ -324,6 +325,7 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
+	@Override
 	public void quitter() {
 		Alert quit = new Alert(AlertType.CONFIRMATION);
 		quit.setTitle("Quitter ?");
@@ -334,11 +336,13 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
+	@Override
 	public void nouveau() {
 		updateButtonNouveau();
 	}
 
 	@FXML
+	@Override
 	public void ajouter() {
 		if (validerFormulaire()) {
 			ctrl.ajouter(getFormulaire());
@@ -347,12 +351,14 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
+	@Override
 	public void modifier() {
 		if (validerFormulaire())
 			ctrl.modifier(getFormulaire());
 	}
 
 	@FXML
+	@Override
 	public void supprimer() {
 		Alert del = new Alert(AlertType.CONFIRMATION);
 		del.setTitle("Supprimmer ?");
@@ -370,7 +376,7 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
-	public void aide() {
+	private void aide() {
 		Alert help = new Alert(AlertType.INFORMATION);
 		help.setTitle("Aide");
 		help.setContentText("Cette Application permet la gestion de permis animaux.");
@@ -386,7 +392,7 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
-	public void export() {
+	private void export() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("XML", "*.xml"));
 		File selected = fileChooser.showSaveDialog(new Stage());
@@ -429,7 +435,7 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
-	public void importcsv() {
+	private void importcsv() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV", "*.csv"));
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "\\io\\Fichiers_CSV"));
@@ -494,19 +500,19 @@ public class VuePermis implements IVue {
 	}
 
 	@FXML
-	public void gestionTerritoire() {
+	private void gestionTerritoire() {
 		updateViewTerritoire();
 		gestionTerritoire.show();
 	}
 
 	@FXML
-	public void gestionType() {
+	private void gestionType() {
 		updateViewType();
 		gestionType.show();
 	}
 
 	@FXML
-	public void recherche() {
+	private void recherche() {
 		try {
 			if (fieldRecherche.getText().isEmpty()) {
 				updateViewToDatabase();
@@ -525,7 +531,7 @@ public class VuePermis implements IVue {
 	 * Disable et Enable les boutons nécessaires selon l'état actuel de
 	 * l'application.
 	 */
-	public void updateButtonState() {
+	private void updateButtonState() {
 		// il y a un permis selectionné ?
 		boolean permisselected = (listViewPermis.getSelectionModel().getSelectedItem() != null);
 		datePickerDateDebut.setDisable(!permisselected);
@@ -566,7 +572,7 @@ public class VuePermis implements IVue {
 	 * Disable et Enable les boutons nécessaires lors de la création d'un permis Et
 	 * mets les champs à zéro
 	 */
-	public void updateButtonNouveau() {
+	private void updateButtonNouveau() {
 		fieldNumero.setText(String.valueOf(ctrl.getNextNumero()));
 		datePickerDateDebut.setDisable(false);
 		datePickerDateFin.setDisable(false);
@@ -618,7 +624,7 @@ public class VuePermis implements IVue {
 	/**
 	 * Update tous les champs pour correspondre à l'élément selectionné
 	 */
-	public void updateFields(String numeroPermis) {
+	private void updateFields(String numeroPermis) {
 		try {
 			Map<String, Object> values = ctrl.getPermis(numeroPermis);
 			fieldNumero.setText(String.valueOf((int) values.get("numero")));
@@ -661,7 +667,7 @@ public class VuePermis implements IVue {
 	 * Update tous les listes de la vue pour correspondre au données (remet la liste
 	 * permis à 100 enregistrement visibles)
 	 */
-	public void updateViewToDatabase() {
+	private void updateViewToDatabase() {
 		List<String> temp;
 
 		temp = ctrl.getTerritoireListe();
@@ -775,7 +781,7 @@ public class VuePermis implements IVue {
 		Alert help = new Alert(AlertType.INFORMATION);
 		help.setTitle("Fichier CSV");
 		help.setContentText("Le fichier CSV à été lu,\n" + read[0] + " Enregistrements lu, " + read[1] + " retenu.\n"
-				+ (read[0] - read[1]) + " ont été ignoré.\n"+"Temps pris pour l'éxécution : "+read[2]+"ms");
+				+ (read[0] - read[1]) + " ont été ignoré.\n" + "Temps pris pour l'éxécution : " + read[2] + "ms");
 		help.showAndWait();
 	}
 }

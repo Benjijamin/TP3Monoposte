@@ -8,6 +8,10 @@ import javafx.scene.Scene;
  *
  */
 public interface IVue {
+	/**
+	 * 
+	 * @return la scene
+	 */
 	public Scene getScene();
 	
 	public void quitter();
