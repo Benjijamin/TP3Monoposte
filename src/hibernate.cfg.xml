@@ -23,7 +23,7 @@
 <property name="format_sql">false</property> 
 <property name="show_sql">false</property> 
 
-<property name="hbm2ddl.auto">create</property> 
+<property name="hbm2ddl.auto">update</property> 
 
 <mapping resource="modele/Permis.hbm.xml" />
 <mapping resource="modele/Animal.hbm.xml" /> 
