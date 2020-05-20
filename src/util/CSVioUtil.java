@@ -61,17 +61,13 @@ public class CSVioUtil {
 			new Type().importerTypes(types);
 
 			for (String[] list : permis) {
-				Permis p = new Permis();
-				p.creerPermis(list);
+				new Permis().creerPermis(list);
 			}
-
-			System.out.println("importation fini");
-			System.out.println("temps en ms = " + (System.currentTimeMillis() - execStart));
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return new long[] { readed, permis.size() };
+		return new long[] { readed, permis.size(), System.currentTimeMillis() - execStart };
 	}
 
 }

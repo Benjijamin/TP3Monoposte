@@ -1,10 +1,8 @@
 package modele;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
-
+import javax.persistence.NoResultException;
 import modele.manager.TerritoireManager;
 /**
  * Modèle Territoire
@@ -69,6 +67,22 @@ public class Territoire {
 
 	public static void ajouterTerritoire(String territoire) {
 		manager.ajouterTerritoire(territoire);
+	}
+	
+	/**
+	 * Valide la string recu et l'associe au bon objet Territoire
+	 * 
+	 * @param terr
+	 * @return
+	 */
+	public static Territoire validerTerritoire(String terr) {
+		try {
+			Territoire t = manager.getTerritoire(terr);
+			return t;
+		} catch (NoResultException e) {
+			System.err.println("territoire non existant");
+			return null;
+		}
 	}
 
 }

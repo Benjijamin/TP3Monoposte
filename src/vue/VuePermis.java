@@ -770,8 +770,8 @@ public class VuePermis implements IVue {
 	public void importerResult(long[] read) {
 		Alert help = new Alert(AlertType.INFORMATION);
 		help.setTitle("Fichier CSV");
-		help.setContentText("Le fichier CSV à été lu,\n" + read[0] + " Eneregistrements lu, " + read[1] + " retenu.\n"
-				+ (read[0] - read[1]) + " ont été ignoré.");
+		help.setContentText("Le fichier CSV à été lu,\n" + read[0] + " Enregistrements lu, " + read[1] + " retenu.\n"
+				+ (read[0] - read[1]) + " ont été ignoré.\n"+"Temps pris pour l'éxécution : "+read[2]+"ms");
 		help.showAndWait();
 	}
 }
