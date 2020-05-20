@@ -5,9 +5,9 @@ import org.hibernate.Session;
 import util.HibernateUtil;
 
 /**
- * Un Main pour vider les tables
+ * Une Classe avec un Main pour vider les tables (commentez ce que l'on ne veux pas vider)
  * 
- * @author JeanSamuel Girard
+ * @author Jean-Samuel Girard & Benjamin Couillard-Dagneau
  *
  */
 public class ViderLesTables {
