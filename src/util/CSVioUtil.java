@@ -61,7 +61,7 @@ public class CSVioUtil {
 			new Type().importerTypes(types);
 
 			for (String[] list : permis) {
-				new Permis().creerPermis(list);
+				Permis.creerPermis(list);
 			}
 			br.close();
 		} catch (IOException e) {
