@@ -101,7 +101,7 @@ public class Animal {
 	}
 
 	/**
-	 * Set le sexe, fixe les erreurs d'encodage
+	 * Set le sexe
 	 * 
 	 * @param sexe
 	 */
@@ -110,7 +110,7 @@ public class Animal {
 	}
 
 	/**
-	 * Valide le sexe
+	 * Retourne inconnu si le sexe est vide
 	 * 
 	 * @param sexe
 	 * @return Inconnu si vide
