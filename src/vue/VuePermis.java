@@ -191,7 +191,7 @@ public class VuePermis implements IVue {
 			datePickerDateNaissance.valueProperty().addListener(dateListener);
 
 			// Options de base pour la couleur
-			comboBoxCouleur.getItems().addAll("Noir", "Blanc", "Gris", "Lilac", "Caramel", "Creme");
+			comboBoxCouleur.getItems().addAll("Inconnu","Noir", "Blanc", "Gris", "Lilac", "Caramel", "Creme");
 
 			// Load Modals
 			FXMLLoader loaderTerritoire = new FXMLLoader(getClass().getResource("/vue/modal/territoire.fxml"));
@@ -339,6 +339,7 @@ public class VuePermis implements IVue {
 	@Override
 	public void nouveau() {
 		updateButtonNouveau();
+		validerDates();
 	}
 
 	@FXML
@@ -610,7 +611,7 @@ public class VuePermis implements IVue {
 
 		fieldPoids.setText("");
 
-		comboBoxCouleur.setValue("");
+		comboBoxCouleur.setValue("Inconnu");
 		checkBoxVaccine.setSelected(false);
 		checkBoxSterelise.setSelected(false);
 		checkBoxMicropuce.setSelected(false);
